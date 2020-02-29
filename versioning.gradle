@@ -1,0 +1,30 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath 'org.ajoberstar:grgit:1.7.0'
+//        classpath "org.ajoberstar.grgit:grgit-core:4.0.1"
+    }
+}
+
+//apply plugin: "org.ajoberstar.grgit"
+
+import org.ajoberstar.grgit.Grgit
+
+ext {
+    git = Grgit.open(currentDir: projectDir)
+    gitVersionName = git.describe()
+    gitVersionCode = git.tag.list().size()
+    gitVersionCodeTime = git.head().time
+}
+
+task printVersion() {
+    println("Version Name: $gitVersionName")
+    println("Version Code: $gitVersionCode")
+    println("Version Code Time: $gitVersionCodeTime")
+}
+
+//apply plugin: "org.ajoberstar.grgit"
