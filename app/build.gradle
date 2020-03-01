@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.gms.google-services'
 
 apply from: '../versioning.gradle'
 apply from: '../ktlint.gradle'
@@ -64,12 +65,14 @@ android {
             minifyEnabled false
             resValue("string", "ads_app_id", "ca-app-pub-3940256099942544~3347511713")
             resValue("string", "ads_banner_unit_id", "ca-app-pub-3940256099942544/6300978111")
+            resValue("string", "ads_interstitial_unit_id", "ca-app-pub-3940256099942544/1033173712")
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             resValue("string", "ads_app_id", "ca-app-pub-3940256099942544~3347511713")
             resValue("string", "ads_banner_unit_id", "ca-app-pub-3940256099942544/6300978111")
+            resValue("string", "ads_interstitial_unit_id", "ca-app-pub-3940256099942544/1033173712")
         }
     }
 

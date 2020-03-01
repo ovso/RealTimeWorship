@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "179750580509",
+    "firebase_url": "https://worship-3ac2c.firebaseio.com",
+    "project_id": "worship-3ac2c",
+    "storage_bucket": "worship-3ac2c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:179750580509:android:ebb81db63db7efe4c671f4",
+        "android_client_info": {
+          "package_name": "io.github.ovso.worship.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "179750580509-u686031rvusbnellmdq1hea58p72p49p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBf5ltxOigrbqupryD9N3xN2ZhpsJ_5jTU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "179750580509-u686031rvusbnellmdq1hea58p72p49p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
