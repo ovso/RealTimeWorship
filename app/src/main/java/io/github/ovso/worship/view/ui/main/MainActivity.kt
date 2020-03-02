@@ -24,7 +24,6 @@ class MainActivity : DataBindingActivity<ActivityMainBinding>(
             orientation = ViewPager2.ORIENTATION_VERTICAL
             adapter = this@MainActivity.adapter
         }
-
     }
 
     private fun observe() {
