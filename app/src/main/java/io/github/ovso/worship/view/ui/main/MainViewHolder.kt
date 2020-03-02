@@ -21,10 +21,6 @@ class MainViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
 
 
     fun onBindViewHolder(item: MainItem) {
-        binding.run {
-            setVariable(BR.item, item)
-            executePendingBindings()
-        }
         binding.ytpvMainItem.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 super.onReady(youTubePlayer)
