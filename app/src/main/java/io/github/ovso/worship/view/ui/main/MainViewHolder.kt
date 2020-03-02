@@ -19,6 +19,7 @@ class MainViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
 
     private val binding = DataBindingUtil.bind<ItemMainBinding>(itemView)!!
 
+
     fun onBindViewHolder(item: MainItem) {
         binding.run {
             setVariable(BR.item, item)
@@ -33,13 +34,7 @@ class MainViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
 
                 }
             }
-
-            override fun onCurrentSecond(
-                youTubePlayer: YouTubePlayer,
-                second: Float
-            ) {
-                super.onCurrentSecond(youTubePlayer, second)
-            }
         })
     }
+
 }
