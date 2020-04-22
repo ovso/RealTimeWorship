@@ -7,7 +7,7 @@ ext {
             'espresso'             : '3.1.0',
             'work_testing'         : '2.2.0',
             'appcompat'            : '1.1.0',
-            'lifecycle'            : '2.2.0-rc02',
+            'lifecycle'            : '2.2.0',
             'dagger'               : '2.17',
             'retrofit'             : '2.6.2',
             'okhttp'               : '3.12.0',
@@ -16,12 +16,12 @@ ext {
             'timber'               : '4.7.1',
             'rxjava2'              : '2.2.11',
             'rxandroid2'           : '2.1.1',
-            'rxjava3'              : '3.0.0-RC6',
-            'rxandroid3'           : '3.0.0-SNAPSHOT',
+            'rxjava3'              : '3.0.2',
+            'rxandroid3'           : '3.0.0',
             'rxkotlin'             : '2.4.0',
-            'material'             : '1.1.0-alpha10',
+            'material'             : '1.1.0',
             'lottie'               : '3.0.2',
-            'viewpager2'           : '1.0.0-alpha04',
+            'viewpager2'           : '1.0.0',
             'paging'               : '2.1.0',
             'easydeviceinfo'       : '2.4.1',
             'android_gradle'       : '3.6.0',
@@ -49,26 +49,34 @@ ext {
             'koap'                 : '1.0.1',
             'youtube_player'       : '10.0.5',
             'shimmer'              : '0.5.0',
-            'shimmer_layout'       : '2.1.0'
+            'shimmer_layout'       : '2.1.0',
+            'ktx_fragment'         : '1.2.4',
+            'ktx_activity'         : '1.1.0'
     ]
 
     deps = [
             'androidx'      : [
-                    'appcompat'              : "androidx.appcompat:appcompat:$versions.appcompat",
-                    'constraintlayout'       : "androidx.constraintlayout:constraintlayout:$versions.constraintlayout",
-                    'material'               : "com.google.android.material:material:$versions.material",
-                    'viewpager2'             : "androidx.viewpager2:viewpager2:$versions.viewpager2",
-                    'paging_runtime'         : "androidx.paging:paging-runtime:$versions.paging",
-                    'paging_rxjava2'         : "androidx.paging:paging-rxjava2:$versions.paging",
-                    'annotation'             : "androidx.annotation:annotation:$versions.annotation",
-                    'core_ktx'               : "androidx.core:core-ktx:$versions.core_ktx",
-                    'lifecycle_viewmodel_ktx': "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle",
-                    'lifecycle_extensions'   : "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle",
-                    'legacy_preference_v14'  : "androidx.legacy:legacy-preference-v14:$versions.legacy_preference_v14",
-                    'fragment'               : "androidx.fragment:fragment:$versions.fragment",
-                    'legacy_support_v4'      : "androidx.legacy:legacy-support-v4:$versions.legacy_support_v4",
+                    'appcompat'            : "androidx.appcompat:appcompat:$versions.appcompat",
+                    'constraintlayout'     : "androidx.constraintlayout:constraintlayout:$versions.constraintlayout",
+                    'material'             : "com.google.android.material:material:$versions.material",
+                    'viewpager2'           : "androidx.viewpager2:viewpager2:$versions.viewpager2",
+                    'paging_runtime'       : "androidx.paging:paging-runtime:$versions.paging",
+                    'paging_rxjava2'       : "androidx.paging:paging-rxjava2:$versions.paging",
+                    'annotation'           : "androidx.annotation:annotation:$versions.annotation",
+                    'lifecycle_extensions' : "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle",
+                    'legacy_preference_v14': "androidx.legacy:legacy-preference-v14:$versions.legacy_preference_v14",
+                    'fragment'             : "androidx.fragment:fragment:$versions.fragment",
+                    'legacy_support_v4'    : "androidx.legacy:legacy-support-v4:$versions.legacy_support_v4",
             ],
 
+            'androidx_ktx'  : [
+                    'fragment' : "androidx.fragment:fragment-ktx:$versions.ktx_fragment",
+                    'activity' : "androidx.activity:activity-ktx:$versions.ktx_activity",
+                    'core'     : "androidx.core:core-ktx:$versions.core_ktx",
+                    'viewmodel': "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle",
+            ],
+//// https://mvnrepository.com/artifact/androidx.activity/activity-ktx
+//compile group: 'androidx.activity', name: 'activity-ktx', version: '1.1.0'
             'anko'          : [
                     'commons': "org.jetbrains.anko:anko-commons:$versions.anko",
                     //                    'sdk25'                  : "org.jetbrains.anko:anko-sdk25:$versions.anko",
@@ -93,7 +101,7 @@ ext {
 
 
             'firebase'      : [
-                    'ads' : "com.google.firebase:firebase-ads:$versions.firebase_ads",
+                    'ads': "com.google.firebase:firebase-ads:$versions.firebase_ads",
                     //'core': "com.google.firebase:firebase-core:$versions.firebase_core",
             ],
 
@@ -226,8 +234,8 @@ ext {
 
 
             'loading'       : [
-                    'shimmer' : "com.facebook.shimmer:shimmer:$versions.shimmer",
-                    'shimmer_layout' : "io.supercharge:shimmerlayout:$versions.shimmer_layout"
+                    'shimmer'       : "com.facebook.shimmer:shimmer:$versions.shimmer",
+                    'shimmer_layout': "io.supercharge:shimmerlayout:$versions.shimmer_layout"
             ]
     ]
 

@@ -115,6 +115,7 @@ dependencies {
     implementation deps.coroutines.values()
     implementation deps.kotlin.values()
     implementation deps.androidx.values()
+    implementation deps.androidx_ktx.values()
     implementation deps.retrofit.values()
     implementation deps.rx.values()
     implementation deps.glide.runtime
