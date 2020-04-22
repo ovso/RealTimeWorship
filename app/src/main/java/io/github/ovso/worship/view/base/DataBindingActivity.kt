@@ -14,6 +14,7 @@ abstract class DataBindingActivity<T : ViewDataBinding>(
     private val viewModelCls: Class<out ViewModel>
 ) : AppCompatActivity() {
 
+    @Suppress("RemoveExplicitTypeArguments")
     protected val binding: T by lazy {
         DataBindingUtil.setContentView<T>(this, layoutResId)
     }
