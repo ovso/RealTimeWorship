@@ -9,24 +9,12 @@ import java.util.concurrent.TimeUnit
 
 const val BASE_URL = "https://www.googleapis.com"
 
-open class BaseRepository<T>(
-    private val baseUrl: String,
-    private val cls: Class<T>
+open class Api(
+    private val baseUrl: String
 ) {
 
-    fun api(): T = createRetrofit().create(cls)
-
-    private fun createRetrofit(): Retrofit {
-        return Retrofit.Builder().baseUrl(baseUrl)
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-            .client(createClient())
-            .build()
-    }
-
-    private fun createClient(): OkHttpClient {
-        val httpClient = OkHttpClient.Builder()
-        with(httpClient) {
+    inline fun <reified T> create(): T {
+        val client = with(OkHttpClient.Builder()) {
             readTimeout(TIMEOUT_SECONDS.toLong(), TimeUnit.SECONDS)
             connectTimeout(TIMEOUT_SECONDS.toLong(), TimeUnit.SECONDS)
             followRedirects(false)
@@ -40,8 +28,15 @@ open class BaseRepository<T>(
             addInterceptor(HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BODY
             })
-        }
-        return httpClient.build()
+        }.build()
+
+        return Retrofit.Builder().baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+            .client(client)
+            .build()
+            .create(T::class.java)
+
     }
 
     companion object {

@@ -2,13 +2,13 @@
 
 package io.github.ovso.worship
 
-import io.github.ovso.worship.data.network.SearchRepository
+import io.github.ovso.worship.data.network.TasksRemoteDataSource
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class YoutubeApiTest {
     private val repository by lazy {
-        SearchRepository()
+        TasksRemoteDataSource()
     }
 
     @Test
