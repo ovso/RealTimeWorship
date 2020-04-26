@@ -1,6 +1,9 @@
 package io.github.ovso.worship.view.ui.main
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
 import io.github.ovso.worship.R
@@ -29,7 +32,13 @@ class MainActivity : DataBindingActivity<ActivityMainBinding>(
     private fun observe() {
         val owner = this
         binding.viewModel?.items?.observe(owner, Observer {
-            adapter.submitList(it)
+//            adapter.submitList(it)
+        })
+        binding.viewModel?.message?.observe(owner, Observer {
+            Toast.makeText(owner, it.toString(), Toast.LENGTH_SHORT).show()
+        })
+        binding.viewModel?.message?.observe(owner, Observer {
+            AlertDialog.Builder(owner).setMessage(it.toString()).show()
         })
     }
 }
