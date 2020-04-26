@@ -1,4 +1,4 @@
-package io.github.ovso.worship.exts
+package io.github.ovso.worship.extensions
 
 import android.content.Context
 import android.text.InputFilter
