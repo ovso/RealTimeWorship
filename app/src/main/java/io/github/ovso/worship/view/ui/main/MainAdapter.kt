@@ -16,14 +16,10 @@ val DIFF_UTIL = object : DiffUtil.ItemCallback<MainItem>() {
     override fun areItemsTheSame(
         oldItem: MainItem,
         newItem: MainItem
-    ): Boolean {
-        return oldItem == newItem
-    }
+    ): Boolean = oldItem == newItem
 
     override fun areContentsTheSame(
         oldItem: MainItem,
         newItem: MainItem
-    ): Boolean {
-        return oldItem == newItem
-    }
+    ): Boolean = areItemsTheSame(oldItem, newItem)
 }
