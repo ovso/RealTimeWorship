@@ -16,7 +16,6 @@ object ServiceLocator {
 
     @Suppress("UNUSED_PARAMETER")
     private fun createTasksRepository(context: Context): TasksRepository {
-        // context는 로컬일 경우에?
         val newRepo = TasksRepository(TasksRemoteDataSource())
         tasksRepository = newRepo
         return newRepo

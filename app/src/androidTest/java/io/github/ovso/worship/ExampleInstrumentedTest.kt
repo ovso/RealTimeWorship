@@ -2,6 +2,7 @@ package io.github.ovso.worship
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import io.github.ovso.worship.data.network.ServiceLocator
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -20,5 +21,8 @@ class ExampleInstrumentedTest {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("io.github.ovso.worship", appContext.packageName)
+        val provideTasksRepository = ServiceLocator.provideTasksRepository(appContext)
+        println(provideTasksRepository)
+        println("useAppContext = $provideTasksRepository")
     }
 }
