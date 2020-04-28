@@ -1,13 +1,13 @@
 package io.github.ovso.worship.view.ui.main
 
 import android.os.Bundle
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import io.github.ovso.worship.R
 import io.github.ovso.worship.databinding.FragmentMainBinding
 import io.github.ovso.worship.extensions.getViewModelFactory
 import io.github.ovso.worship.view.base.DataBindingFragment
+import timber.log.Timber
 
 class MainFragment : DataBindingFragment<FragmentMainBinding>(R.layout.fragment_main) {
 
@@ -20,7 +20,10 @@ class MainFragment : DataBindingFragment<FragmentMainBinding>(R.layout.fragment_
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel.items.observe(viewLifecycleOwner, Observer {
-            AlertDialog.Builder(requireActivity()).setMessage(it.first().churchName).show()
+            val iterator = it.iterator()
+            while (iterator.hasNext()) {
+                Timber.d(iterator.next().churchName)
+            }
         })
     }
 }
