@@ -47,7 +47,7 @@ android {
             dimension "version"
             versionCode gitVersionCodeTime
             versionName gitVersionName
-            applicationId config.applicationId
+            applicationId config.applicationId + ".dev"
             signingConfig signingConfigs.debug
         }
 

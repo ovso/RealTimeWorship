@@ -8,14 +8,13 @@ object ServiceLocator {
     @Volatile
     var tasksRepository: TasksRepository? = null
 
-    fun provideTasksRepository(context: Context): TasksRepository {
+    fun provideTasksRepository(): TasksRepository {
         synchronized(this) {
-            return tasksRepository ?: createTasksRepository(context)
+            return tasksRepository ?: createTasksRepository()
         }
     }
 
-    @Suppress("UNUSED_PARAMETER")
-    private fun createTasksRepository(context: Context): TasksRepository {
+    private fun createTasksRepository(): TasksRepository {
         val newRepo = TasksRepository(TasksRemoteDataSource())
         tasksRepository = newRepo
         return newRepo
