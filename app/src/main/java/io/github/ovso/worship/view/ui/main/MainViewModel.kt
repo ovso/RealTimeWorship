@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.github.ovso.worship.data.TasksRepository
 import io.github.ovso.worship.view.base.DisposableViewModel
+import org.jsoup.Jsoup
 import timber.log.Timber
 
 class MainViewModel(private val tasksRepository: TasksRepository) : DisposableViewModel() {
@@ -24,6 +25,10 @@ class MainViewModel(private val tasksRepository: TasksRepository) : DisposableVi
                 )
             )
         )
+
+        val body =
+            Jsoup.parse("https://www.youtube.com/channel/UC6vNHBFM5VLNF53CKycyNZw/videos").body()
+        println(body)
     }
 
     fun onClick(id: Int) {
