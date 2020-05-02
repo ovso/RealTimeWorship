@@ -1,27 +1,29 @@
 package io.github.ovso.worship.data.network
 
-import com.google.gson.JsonElement
+import com.google.gson.Gson
 import io.github.ovso.worship.data.TasksDataSource
+import io.github.ovso.worship.data.network.model.VideoResponse
+import io.github.ovso.worship.extensions.fromJson
 import io.reactivex.rxjava3.core.Single
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 
 class TasksRemoteDataSource : TasksDataSource {
 
-    private val searchApi by lazy { Api(BASE_URL).create<SearchService>() }
-
-    override fun getChannels(queryMap: HashMap<String, String>): Single<JsonElement> {
-        return searchApi.channels(queryMap)
+    override fun getVideos(channelId: String): Single<List<VideoResponse>> {
+        val document = Jsoup.connect("https://www.youtube.com/channel/$channelId/videos").get()
+        return toVideoResponseList(document)
     }
 
-    override fun getVideos(channelId: String): Single<Document> {
+    private fun toVideoResponseList(document: Document): Single<List<VideoResponse>> {
         return Single.fromCallable {
-            val sb = StringBuilder()
-                .append(BASE_URL_YOUTUBE)
-                .append("/channel/")
-                .append(channelId)
-                .append("videos")
-            Jsoup.connect(sb.toString()).get()
+            val scriptElements = document.getElementsByTag("script")
+            val prefix = "[{\"gridVideoRenderer"
+            val itemsElement = scriptElements.first { it.data().contains(prefix) }
+            val startIndex = itemsElement.data().indexOf(prefix)
+            val endIndex = itemsElement.data().indexOf(",\"continuations\"")
+            val substring = itemsElement.data().substring(startIndex, endIndex)
+            Gson().fromJson<List<VideoResponse>>(substring)
         }
     }
 }
