@@ -52,6 +52,24 @@ class RepositoryTest {
             .subscribe(::onSuccess, ::onFailure)
     }
 
+    @Test
+    fun `레파지토리 테스트3`() {
+
+        fun onFailure(t: Throwable) {
+            println(t.message)
+        }
+
+        fun onSuccess(items: List<VideoResponse>) {
+            println("items size = ${items.count()}")
+        }
+
+        val channelId = "UCBh3Qv-rKu6ZDxEcrio70Hw"
+        tasksRepository.getVideos(channelId)
+            .subscribeOn(SchedulerProvider.io())
+            .observeOn(SchedulerProvider.ui())
+            .subscribe(::onSuccess, ::onFailure)
+    }
+
     object SchedulerProvider {
         fun io(): Scheduler = Schedulers.trampoline()
         fun ui(): Scheduler = Schedulers.trampoline()
