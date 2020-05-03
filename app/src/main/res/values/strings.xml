@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">RealTimeWorship</string>
     <string name="base_url">https://www.googleapis.com</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Year progress</string>
+    <string name="nav_header_subtitle">ovsoc@daum.net</string>
+    <string name="nav_header_desc">Navigation header</string>
 </resources>

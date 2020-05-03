@@ -16,9 +16,12 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/ads_app_id"/>
+            android:value="@string/ads_app_id" />
 
-        <activity android:name=".view.ui.main.MainActivity">
+        <activity
+            android:name=".view.ui.main.MainActivity"
+            android:screenOrientation="sensor"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

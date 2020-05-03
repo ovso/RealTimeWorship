@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/nav_opensource"
+                android:title="산정현교회" />
+            <item
+                android:id="@+id/nav_review"
+                android:title="분당우리교회" />
+            <item
+                android:id="@+id/nav_share"
+                android:title="삼일교회" />
+        </menu>
+    </item>
+
+</menu>
