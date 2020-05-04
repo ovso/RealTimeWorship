@@ -3,12 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/navFragment">
+    app:startDestination="@id/mainFragment">
 
     <fragment
-        android:id="@+id/navFragment"
+        android:id="@+id/mainFragment"
         android:name="io.github.ovso.worship.view.ui.list.MainFragment"
-        android:label="Home"
+        android:label="Main"
         tools:layout="@layout/fragment_main" />
+
+    <fragment
+        android:id="@+id/shareFragment"
+        android:name="io.github.ovso.worship.view.ui.test.TestFragment"
+        android:label="Share"
+        tools:layout="@layout/fragment_test" />
 
 </navigation>

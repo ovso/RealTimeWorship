@@ -119,6 +119,7 @@ dependencies {
     implementation deps.retrofit.values()
     implementation deps.rx.values()
     implementation deps.glide.runtime
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt deps.glide.compiler
     implementation deps.autodispose.values()
     implementation deps.koin.values()

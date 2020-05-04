@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/navFragment"
-        android:title="drawerMenu" />
+        android:id="@+id/mainFragment"
+        android:title="삼일교회" />
+    <item
+        android:id="@+id/shareFragment"
+        android:title="산정현 교회" />
 </menu>

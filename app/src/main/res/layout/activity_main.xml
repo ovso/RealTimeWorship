@@ -48,6 +48,6 @@
             android:background="@android:color/white"
             android:fitsSystemWindows="true"
             app:headerLayout="@layout/nav_header_main"
-            app:menu="@menu/activity_main_drawer" />
+            app:menu="@menu/menu_navigation" />
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>
