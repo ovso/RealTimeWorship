@@ -1,4 +1,4 @@
-package io.github.ovso.worship.view.ui.main
+package io.github.ovso.worship.view.ui.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

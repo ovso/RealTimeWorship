@@ -51,7 +51,8 @@ ext {
             'shimmer'              : '0.5.0',
             'shimmer_layout'       : '2.1.0',
             'ktx_fragment'         : '1.2.4',
-            'ktx_activity'         : '1.1.0'
+            'ktx_activity'         : '1.1.0',
+            'navigation_ui'        : '2.2.2'
     ]
 
     deps = [
@@ -67,6 +68,8 @@ ext {
                     'legacy_preference_v14': "androidx.legacy:legacy-preference-v14:$versions.legacy_preference_v14",
                     'fragment'             : "androidx.fragment:fragment:$versions.fragment",
                     'legacy_support_v4'    : "androidx.legacy:legacy-support-v4:$versions.legacy_support_v4",
+                    'navigation_ui'        : "androidx.navigation:navigation-ui-ktx:$versions.navigation_ui",
+                    'navigation_fragment'  : "androidx.navigation:navigation-fragment-ktx:$versions.navigation_ui"
             ],
 
             'androidx_ktx'  : [

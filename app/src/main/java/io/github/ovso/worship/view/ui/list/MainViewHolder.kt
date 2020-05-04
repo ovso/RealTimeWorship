@@ -1,4 +1,4 @@
-package io.github.ovso.worship.view.ui.main
+package io.github.ovso.worship.view.ui.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.loadOrCueVideo
-import io.github.ovso.worship.BR
 import io.github.ovso.worship.R
 import io.github.ovso.worship.databinding.ItemMainBinding
 import timber.log.Timber

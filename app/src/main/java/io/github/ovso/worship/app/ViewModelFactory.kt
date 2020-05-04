@@ -6,7 +6,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 import io.github.ovso.worship.data.TasksRepository
-import io.github.ovso.worship.view.ui.main.MainViewModel
+import io.github.ovso.worship.view.ui.list.MainViewModel
 
 /**
  * Factory for all ViewModels.

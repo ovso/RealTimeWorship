@@ -1,4 +1,4 @@
-package io.github.ovso.worship.view.ui.main
+package io.github.ovso.worship.view.ui.list
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.ListAdapter
 
 
 class MainAdapter : ListAdapter<MainItem, MainViewHolder>(DIFF_UTIL) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = MainViewHolder(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        MainViewHolder(parent)
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int): Unit =
         holder.onBindViewHolder(getItem(position))

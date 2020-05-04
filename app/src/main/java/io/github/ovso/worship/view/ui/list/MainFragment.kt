@@ -1,4 +1,4 @@
-package io.github.ovso.worship.view.ui.main
+package io.github.ovso.worship.view.ui.list
 
 import android.os.Bundle
 import androidx.fragment.app.viewModels

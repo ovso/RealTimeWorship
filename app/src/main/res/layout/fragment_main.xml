@@ -4,13 +4,13 @@
     <data>
         <variable
             name="viewModel"
-            type="io.github.ovso.worship.view.ui.main.MainViewModel" />
+            type="io.github.ovso.worship.view.ui.list.MainViewModel" />
     </data>
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="io.github.ovso.worship.view.ui.main.MainFragment">
+        tools:context="io.github.ovso.worship.view.ui.list.MainFragment">
 
         <TextView
             android:id="@+id/tv_main_fragment"
