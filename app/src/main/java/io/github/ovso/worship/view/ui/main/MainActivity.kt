@@ -3,6 +3,7 @@ package io.github.ovso.worship.view.ui.main
 import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
@@ -43,5 +44,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         toggle.syncState()
     }
 
-
+    override fun onSupportNavigateUp(): Boolean {
+        return NavigationUI.navigateUp(
+            Navigation.findNavController(this, R.id.mainNavFragment), drawer_layout
+        )
+    }
 }

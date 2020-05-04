@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import io.github.ovso.worship.R
 import io.github.ovso.worship.databinding.FragmentMainBinding
 import io.github.ovso.worship.extensions.getViewModelFactory
+import io.github.ovso.worship.extensions.toast
 import io.github.ovso.worship.view.base.DataBindingFragment
 import timber.log.Timber
 
@@ -24,6 +25,7 @@ class MainFragment : DataBindingFragment<FragmentMainBinding>(R.layout.fragment_
             while (iterator.hasNext()) {
                 Timber.d(iterator.next().churchName)
             }
+            toast("onActivityCreated")
         })
     }
 }

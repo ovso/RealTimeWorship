@@ -30,6 +30,7 @@ class MainViewModel(private val tasksRepository: TasksRepository) : DisposableVi
             )
         )
 
+/*
         Thread {
             val get =
                 Jsoup.connect("https://www.youtube.com/channel/UC6vNHBFM5VLNF53CKycyNZw/videos")
@@ -46,6 +47,7 @@ class MainViewModel(private val tasksRepository: TasksRepository) : DisposableVi
                 }
             }
         }.start()
+*/
     }
 
     fun onClick(id: Int) {
