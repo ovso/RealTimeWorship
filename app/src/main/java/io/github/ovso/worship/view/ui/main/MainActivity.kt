@@ -13,20 +13,20 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setupActionBar()
         setupDrawer()
         val navController = findNavController(R.id.mainNavFragment)
-/*
-        NavigationUI.setupWithNavController(
-            toolbar,
-            navController,
-            drawer_layout
-        )
-*/
-        NavigationUI.setupWithNavController(nv_main, navController)
         NavigationUI.onNavDestinationSelected(nv_main.menu[1], navController)
-//        nv_main.setupWithNavController(navController)
+        NavigationUI.setupWithNavController(nv_main, navController)
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            toolbar.title = destination.label
+        }
 
+/*
+        nv_main.setNavigationItemSelectedListener {
+            title = it.title
+            false
+        }
+*/
     }
 
     private fun setupActionBar() {
