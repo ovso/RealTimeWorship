@@ -3,6 +3,9 @@ package io.github.ovso.worship.view.ui.main
 import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
 import io.github.ovso.worship.R
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -11,6 +14,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         super.onCreate(savedInstanceState)
         setupActionBar()
         setupDrawer()
+        val navController = findNavController(R.id.mainNavFragment)
+        NavigationUI.setupActionBarWithNavController(this, navController, drawer_layout)
+        nv_main.setupWithNavController(navController)
 /*
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
