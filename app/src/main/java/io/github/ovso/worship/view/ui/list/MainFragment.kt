@@ -1,6 +1,7 @@
 package io.github.ovso.worship.view.ui.list
 
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import io.github.ovso.worship.R
@@ -27,5 +28,15 @@ class MainFragment : DataBindingFragment<FragmentMainBinding>(R.layout.fragment_
             }
             toast("onActivityCreated")
         })
+
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    if (isEnabled) requireActivity().finishAffinity()
+                }
+
+            })
     }
+
 }
