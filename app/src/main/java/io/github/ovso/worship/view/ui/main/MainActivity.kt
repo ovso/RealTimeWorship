@@ -17,14 +17,13 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         setupDrawer()
         val navController = findNavController(R.id.mainNavFragment)
         NavigationUI.setupActionBarWithNavController(this, navController, drawer_layout)
+        NavigationUI.setupWithNavController(toolbar, navController)
+        NavigationUI.setupWithNavController(
+            toolbar,
+            navController,
+            drawer_layout
+        )
         nv_main.setupWithNavController(navController)
-/*
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, MainFragment.newInstance())
-                .commitNow()
-        }
-*/
     }
 
     private fun setupActionBar() {
