@@ -17,16 +17,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         val navController = findNavController(R.id.mainNavFragment)
         NavigationUI.onNavDestinationSelected(nv_main.menu[1], navController)
         NavigationUI.setupWithNavController(nv_main, navController)
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+        navController.addOnDestinationChangedListener { _, destination, _ ->
             toolbar.title = destination.label
         }
-
-/*
-        nv_main.setNavigationItemSelectedListener {
-            title = it.title
-            false
-        }
-*/
     }
 
     private fun setupActionBar() {
