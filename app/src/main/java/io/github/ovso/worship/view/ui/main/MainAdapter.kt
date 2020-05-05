@@ -1,4 +1,4 @@
-package io.github.ovso.worship.view.ui.list
+package io.github.ovso.worship.view.ui.main
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil

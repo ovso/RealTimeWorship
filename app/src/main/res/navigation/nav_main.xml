@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="io.github.ovso.worship.view.ui.list.MainFragment"
+        android:name="io.github.ovso.worship.view.ui.main.MainFragment"
         android:label="삼일교회"
         tools:layout="@layout/fragment_main" />
 
     <fragment
         android:id="@+id/shareFragment"
-        android:name="io.github.ovso.worship.view.ui.list.MainFragment"
+        android:name="io.github.ovso.worship.view.ui.main.MainFragment"
         android:label="산정현교회"
         tools:layout="@layout/fragment_main" />
 

@@ -1,13 +1,9 @@
-package io.github.ovso.worship.view.ui.list
+package io.github.ovso.worship.view.ui.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.google.gson.Gson
 import io.github.ovso.worship.data.TasksRepository
-import io.github.ovso.worship.data.network.model.VideoResponse
-import io.github.ovso.worship.extensions.fromJson
 import io.github.ovso.worship.view.base.DisposableViewModel
-import org.jsoup.Jsoup
 import timber.log.Timber
 
 
