@@ -5,9 +5,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 
 fun Context.toast(text: String) {
-    Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
+    shortToast(this, text)
 }
 
 fun Fragment.toast(text: String) {
-    Toast.makeText(this.context, text, Toast.LENGTH_SHORT).show()
+    shortToast(context, text)
+}
+
+private fun shortToast(context: Context?, text: String) {
+    Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
 }

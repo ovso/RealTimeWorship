@@ -15,9 +15,9 @@ class MainFragment : DataBindingFragment<FragmentMainBinding>(R.layout.fragment_
 
     override val viewModel by viewModels<MainViewModel> { getViewModelFactory() }
 
-    companion object {
-        fun newInstance() = MainFragment()
-    }
+//    companion object {
+//        fun newInstance() = MainFragment()
+//    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -38,5 +38,4 @@ class MainFragment : DataBindingFragment<FragmentMainBinding>(R.layout.fragment_
 
             })
     }
-
 }
