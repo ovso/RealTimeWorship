@@ -9,7 +9,6 @@ import io.github.ovso.worship.databinding.FragmentMainBinding
 import io.github.ovso.worship.extensions.getViewModelFactory
 import io.github.ovso.worship.extensions.toast
 import io.github.ovso.worship.view.base.DataBindingFragment
-import io.github.ovso.worship.view.ui.main.MainViewModel
 import timber.log.Timber
 
 class MainFragment : DataBindingFragment<FragmentMainBinding>(R.layout.fragment_main) {
