@@ -2,13 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@id/fragment_0"
-        android:title="삼일교회" />
+        android:title="@string/church_0" />
     <item
         android:id="@id/fragment_1"
-        android:title="산정현 교회" />
+        android:title="@string/church_1" />
     <item
         android:id="@id/fragment_2"
-        android:title="산정현 교회2" />
+        android:title="@string/church_2" />
 </menu>
 
 
@@ -29,7 +29,7 @@
     성서대학교회
     영락교회
     광림교회
-    그레이스 한인교회
+    그레이스한인교회
     남서울교회
     내수동교회
     내일교회
@@ -65,5 +65,4 @@
     한우리교회
     허브교회
     높은뜻연합선교회
-
     -->
