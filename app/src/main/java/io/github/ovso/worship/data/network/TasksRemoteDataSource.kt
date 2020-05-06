@@ -6,17 +6,12 @@ import io.github.ovso.worship.data.network.model.VideoResponse
 import io.github.ovso.worship.extensions.fromJson
 import io.reactivex.rxjava3.core.Single
 import org.jsoup.Jsoup
-import org.jsoup.nodes.Document
 
 class TasksRemoteDataSource : TasksDataSource {
 
     override fun getVideos(channelId: String): Single<List<VideoResponse>> {
-        val document = Jsoup.connect("https://www.youtube.com/channel/$channelId/videos").get()
-        return toVideoResponseList(document)
-    }
-
-    private fun toVideoResponseList(document: Document): Single<List<VideoResponse>> {
         return Single.fromCallable {
+            val document = Jsoup.connect("https://www.youtube.com/channel/$channelId/videos").get()
             val scriptElements = document.getElementsByTag("script")
             val prefix = "[{\"gridVideoRenderer"
             val itemsElement = scriptElements.first { it.data().contains(prefix) }
