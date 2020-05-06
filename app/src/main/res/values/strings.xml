@@ -10,6 +10,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="church_0">산정현교회</string>
+    <string name="church_0_channel_id">산정현교회</string>
     <string name="church_1">분당우리교회</string>
     <string name="church_2">삼일교회</string>
 </resources>

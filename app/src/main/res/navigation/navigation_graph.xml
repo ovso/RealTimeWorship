@@ -9,18 +9,34 @@
         android:id="@+id/fragment_0"
         android:name="io.github.ovso.worship.view.ui.main.MainFragment"
         android:label="@string/church_0"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main">
+        <argument
+            android:name="channel_id"
+            android:defaultValue="UC6vNHBFM5VLNF53CKycyNZw"
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_1"
         android:name="io.github.ovso.worship.view.ui.main.MainFragment"
         android:label="@string/church_1"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main">
+        <argument
+            android:name="channel_id"
+            android:defaultValue="UCBh3Qv-rKu6ZDxEcrio70Hw"
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_2"
         android:name="io.github.ovso.worship.view.ui.main.MainFragment"
         android:label="@string/church_2"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main">
+        <argument
+            android:name="channel_id"
+            android:defaultValue="UCdUkQwI7Ozo5KnTGMPhzuhw"
+            app:argType="string" />
+
+    </fragment>
 
 </navigation>

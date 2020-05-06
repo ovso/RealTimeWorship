@@ -13,9 +13,9 @@ import io.github.ovso.worship.view.ui.main.MainViewModel
  */
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory constructor(
-    private val tasksRepository: TasksRepository,
+    private val repository: TasksRepository,
     owner: SavedStateRegistryOwner,
-    defaultArgs: Bundle? = null
+    private val defaultArgs: Bundle? = null
 ) : AbstractSavedStateViewModelFactory(owner, defaultArgs) {
 
     override fun <T : ViewModel> create(
@@ -24,8 +24,7 @@ class ViewModelFactory constructor(
         handle: SavedStateHandle
     ) = with(modelClass) {
         when {
-            isAssignableFrom(MainViewModel::class.java) ->
-                MainViewModel(tasksRepository)
+            isAssignableFrom(MainViewModel::class.java) -> MainViewModel(repository, defaultArgs)
 /*
             isAssignableFrom(TaskDetailViewModel::class.java) ->
                 TaskDetailViewModel(searchRepository)

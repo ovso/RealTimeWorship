@@ -6,5 +6,9 @@ import io.github.ovso.worship.app.ViewModelFactory
 
 fun Fragment.getViewModelFactory(): ViewModelFactory {
     val repository = (requireContext().applicationContext as App).taskRepository
-    return ViewModelFactory(repository, this)
+    return ViewModelFactory(
+        repository = repository,
+        owner = this,
+        defaultArgs = arguments
+    )
 }

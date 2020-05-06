@@ -15,20 +15,16 @@ class MainFragment : DataBindingFragment<FragmentMainBinding>(R.layout.fragment_
 
     override val viewModel by viewModels<MainViewModel> { getViewModelFactory() }
 
-//    companion object {
-//        fun newInstance() = MainFragment()
-//    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel.items.observe(viewLifecycleOwner, Observer {
+        val channelId = arguments?.getString("channel_id")
+        toast(channelId)
+        viewModel.getItems().observe(viewLifecycleOwner, Observer {
             val iterator = it.iterator()
             while (iterator.hasNext()) {
                 Timber.d(iterator.next().churchName)
             }
-            toast("onActivityCreated")
         })
-
         requireActivity().onBackPressedDispatcher.addCallback(
             viewLifecycleOwner,
             object : OnBackPressedCallback(true) {

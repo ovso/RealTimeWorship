@@ -1,31 +1,41 @@
 package io.github.ovso.worship.view.ui.main
 
+import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.github.ovso.worship.data.TasksRepository
+import io.github.ovso.worship.data.network.model.VideoResponse
+import io.github.ovso.worship.utils.SchedulerProvider
 import io.github.ovso.worship.view.base.DisposableViewModel
 import timber.log.Timber
 
 
-class MainViewModel(private val tasksRepository: TasksRepository) : DisposableViewModel() {
+class MainViewModel(
+    private val tasksRepository: TasksRepository,
+    private val defaultArgs: Bundle? = null
+) : DisposableViewModel() {
 
     private val _items = MutableLiveData<List<MainItem>>()
-    val items: LiveData<List<MainItem>> = _items
+    fun getItems(): LiveData<List<MainItem>> = _items
 
     init {
-        _items.postValue(
-            listOf(
-                MainItem(
-                    churchName = "삼일교회",
-                    videoId = "hQbWYg02GX0"
-                ),
-                MainItem(
-                    churchName = "분당우리교회",
-                    videoId = "oGhmlQvPk3s"
-                )
-            )
-        )
+        Timber.d(defaultArgs.toString())
+        defaultArgs?.let {
+            fun onFailure(t: Throwable) {
+                println(t.message)
+            }
 
+            fun onSuccess(items: List<VideoResponse>) {
+                println("items size = ${items.count()}")
+            }
+
+            val channelId = it.getString("channel_id")
+            tasksRepository.getVideos(channelId!!)
+                .subscribeOn(SchedulerProvider.io())
+                .observeOn(SchedulerProvider.ui())
+                .subscribe(::onSuccess, ::onFailure)
+        }
+//        tasksRepository.getVideos("UC6vNHBFM5VLNF53CKycyNZw")
 /*
         Thread {
             val get =
