@@ -6,6 +6,7 @@ import io.github.ovso.worship.data.network.ServiceLocator
 import io.github.ovso.worship.data.network.model.VideoResponse
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.jsoup.Jsoup
 import org.junit.Test
 
 /**
@@ -68,6 +69,11 @@ class RepositoryTest {
             .subscribeOn(SchedulerProvider.io())
             .observeOn(SchedulerProvider.ui())
             .subscribe(::onSuccess, ::onFailure)
+    }
+
+    @Test
+    fun `Jsoup 테스트`() {
+        val document = Jsoup.connect("").get()
     }
 
     object SchedulerProvider {
