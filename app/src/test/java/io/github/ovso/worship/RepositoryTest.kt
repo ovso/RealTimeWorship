@@ -73,7 +73,15 @@ class RepositoryTest {
 
     @Test
     fun `Jsoup 테스트`() {
-        val document = Jsoup.connect("").get()
+        val className = "video-skeleton"
+        val document =
+            Jsoup.connect("https://www.youtube.com/channel/UC6vNHBFM5VLNF53CKycyNZw/videos?view=0&sort=dd&shelf_id=0")
+                .get()
+        println(document.toString())
+        val elementsByClass = document.body().getElementsByClass(className)
+        val contents = document.body().getElementById("contents")
+        println("contents = $contents")
+        println("class name = ${elementsByClass}")
     }
 
     object SchedulerProvider {
