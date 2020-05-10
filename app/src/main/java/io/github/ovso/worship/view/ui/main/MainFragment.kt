@@ -18,20 +18,29 @@ class MainFragment : DataBindingFragment<FragmentMainBinding>(R.layout.fragment_
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val channelId = arguments?.getString("channel_id")
+//        val channelId = arguments?.getString("channel_id")
+        observe()
+        setupOnBackPressed()
+    }
+
+    private fun setupOnBackPressed() {
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (isEnabled) requireActivity().finishAffinity()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            onBackPressedCallback
+        )
+    }
+
+    private fun observe() {
         viewModel.getItems().observe(viewLifecycleOwner, Observer {
             val iterator = it.iterator()
             while (iterator.hasNext()) {
                 Timber.d(iterator.next().churchName)
             }
         })
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    if (isEnabled) requireActivity().finishAffinity()
-                }
-
-            })
     }
 }
