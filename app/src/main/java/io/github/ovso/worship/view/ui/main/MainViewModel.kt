@@ -5,8 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.github.ovso.worship.data.TasksRepository
 import io.github.ovso.worship.data.network.response.VideoResponse
+import io.github.ovso.worship.data.view.VideoModel
 import io.github.ovso.worship.utils.SchedulerProvider
 import io.github.ovso.worship.view.base.DisposableViewModel
+import io.reactivex.rxjava3.core.Observable
 import timber.log.Timber
 
 
@@ -25,16 +27,23 @@ class MainViewModel(
                 println(t.message)
             }
 
-            fun onSuccess(items: List<VideoResponse>) {
+            fun onSuccess(items: List<VideoModel>) {
                 println("items size = ${items.count()}")
+            }
+
+            fun toVideoModel(response: VideoResponse): VideoModel {
+                return VideoModel(
+                    thumbnail = response.gridVideoRenderer.thumbnail.thumbnails.last().url,
+                    videoId = response.gridVideoRenderer.videoId,
+                    title = response.gridVideoRenderer.title.simpleText
+                )
             }
 
             val channelId = it.getString("channel_id")
             tasksRepository.getVideos(channelId!!)
-                .map {
-
-                    it
-                }
+                .flatMapObservable { responses -> Observable.fromIterable(responses) }
+                .map { response -> toVideoModel(response) }
+                .toList()
                 .subscribeOn(SchedulerProvider.io())
                 .observeOn(SchedulerProvider.ui())
                 .subscribe(::onSuccess, ::onFailure)
