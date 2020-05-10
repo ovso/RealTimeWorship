@@ -8,10 +8,12 @@ import io.github.ovso.worship.R
 import io.github.ovso.worship.databinding.FragmentMainBinding
 import io.github.ovso.worship.extensions.getViewModelFactory
 import io.github.ovso.worship.view.base.DataBindingFragment
+import org.koin.android.ext.android.inject
 import timber.log.Timber
 
 class MainFragment : DataBindingFragment<FragmentMainBinding>(R.layout.fragment_main) {
 
+    private val adapter: MainAdapter by inject()
     override val viewModel by viewModels<MainViewModel> { getViewModelFactory() }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
