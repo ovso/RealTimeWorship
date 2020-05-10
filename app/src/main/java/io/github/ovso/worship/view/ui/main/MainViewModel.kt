@@ -17,8 +17,8 @@ class MainViewModel(
     defaultArgs: Bundle? = null
 ) : DisposableViewModel() {
 
-    private val _items = MutableLiveData<List<MainItem>>()
-    fun getItems(): LiveData<List<MainItem>> = _items
+    private val _items = MutableLiveData<List<VideoModel>>()
+    fun getItems(): LiveData<List<VideoModel>> = _items
 
     init {
         Timber.d(defaultArgs.toString())
@@ -29,6 +29,7 @@ class MainViewModel(
 
             fun onSuccess(items: List<VideoModel>) {
                 println("items size = ${items.count()}")
+                _items.value = items
             }
 
             val channelId = it.getString("channel_id")

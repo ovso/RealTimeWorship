@@ -47,6 +47,5 @@ class MainActivity : AppCompatActivity(R.layout.activity_main),
     override fun onDestroy() {
         super.onDestroy()
         navController.removeOnDestinationChangedListener(this)
-
     }
 }

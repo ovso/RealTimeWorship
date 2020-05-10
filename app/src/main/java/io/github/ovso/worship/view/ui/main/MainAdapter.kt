@@ -3,9 +3,10 @@ package io.github.ovso.worship.view.ui.main
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
+import io.github.ovso.worship.data.view.VideoModel
 
 
-class MainAdapter : ListAdapter<MainItem, MainViewHolder>(DIFF_UTIL) {
+class MainAdapter : ListAdapter<VideoModel, MainViewHolder>(DIFF_UTIL) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder =
         MainViewHolder(parent)
 
@@ -13,14 +14,14 @@ class MainAdapter : ListAdapter<MainItem, MainViewHolder>(DIFF_UTIL) {
         holder.onBindViewHolder(getItem(position))
 }
 
-val DIFF_UTIL = object : DiffUtil.ItemCallback<MainItem>() {
+val DIFF_UTIL = object : DiffUtil.ItemCallback<VideoModel>() {
     override fun areItemsTheSame(
-        oldItem: MainItem,
-        newItem: MainItem
+        oldItem: VideoModel,
+        newItem: VideoModel
     ): Boolean = oldItem == newItem
 
     override fun areContentsTheSame(
-        oldItem: MainItem,
-        newItem: MainItem
+        oldItem: VideoModel,
+        newItem: VideoModel
     ): Boolean = areItemsTheSame(oldItem, newItem)
 }

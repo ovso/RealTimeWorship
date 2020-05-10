@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import io.github.ovso.worship.R
 import io.github.ovso.worship.databinding.FragmentMainBinding
 import io.github.ovso.worship.extensions.getViewModelFactory
+import io.github.ovso.worship.extensions.toast
 import io.github.ovso.worship.view.base.DataBindingFragment
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.android.ext.android.inject
@@ -20,9 +21,12 @@ class MainFragment : DataBindingFragment<FragmentMainBinding>(R.layout.fragment_
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 //        val channelId = arguments?.getString("channel_id")
-        observe()
-        setupOnBackPressed()
         setupRecyclerView()
+        setupOnBackPressed()
+        observe()
+        rv_main.setOnClickListener {
+            toast("ㅋㅋㅋㅋㅋㅋㅋㅋㅋ")
+        }
     }
 
     private fun setupRecyclerView() {
@@ -43,10 +47,7 @@ class MainFragment : DataBindingFragment<FragmentMainBinding>(R.layout.fragment_
 
     private fun observe() {
         viewModel.getItems().observe(viewLifecycleOwner, Observer {
-            val iterator = it.iterator()
-            while (iterator.hasNext()) {
-                Timber.d(iterator.next().churchName)
-            }
+            adapter.submitList(it)
         })
     }
 }
