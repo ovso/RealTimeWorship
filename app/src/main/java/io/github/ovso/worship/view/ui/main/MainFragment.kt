@@ -7,7 +7,6 @@ import androidx.lifecycle.Observer
 import io.github.ovso.worship.R
 import io.github.ovso.worship.databinding.FragmentMainBinding
 import io.github.ovso.worship.extensions.getViewModelFactory
-import io.github.ovso.worship.extensions.toast
 import io.github.ovso.worship.view.base.DataBindingFragment
 import timber.log.Timber
 
@@ -18,7 +17,6 @@ class MainFragment : DataBindingFragment<FragmentMainBinding>(R.layout.fragment_
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val channelId = arguments?.getString("channel_id")
-        toast(channelId)
         viewModel.getItems().observe(viewLifecycleOwner, Observer {
             val iterator = it.iterator()
             while (iterator.hasNext()) {

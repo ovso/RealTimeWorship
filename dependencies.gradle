@@ -8,7 +8,7 @@ ext {
             'work_testing'         : '2.2.0',
             'appcompat'            : '1.1.0',
             'lifecycle'            : '2.2.0',
-            'dagger'               : '2.17',
+            'dagger'               : '2.27',
             'retrofit'             : '2.6.2',
             'okhttp'               : '3.12.0',
             'constraintlayout'     : '1.1.3',
@@ -128,11 +128,11 @@ ext {
 
 
             'dagger'        : [
-                    'runtime'                 : "com.google.dagger:dagger:$versions.dagger",
-                    'android'                 : "com.google.dagger:dagger-android:$versions.dagger",
-                    'compiler'                : "com.google.dagger:dagger-compiler:$versions.dagger",
-                    'android_support'         : "com.google.dagger:dagger-android-support:$versions.dagger",
-                    'android_support_compiler': "com.google.dagger:dagger-android-processor:$versions.dagger"
+                    'dagger'           : "com.google.dagger:dagger:$versions.dagger",
+                    'compiler'         : "com.google.dagger:dagger-compiler:$versions.dagger",
+                    'dagger_android'   : "com.google.dagger:dagger-android:$versions.dagger",
+                    'android_support'  : "com.google.dagger:dagger-android-support:$versions.dagger",
+                    'android_processor': "com.google.dagger:dagger-android-processor:$versions.dagger"
             ],
 
 
