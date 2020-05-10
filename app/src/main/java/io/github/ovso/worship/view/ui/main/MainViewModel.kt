@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.github.ovso.worship.data.TasksRepository
-import io.github.ovso.worship.data.network.model.VideoResponse
+import io.github.ovso.worship.data.network.response.VideoResponse
 import io.github.ovso.worship.utils.SchedulerProvider
 import io.github.ovso.worship.view.base.DisposableViewModel
 import timber.log.Timber
@@ -31,6 +31,10 @@ class MainViewModel(
 
             val channelId = it.getString("channel_id")
             tasksRepository.getVideos(channelId!!)
+                .map {
+
+                    it
+                }
                 .subscribeOn(SchedulerProvider.io())
                 .observeOn(SchedulerProvider.ui())
                 .subscribe(::onSuccess, ::onFailure)

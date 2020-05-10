@@ -3,7 +3,7 @@
 package io.github.ovso.worship
 
 import io.github.ovso.worship.data.network.ServiceLocator
-import io.github.ovso.worship.data.network.model.VideoResponse
+import io.github.ovso.worship.data.network.response.VideoResponse
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.jsoup.Jsoup

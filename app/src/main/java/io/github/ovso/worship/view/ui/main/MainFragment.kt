@@ -8,6 +8,7 @@ import io.github.ovso.worship.R
 import io.github.ovso.worship.databinding.FragmentMainBinding
 import io.github.ovso.worship.extensions.getViewModelFactory
 import io.github.ovso.worship.view.base.DataBindingFragment
+import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 
@@ -21,6 +22,11 @@ class MainFragment : DataBindingFragment<FragmentMainBinding>(R.layout.fragment_
 //        val channelId = arguments?.getString("channel_id")
         observe()
         setupOnBackPressed()
+        setupRecyclerView()
+    }
+
+    private fun setupRecyclerView() {
+        rv_main.adapter = adapter
     }
 
     private fun setupOnBackPressed() {

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.ListAdapter
 
 
 class MainAdapter : ListAdapter<MainItem, MainViewHolder>(DIFF_UTIL) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder =
         MainViewHolder(parent)
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int): Unit =
