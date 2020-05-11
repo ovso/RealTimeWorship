@@ -7,6 +7,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
 import io.github.ovso.worship.R
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -15,13 +16,16 @@ class MainActivity : AppCompatActivity(R.layout.activity_main),
     private val navController by lazy { findNavController(R.id.mainNavFragment) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setupDrawer()
+//        setupDrawer()
         setupNavController()
     }
 
     private fun setupNavController() {
-        NavigationUI.setupWithNavController(nv_main, navController)
-        navController.addOnDestinationChangedListener(this)
+        setSupportActionBar(toolbar)
+        NavigationUI.setupActionBarWithNavController(this, navController, drawer_layout)
+        NavigationUI.setupWithNavController(toolbar, navController, drawer_layout)
+//        NavigationUI.setupWithNavController(toolbar, navController, drawer_layout)
+//        navController.addOnDestinationChangedListener(this)
     }
 
     override fun onDestinationChanged(

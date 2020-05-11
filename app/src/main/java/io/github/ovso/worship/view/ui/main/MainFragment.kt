@@ -27,6 +27,7 @@ class MainFragment : DataBindingFragment<FragmentMainBinding>(R.layout.fragment_
         rv_main.setOnClickListener {
             toast("ㅋㅋㅋㅋㅋㅋㅋㅋㅋ")
         }
+        toast(arguments?.getString("channel_id"))
     }
 
     private fun setupRecyclerView() {
