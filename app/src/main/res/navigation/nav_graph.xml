@@ -3,7 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/fragment_0">
+    app:startDestination="@id/fragment_home">
+
+    <fragment
+        android:id="@+id/fragment_home"
+        android:name="io.github.ovso.worship.view.ui.home.HomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_main">
+        <argument
+            android:name="channel_id"
+            android:defaultValue="UC6vNHBFM5VLNF53CKycyNZw"
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_0"

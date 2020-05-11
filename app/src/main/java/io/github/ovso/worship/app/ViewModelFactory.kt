@@ -6,6 +6,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 import io.github.ovso.worship.data.TasksRepository
+import io.github.ovso.worship.view.ui.home.HomeViewModel
 import io.github.ovso.worship.view.ui.main.MainViewModel
 
 /**
@@ -25,6 +26,7 @@ class ViewModelFactory constructor(
     ) = with(modelClass) {
         when {
             isAssignableFrom(MainViewModel::class.java) -> MainViewModel(repository, defaultArgs)
+            isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel()
 /*
             isAssignableFrom(TaskDetailViewModel::class.java) ->
                 TaskDetailViewModel(searchRepository)
