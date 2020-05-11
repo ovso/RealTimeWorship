@@ -30,14 +30,15 @@
                 app:popupTheme="@style/AppTheme.PopupOverlay"
                 app:theme="@style/ToolbarColoredBackArrow" />
 
-        </com.google.android.material.appbar.AppBarLayout>
+            <fragment
+                android:id="@+id/mainNavFragment"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/nav_graph" />
 
-        <fragment
-            android:id="@+id/mainNavFragment"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:navGraph="@navigation/navigation_graph" />
+        </com.google.android.material.appbar.AppBarLayout>
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/nv_main"

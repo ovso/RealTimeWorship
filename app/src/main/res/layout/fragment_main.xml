@@ -23,11 +23,5 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="5"
             tools:listitem="@layout/item_main" />
-        <TextView
-            android:layout_width="match_parent"
-            android:background="@android:color/darker_gray"
-            android:gravity="center"
-            android:text="ㅋㅋㅋㅋㅋㅋㅋㅋㅋ"
-            android:layout_height="match_parent"/>
     </FrameLayout>
 </layout>

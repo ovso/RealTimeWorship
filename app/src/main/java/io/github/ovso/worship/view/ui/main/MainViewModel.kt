@@ -21,7 +21,7 @@ class MainViewModel(
     fun getItems(): LiveData<List<VideoModel>> = _items
 
     init {
-        Timber.d(defaultArgs.toString())
+        clearList()
         defaultArgs?.let {
             fun onFailure(t: Throwable) {
                 println(t.message)
@@ -41,25 +41,15 @@ class MainViewModel(
                 .observeOn(SchedulerProvider.ui())
                 .subscribe(::onSuccess, ::onFailure)
         }
-//        tasksRepository.getVideos("UC6vNHBFM5VLNF53CKycyNZw")
-/*
-        Thread {
-            val get =
-                Jsoup.connect("https://www.youtube.com/channel/UC6vNHBFM5VLNF53CKycyNZw/videos")
-                    .get()
-            val elementsByTag = get.getElementsByTag("script")
-            val prefix = "[{\"gridVideoRenderer"
-            elementsByTag.forEach {
-                if (it.data().contains(prefix)) {
-                    val startIndex = it.data().indexOf(prefix)
-                    val endIndex = it.data().indexOf(",\"continuations\"")
-                    val subSequence = it.data().substring(startIndex, endIndex)
-                    val fromJson1 = Gson().fromJson<List<VideoResponse>>(subSequence)
-                    Timber.d("size = ${fromJson1.size}")
-                }
-            }
-        }.start()
-*/
+    }
+
+    private fun clearList() {
+        _items.value = listOf()
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        Timber.d("onCleared()")
     }
 
     fun onClick(id: Int) {
