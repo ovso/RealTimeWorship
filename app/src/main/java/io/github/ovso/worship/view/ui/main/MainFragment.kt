@@ -10,6 +10,7 @@ import io.github.ovso.worship.extensions.toast
 import io.github.ovso.worship.view.base.DataBindingFragment
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.android.ext.android.inject
+import timber.log.Timber
 
 class MainFragment : DataBindingFragment<FragmentMainBinding>(R.layout.fragment_main) {
 
@@ -35,5 +36,21 @@ class MainFragment : DataBindingFragment<FragmentMainBinding>(R.layout.fragment_
         viewModel.getItems().observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
         })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Timber.d("onDestroy()")
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Timber.d("onDetach()")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Timber.d("onDestroyView()")
+        adapter.submitList(listOf())
     }
 }

@@ -21,7 +21,6 @@ class MainViewModel(
     fun getItems(): LiveData<List<VideoModel>> = _items
 
     init {
-        clearList()
         defaultArgs?.let {
             fun onFailure(t: Throwable) {
                 println(t.message)
