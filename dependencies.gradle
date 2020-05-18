@@ -52,7 +52,8 @@ ext {
             'shimmer_layout'       : '2.1.0',
             'ktx_fragment'         : '1.2.4',
             'ktx_activity'         : '1.1.0',
-            'navigation_ui'        : '2.2.2'
+            'navigation_ui'        : '2.2.2',
+            'oss_licenses'         : '0.10.2'
     ]
 
     deps = [
@@ -238,6 +239,7 @@ ext {
             'android_gradle': "com.android.tools.build:gradle:$versions.android_gradle",
             'kotlin_gradle' : "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin",
             'google_service': "com.google.gms:google-services:$versions.google_service",
+            'oss_licenses'  : "com.google.android.gms:oss-licenses-plugin:$versions.oss_licenses",
     ]
 
     config = [

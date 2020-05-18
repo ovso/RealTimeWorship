@@ -15,6 +15,7 @@
         tools:context="io.github.ovso.worship.view.ui.home.HomeFragment">
 
         <TextView
+            android:id="@+id/tv_home"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textSize="50sp"

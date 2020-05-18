@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.android.gms.oss-licenses-plugin'
 
 apply from: '../versioning.gradle'
 apply from: '../ktlint.gradle'
@@ -133,6 +134,8 @@ dependencies {
     implementation deps.lottie
     implementation deps.firebase.values()
     implementation deps.jsoup
+    implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
+
     testImplementation deps.tsl.values()
     androidTestImplementation deps.atsl.values()
 }
