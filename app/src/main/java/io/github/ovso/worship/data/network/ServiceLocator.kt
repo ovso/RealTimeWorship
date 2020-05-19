@@ -1,6 +1,5 @@
 package io.github.ovso.worship.data.network
 
-import android.content.Context
 import io.github.ovso.worship.data.TasksRepository
 
 object ServiceLocator {
