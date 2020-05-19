@@ -18,7 +18,7 @@ ext {
             'rxandroid2'           : '2.1.1',
             'rxjava3'              : '3.0.2',
             'rxandroid3'           : '3.0.0',
-            'rxkotlin'             : '2.4.0',
+            'rxkotlin'             : '3.0.0',
             'material'             : '1.1.0',
             'lottie'               : '3.0.2',
             'viewpager2'           : '1.0.0',
@@ -197,11 +197,9 @@ ext {
 
 
             'rx'            : [
-                    'rxjava2'   : "io.reactivex.rxjava2:rxjava:$versions.rxjava2",
-                    'rxandroid2': "io.reactivex.rxjava2:rxandroid:$versions.rxandroid2",
                     'rxjava3'   : "io.reactivex.rxjava3:rxjava:$versions.rxjava3",
                     'rxandroid3': "io.reactivex.rxjava3:rxandroid:$versions.rxandroid3",
-                    'rxkotlin'  : "io.reactivex.rxjava2:rxkotlin:$versions.rxkotlin",
+                    'rxkotlin'  : "io.reactivex.rxjava3:rxkotlin:$versions.rxkotlin",
             ],
 
 

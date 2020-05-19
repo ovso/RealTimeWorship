@@ -17,6 +17,7 @@ import org.junit.Test
  */
 class RepositoryTest {
     private val tasksRepository by lazy { ServiceLocator.provideTasksRepository() }
+    private val channelId = "UC6vNHBFM5VLNF53CKycyNZw"
 
     @Test
     fun `레파지토리 테스트`() {
@@ -28,8 +29,6 @@ class RepositoryTest {
         fun onSuccess(items: List<VideoModel>) {
             println("items size = ${items.count()}")
         }
-
-        val channelId = "UC6vNHBFM5VLNF53CKycyNZw"
 
         tasksRepository.getVideos(channelId)
             .map(VideoModelMapper::fromResponses)
