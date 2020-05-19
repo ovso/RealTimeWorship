@@ -1,4 +1,4 @@
-package io.github.ovso.worship.data.network
+package io.github.ovso.worship.data.remote
 
 import com.google.gson.JsonElement
 import io.reactivex.rxjava3.core.Single

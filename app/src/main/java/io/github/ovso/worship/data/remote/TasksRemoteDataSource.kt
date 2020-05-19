@@ -1,8 +1,8 @@
-package io.github.ovso.worship.data.network
+package io.github.ovso.worship.data.remote
 
 import com.google.gson.Gson
 import io.github.ovso.worship.data.TasksDataSource
-import io.github.ovso.worship.data.network.response.VideoResponse
+import io.github.ovso.worship.data.remote.response.VideoResponse
 import io.github.ovso.worship.extensions.fromJson
 import io.reactivex.rxjava3.core.Single
 import org.jsoup.Jsoup

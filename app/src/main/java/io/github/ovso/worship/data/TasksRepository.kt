@@ -1,7 +1,7 @@
 package io.github.ovso.worship.data
 
-import io.github.ovso.worship.data.network.TasksRemoteDataSource
-import io.github.ovso.worship.data.network.response.VideoResponse
+import io.github.ovso.worship.data.remote.TasksRemoteDataSource
+import io.github.ovso.worship.data.remote.response.VideoResponse
 import io.reactivex.rxjava3.core.Single
 
 class TasksRepository(private val remoteDataSource: TasksRemoteDataSource) : TasksDataSource {

@@ -2,8 +2,9 @@
 
 package io.github.ovso.worship
 
-import io.github.ovso.worship.data.network.ServiceLocator
-import io.github.ovso.worship.data.network.response.VideoResponse
+import io.github.ovso.worship.data.mapper.VideoModelMapper
+import io.github.ovso.worship.data.remote.ServiceLocator
+import io.github.ovso.worship.data.view.VideoModel
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.jsoup.Jsoup
@@ -24,48 +25,14 @@ class RepositoryTest {
             println(t.message)
         }
 
-        fun onSuccess(items: List<VideoResponse>) {
+        fun onSuccess(items: List<VideoModel>) {
             println("items size = ${items.count()}")
         }
 
         val channelId = "UC6vNHBFM5VLNF53CKycyNZw"
+
         tasksRepository.getVideos(channelId)
-            .subscribeOn(SchedulerProvider.io())
-            .observeOn(SchedulerProvider.ui())
-            .subscribe(::onSuccess, ::onFailure)
-    }
-
-    @Test
-    fun `레파지토리 테스트2`() {
-
-        fun onFailure(t: Throwable) {
-            println(t.message)
-        }
-
-        fun onSuccess(items: List<VideoResponse>) {
-            println("items size = ${items.count()}")
-        }
-
-        val channelId = "UCBh3Qv-rKu6ZDxEcrio70Hw"
-        tasksRepository.getVideos(channelId)
-            .subscribeOn(SchedulerProvider.io())
-            .observeOn(SchedulerProvider.ui())
-            .subscribe(::onSuccess, ::onFailure)
-    }
-
-    @Test
-    fun `레파지토리 테스트3`() {
-
-        fun onFailure(t: Throwable) {
-            println(t.message)
-        }
-
-        fun onSuccess(items: List<VideoResponse>) {
-            println("items size = ${items.count()}")
-        }
-
-        val channelId = "UCBh3Qv-rKu6ZDxEcrio70Hw"
-        tasksRepository.getVideos(channelId)
+            .map(VideoModelMapper::fromResponses)
             .subscribeOn(SchedulerProvider.io())
             .observeOn(SchedulerProvider.ui())
             .subscribe(::onSuccess, ::onFailure)
@@ -77,11 +44,9 @@ class RepositoryTest {
         val document =
             Jsoup.connect("https://www.youtube.com/channel/UC6vNHBFM5VLNF53CKycyNZw/videos?view=0&sort=dd&shelf_id=0")
                 .get()
-        println(document.toString())
         val elementsByClass = document.body().getElementsByClass(className)
         val contents = document.body().getElementById("contents")
-        println("contents = $contents")
-        println("class name = ${elementsByClass}")
+        println("class name = $contents")
     }
 
     object SchedulerProvider {

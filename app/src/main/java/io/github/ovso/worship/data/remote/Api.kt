@@ -1,4 +1,4 @@
-package io.github.ovso.worship.data.network
+package io.github.ovso.worship.data.remote
 
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
 import okhttp3.OkHttpClient

@@ -1,4 +1,4 @@
-package io.github.ovso.worship.data.network.response
+package io.github.ovso.worship.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 

@@ -2,7 +2,6 @@ package io.github.ovso.worship
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import io.github.ovso.worship.data.network.ServiceLocator
 
 import org.junit.Test
 import org.junit.runner.RunWith

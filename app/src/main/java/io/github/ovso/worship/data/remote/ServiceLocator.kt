@@ -1,4 +1,4 @@
-package io.github.ovso.worship.data.network
+package io.github.ovso.worship.data.remote
 
 import io.github.ovso.worship.data.TasksRepository
 
