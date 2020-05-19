@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/fragment_0"
-        android:name="io.github.ovso.worship.view.ui.main.MainFragment"
+        android:name="io.github.ovso.worship.view.ui.video.VideoFragment"
         android:label="@string/church_0"
         tools:layout="@layout/fragment_main">
         <argument
@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/fragment_1"
-        android:name="io.github.ovso.worship.view.ui.main.MainFragment"
+        android:name="io.github.ovso.worship.view.ui.video.VideoFragment"
         android:label="@string/church_1"
         tools:layout="@layout/fragment_main">
         <argument
@@ -40,7 +40,7 @@
 
     <fragment
         android:id="@+id/fragment_2"
-        android:name="io.github.ovso.worship.view.ui.main.MainFragment"
+        android:name="io.github.ovso.worship.view.ui.video.VideoFragment"
         android:label="@string/church_2"
         tools:layout="@layout/fragment_main">
         <argument

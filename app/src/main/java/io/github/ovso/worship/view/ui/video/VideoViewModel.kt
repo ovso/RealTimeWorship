@@ -1,4 +1,4 @@
-package io.github.ovso.worship.view.ui.main
+package io.github.ovso.worship.view.ui.video
 
 import android.os.Bundle
 import androidx.lifecycle.LiveData
@@ -12,7 +12,7 @@ import io.reactivex.rxjava3.core.Observable
 import timber.log.Timber
 
 
-class MainViewModel(
+class VideoViewModel(
     private val tasksRepository: TasksRepository,
     defaultArgs: Bundle? = null
 ) : DisposableViewModel() {

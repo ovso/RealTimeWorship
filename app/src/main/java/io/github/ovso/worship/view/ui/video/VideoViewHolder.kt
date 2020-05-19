@@ -1,24 +1,18 @@
-package io.github.ovso.worship.view.ui.main
+package io.github.ovso.worship.view.ui.video
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.activity.ComponentActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.loadOrCueVideo
 import io.github.ovso.worship.R
 import io.github.ovso.worship.data.view.VideoModel
-import io.github.ovso.worship.databinding.ItemMainBinding
-import timber.log.Timber
+import io.github.ovso.worship.databinding.ItemVideoBinding
 
-class MainViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
-    LayoutInflater.from(parent.context).inflate(R.layout.item_main, parent, false)
+class VideoViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
+    LayoutInflater.from(parent.context).inflate(R.layout.item_video, parent, false)
 ) {
 
-    private val binding = DataBindingUtil.bind<ItemMainBinding>(itemView)!!
+    private val binding = DataBindingUtil.bind<ItemVideoBinding>(itemView)!!
 
     fun onBindViewHolder(item: VideoModel) {
         binding.item = item

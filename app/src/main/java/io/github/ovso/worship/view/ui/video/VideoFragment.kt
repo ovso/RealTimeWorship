@@ -1,4 +1,4 @@
-package io.github.ovso.worship.view.ui.main
+package io.github.ovso.worship.view.ui.video
 
 import android.os.Bundle
 import androidx.fragment.app.viewModels
@@ -12,10 +12,10 @@ import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 
-class MainFragment : DataBindingFragment<FragmentMainBinding>(R.layout.fragment_main) {
+class VideoFragment : DataBindingFragment<FragmentMainBinding>(R.layout.fragment_main) {
 
     private val adapter: MainAdapter by inject()
-    override val viewModel by viewModels<MainViewModel> { getViewModelFactory() }
+    override val viewModel by viewModels<VideoViewModel> { getViewModelFactory() }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

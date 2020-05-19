@@ -4,7 +4,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.google.android.gms.ads.AdRequest
 import io.github.ovso.worship.R
-import io.github.ovso.worship.view.ui.main.MainAdapter
+import io.github.ovso.worship.view.ui.video.MainAdapter
 import org.koin.dsl.module
 
 val appModule = module {

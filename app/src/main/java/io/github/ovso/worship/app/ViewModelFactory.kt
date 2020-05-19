@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 import io.github.ovso.worship.data.TasksRepository
 import io.github.ovso.worship.view.ui.home.HomeViewModel
-import io.github.ovso.worship.view.ui.main.MainViewModel
+import io.github.ovso.worship.view.ui.video.VideoViewModel
 
 /**
  * Factory for all ViewModels.
@@ -25,7 +25,10 @@ class ViewModelFactory constructor(
         handle: SavedStateHandle
     ) = with(modelClass) {
         when {
-            isAssignableFrom(MainViewModel::class.java) -> MainViewModel(repository, defaultArgs)
+            isAssignableFrom(VideoViewModel::class.java) -> VideoViewModel(
+                repository,
+                defaultArgs
+            )
             isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel()
 /*
             isAssignableFrom(TaskDetailViewModel::class.java) ->
