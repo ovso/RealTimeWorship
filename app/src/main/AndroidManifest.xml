@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="io.github.ovso.worship">
+    package="io.github.ovso.worship"
+    tools:ignore="LockedOrientationActivity">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -13,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
+        <activity
+            android:name=".view.ui.player.PlayerActivity"
+            android:screenOrientation="sensorPortrait" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
