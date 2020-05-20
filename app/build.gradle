@@ -133,10 +133,11 @@ dependencies {
     implementation deps.timber
     implementation deps.youtube_player
     implementation deps.koap
+    implementation deps.loading.values()
     implementation deps.lottie
     implementation deps.firebase.values()
     implementation deps.jsoup
-    implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
+    implementation deps.oss_licenses
 
     testImplementation deps.tsl.values()
     androidTestImplementation deps.atsl.values()

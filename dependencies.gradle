@@ -49,11 +49,11 @@ ext {
             'koap'                 : '1.0.1',
             'youtube_player'       : '10.0.5',
             'shimmer'              : '0.5.0',
-            'shimmer_layout'       : '2.1.0',
             'ktx_fragment'         : '1.2.4',
             'ktx_activity'         : '1.1.0',
             'navigation_ui'        : '2.2.2',
-            'oss_licenses'         : '0.10.2'
+            'oss_licenses_plugin'  : '0.10.2',
+            'oss_licenses'         : '17.0.0',
     ]
 
     deps = [
@@ -228,16 +228,17 @@ ext {
 
 
             'loading'       : [
-                    'shimmer'       : "com.facebook.shimmer:shimmer:$versions.shimmer",
-                    'shimmer_layout': "io.supercharge:shimmerlayout:$versions.shimmer_layout"
-            ]
+                    'shimmer': "com.facebook.shimmer:shimmer:$versions.shimmer",
+            ],
+
+            'oss_licenses'  : "com.google.android.gms:play-services-oss-licenses:$versions.oss_licenses"
     ]
 
     classpath = [
-            'android_gradle': "com.android.tools.build:gradle:$versions.android_gradle",
-            'kotlin_gradle' : "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin",
-            'google_service': "com.google.gms:google-services:$versions.google_service",
-            'oss_licenses'  : "com.google.android.gms:oss-licenses-plugin:$versions.oss_licenses",
+            'android_gradle'     : "com.android.tools.build:gradle:$versions.android_gradle",
+            'kotlin_gradle'      : "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin",
+            'google_service'     : "com.google.gms:google-services:$versions.google_service",
+            'oss_licenses_plugin': "com.google.android.gms:oss-licenses-plugin:$versions.oss_licenses_plugin",
     ]
 
     config = [
