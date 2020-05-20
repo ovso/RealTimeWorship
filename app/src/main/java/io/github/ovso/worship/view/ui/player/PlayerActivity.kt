@@ -2,6 +2,7 @@ package io.github.ovso.worship.view.ui.player
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import io.github.ovso.worship.R
 import io.github.ovso.worship.view.ui.player.ui.player.PlayerFragment
 
 class PlayerActivity : AppCompatActivity() {

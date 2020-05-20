@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import io.github.ovso.worship.view.ui.player.R
+import io.github.ovso.worship.R
 
 class PlayerFragment : Fragment() {
 
