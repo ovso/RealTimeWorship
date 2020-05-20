@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import io.github.ovso.worship.data.view.VideoModel
 
-
 class MainAdapter : ListAdapter<VideoModel, VideoViewHolder>(DIFF_UTIL) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder =
         VideoViewHolder(parent)
@@ -18,7 +17,7 @@ val DIFF_UTIL = object : DiffUtil.ItemCallback<VideoModel>() {
     override fun areItemsTheSame(
         oldItem: VideoModel,
         newItem: VideoModel
-    ): Boolean = oldItem == newItem
+    ): Boolean = oldItem.videoId == newItem.videoId
 
     override fun areContentsTheSame(
         oldItem: VideoModel,

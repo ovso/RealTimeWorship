@@ -3,6 +3,8 @@ package io.github.ovso.worship.view.ui.video
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
 import io.github.ovso.worship.R
 import io.github.ovso.worship.databinding.FragmentMainBinding
 import io.github.ovso.worship.extensions.getViewModelFactory
@@ -24,6 +26,7 @@ class VideoFragment : DataBindingFragment<FragmentMainBinding>(R.layout.fragment
 
     private fun setupRecyclerView() {
         rv_main.adapter = adapter
+        rv_main.addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
     }
 
     private fun observe() {
