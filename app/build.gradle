@@ -112,7 +112,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation deps.anko.values()
     implementation deps.coroutines.values()
     implementation deps.kotlin.values()
     implementation deps.androidx.values()
