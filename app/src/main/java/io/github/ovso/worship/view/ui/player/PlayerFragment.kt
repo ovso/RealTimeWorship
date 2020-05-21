@@ -1,4 +1,4 @@
-package io.github.ovso.worship.view.ui.player.ui.player
+package io.github.ovso.worship.view.ui.player
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -11,7 +11,8 @@ import io.github.ovso.worship.R
 class PlayerFragment : Fragment() {
 
     companion object {
-        fun newInstance() = PlayerFragment()
+        fun newInstance() =
+            PlayerFragment()
     }
 
     private lateinit var viewModel: PlayerViewModel

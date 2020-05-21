@@ -1,4 +1,4 @@
-package io.github.ovso.worship.view.ui.player.ui.player
+package io.github.ovso.worship.view.ui.player
 
 import androidx.lifecycle.ViewModel
 
