@@ -13,4 +13,8 @@
     <string name="church_0">산정현교회</string>
     <string name="church_1">분당우리교회</string>
     <string name="church_2">삼일교회</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
