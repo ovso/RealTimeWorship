@@ -12,18 +12,18 @@ import androidx.lifecycle.ViewModel
 import io.github.ovso.worship.BR
 
 abstract class DataBindingFragment<T : ViewDataBinding>(
-    @LayoutRes private val layoutRes: Int
+  @LayoutRes private val layoutRes: Int
 ) : Fragment() {
-    protected lateinit var binding: T
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = DataBindingUtil.inflate(inflater, layoutRes, container, false)
-        binding.setVariable(BR.viewModel, viewModel)
-        return binding.root
-    }
+  protected lateinit var binding: T
+  override fun onCreateView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? {
+    binding = DataBindingUtil.inflate(inflater, layoutRes, container, false)
+    binding.setVariable(BR.viewModel, viewModel)
+    return binding.root
+  }
 
-    abstract val viewModel: ViewModel
+  abstract val viewModel: ViewModel
 }

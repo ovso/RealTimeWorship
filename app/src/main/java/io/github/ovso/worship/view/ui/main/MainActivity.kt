@@ -13,34 +13,34 @@ import io.github.ovso.worship.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(R.layout.activity_main),
-    NavController.OnDestinationChangedListener {
-    private val navController by lazy { findNavController(R.id.mainNavFragment) }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setupToolbar()
-        setupNavigationDrawer(toolbar)
-    }
+  NavController.OnDestinationChangedListener {
+  private val navController by lazy { findNavController(R.id.mainNavFragment) }
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setupToolbar()
+    setupNavigationDrawer(toolbar)
+  }
 
-    private fun setupNavigationDrawer(toolbar: Toolbar) {
-        NavigationUI.setupActionBarWithNavController(this, navController, drawer_layout)
-        nv_main.setupWithNavController(navController)
-    }
+  private fun setupNavigationDrawer(toolbar: Toolbar) {
+    NavigationUI.setupActionBarWithNavController(this, navController, drawer_layout)
+    nv_main.setupWithNavController(navController)
+  }
 
-    private fun setupToolbar() {
-        setSupportActionBar(toolbar)
-    }
+  private fun setupToolbar() {
+    setSupportActionBar(toolbar)
+  }
 
-    override fun onSupportNavigateUp(): Boolean {
-        return NavigationUI.navigateUp(
-            Navigation.findNavController(this, R.id.mainNavFragment), drawer_layout
-        )
-    }
+  override fun onSupportNavigateUp(): Boolean {
+    return NavigationUI.navigateUp(
+      Navigation.findNavController(this, R.id.mainNavFragment), drawer_layout
+    )
+  }
 
-    override fun onDestinationChanged(
-        controller: NavController,
-        destination: NavDestination,
-        arguments: Bundle?
-    ) {
-        toolbar.title = destination.label
-    }
+  override fun onDestinationChanged(
+    controller: NavController,
+    destination: NavDestination,
+    arguments: Bundle?
+  ) {
+    toolbar.title = destination.label
+  }
 }

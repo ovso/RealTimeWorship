@@ -10,32 +10,32 @@ import org.koin.core.context.startKoin
 import timber.log.Timber
 
 class LibraryInit(private val context: Application) {
-    init {
-        setupTimber()
-        setupPrefs()
-        setupDi()
-        setupAds()
-    }
+  init {
+    setupTimber()
+    setupPrefs()
+    setupDi()
+    setupAds()
+  }
 
-    private fun setupAds() {
-        MobileAds.initialize(context, context.getString(R.string.ads_app_id))
-    }
+  private fun setupAds() {
+    MobileAds.initialize(context, context.getString(R.string.ads_app_id))
+  }
 
-    private fun setupDi() {
-        startKoin {
-            androidContext(context)
-            modules(appModule)
-        }
+  private fun setupDi() {
+    startKoin {
+      androidContext(context)
+      modules(appModule)
     }
+  }
 
-    private fun setupPrefs() {
+  private fun setupPrefs() {
 //        Koap.bind(app, NavPreferences)
-    }
+  }
 
-    private fun setupTimber() {
-        if (BuildConfig.DEBUG) {
-            Timber.plant(Timber.DebugTree())
-        }
+  private fun setupTimber() {
+    if (BuildConfig.DEBUG) {
+      Timber.plant(Timber.DebugTree())
     }
+  }
 
 }

@@ -10,24 +10,24 @@ import io.github.ovso.worship.R
 
 class PlayerFragment : Fragment() {
 
-    companion object {
-        fun newInstance() =
-            PlayerFragment()
-    }
+  companion object {
+    fun newInstance() =
+      PlayerFragment()
+  }
 
-    private lateinit var viewModel: PlayerViewModel
+  private lateinit var viewModel: PlayerViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return inflater.inflate(R.layout.fragment_player, container, false)
-    }
+  override fun onCreateView(
+    inflater: LayoutInflater, container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View {
+    return inflater.inflate(R.layout.fragment_player, container, false)
+  }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(PlayerViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
+  override fun onActivityCreated(savedInstanceState: Bundle?) {
+    super.onActivityCreated(savedInstanceState)
+    viewModel = ViewModelProviders.of(this).get(PlayerViewModel::class.java)
+    // TODO: Use the ViewModel
+  }
 
 }

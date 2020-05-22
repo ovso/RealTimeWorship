@@ -9,10 +9,10 @@ import io.github.ovso.worship.view.base.DataBindingFragment
 
 class HomeFragment : DataBindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
-    override val viewModel by viewModels<HomeViewModel> { getViewModelFactory() }
+  override val viewModel by viewModels<HomeViewModel> { getViewModelFactory() }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
+  override fun onActivityCreated(savedInstanceState: Bundle?) {
+    super.onActivityCreated(savedInstanceState)
+  }
 
 }

@@ -14,22 +14,22 @@ import io.github.ovso.worship.view.ui.video.VideoViewModel
  */
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory constructor(
-    private val repository: TasksRepository,
-    owner: SavedStateRegistryOwner,
-    private val defaultArgs: Bundle? = null
+  private val repository: TasksRepository,
+  owner: SavedStateRegistryOwner,
+  private val defaultArgs: Bundle? = null
 ) : AbstractSavedStateViewModelFactory(owner, defaultArgs) {
 
-    override fun <T : ViewModel> create(
-        key: String,
-        modelClass: Class<T>,
-        handle: SavedStateHandle
-    ) = with(modelClass) {
-        when {
-            isAssignableFrom(VideoViewModel::class.java) -> VideoViewModel(
-                repository,
-                defaultArgs
-            )
-            isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel()
+  override fun <T : ViewModel> create(
+    key: String,
+    modelClass: Class<T>,
+    handle: SavedStateHandle
+  ) = with(modelClass) {
+    when {
+      isAssignableFrom(VideoViewModel::class.java) -> VideoViewModel(
+        repository,
+        defaultArgs
+      )
+      isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel()
 /*
             isAssignableFrom(TaskDetailViewModel::class.java) ->
                 TaskDetailViewModel(searchRepository)
@@ -38,8 +38,8 @@ class ViewModelFactory constructor(
             isAssignableFrom(TasksViewModel::class.java) ->
                 TasksViewModel(searchRepository, handle)
 */
-            else ->
-                throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
-        }
-    } as T
+      else ->
+        throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
+    }
+  } as T
 }

@@ -9,37 +9,38 @@ import java.util.concurrent.TimeUnit
 
 const val BASE_URL = "https://www.googleapis.com"
 const val BASE_URL_YOUTUBE = "https://www.youtube.com"
+
 open class Api(
-    private val baseUrl: String
+  private val baseUrl: String
 ) {
 
-    inline fun <reified T> create(): T {
-        val client = with(OkHttpClient.Builder()) {
-            readTimeout(TIMEOUT_SECONDS.toLong(), TimeUnit.SECONDS)
-            connectTimeout(TIMEOUT_SECONDS.toLong(), TimeUnit.SECONDS)
-            followRedirects(false)
-            addInterceptor { chain ->
-                val original = chain.request()
-                val requestBuilder = original.newBuilder()
-                    .header("Content-Type", "application/json")
-                val request = requestBuilder.build()
-                chain.proceed(request)
-            }
-            addInterceptor(HttpLoggingInterceptor().apply {
-                level = HttpLoggingInterceptor.Level.BODY
-            })
-        }.build()
+  inline fun <reified T> create(): T {
+    val client = with(OkHttpClient.Builder()) {
+      readTimeout(TIMEOUT_SECONDS.toLong(), TimeUnit.SECONDS)
+      connectTimeout(TIMEOUT_SECONDS.toLong(), TimeUnit.SECONDS)
+      followRedirects(false)
+      addInterceptor { chain ->
+        val original = chain.request()
+        val requestBuilder = original.newBuilder()
+          .header("Content-Type", "application/json")
+        val request = requestBuilder.build()
+        chain.proceed(request)
+      }
+      addInterceptor(HttpLoggingInterceptor().apply {
+        level = HttpLoggingInterceptor.Level.BODY
+      })
+    }.build()
 
-        return Retrofit.Builder().baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-            .client(client)
-            .build()
-            .create(T::class.java)
+    return Retrofit.Builder().baseUrl(BASE_URL)
+      .addConverterFactory(GsonConverterFactory.create())
+      .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+      .client(client)
+      .build()
+      .create(T::class.java)
 
-    }
+  }
 
-    companion object {
-        const val TIMEOUT_SECONDS = 60
-    }
+  companion object {
+    const val TIMEOUT_SECONDS = 60
+  }
 }

@@ -10,26 +10,26 @@ import androidx.lifecycle.ViewModelProvider
 import io.github.ovso.worship.BR
 
 abstract class DataBindingActivity<T : ViewDataBinding>(
-    @LayoutRes private val layoutResId: Int,
-    private val viewModelCls: Class<out ViewModel>
+  @LayoutRes private val layoutResId: Int,
+  private val viewModelCls: Class<out ViewModel>
 ) : AppCompatActivity() {
 
-    @Suppress("RemoveExplicitTypeArguments")
-    protected val binding: T by lazy {
-        DataBindingUtil.setContentView<T>(this, layoutResId)
-    }
+  @Suppress("RemoveExplicitTypeArguments")
+  protected val binding: T by lazy {
+    DataBindingUtil.setContentView<T>(this, layoutResId)
+  }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        performDataBinding()
-    }
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    performDataBinding()
+  }
 
-    private fun performDataBinding() {
-        val owner = this@DataBindingActivity
-        with(binding) {
-            lifecycleOwner = owner
-            setVariable(BR.viewModel, ViewModelProvider(owner)[viewModelCls])
-            executePendingBindings()
-        }
+  private fun performDataBinding() {
+    val owner = this@DataBindingActivity
+    with(binding) {
+      lifecycleOwner = owner
+      setVariable(BR.viewModel, ViewModelProvider(owner)[viewModelCls])
+      executePendingBindings()
     }
+  }
 }
