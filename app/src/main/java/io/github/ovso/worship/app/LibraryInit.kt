@@ -37,5 +37,4 @@ class LibraryInit(private val context: Application) {
       Timber.plant(Timber.DebugTree())
     }
   }
-
 }

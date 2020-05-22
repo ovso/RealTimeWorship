@@ -39,5 +39,4 @@ class VideoViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
         })
 */
   }
-
 }

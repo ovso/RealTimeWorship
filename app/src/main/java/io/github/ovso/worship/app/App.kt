@@ -13,5 +13,4 @@ class App : Application() {
     super.onCreate()
     LibraryInit(this)
   }
-
 }

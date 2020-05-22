@@ -14,5 +14,4 @@ class HomeFragment : DataBindingFragment<FragmentHomeBinding>(R.layout.fragment_
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
   }
-
 }
