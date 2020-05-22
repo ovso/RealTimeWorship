@@ -5,28 +5,31 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.loadOrCueVideo
 import io.github.ovso.worship.R
 import io.github.ovso.worship.databinding.FragmentPlayerBinding
 import io.github.ovso.worship.extensions.getViewModelFactory
 import io.github.ovso.worship.view.base.DataBindingFragment
-import kotlinx.android.synthetic.main.fragment_player.*
+import timber.log.Timber
 
 class PlayerFragment : DataBindingFragment<FragmentPlayerBinding>(R.layout.fragment_player) {
 
   override val viewModel by viewModels<PlayerViewModel> { getViewModelFactory() }
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    observe()
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+    setHasOptionsMenu(true)
+    play()
+  }
+
+  private fun play() {
     val videoId = requireActivity().intent.getStringExtra("videoId")
     videoId?.let {
-/*
-      ypv_player.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+      binding.ypvPlayer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
         override fun onReady(youTubePlayer: YouTubePlayer) {
           super.onReady(youTubePlayer)
-          youTubePlayer.cueVideo(videoId, 0F)
-//        youTubePlayer.loadOrCueVideo(lifecycle, it, binding.viewModel!!.second)
-//        Timber.d("loadOrCueVideo")
+          youTubePlayer.loadOrCueVideo(lifecycle, it, 0F)
+          Timber.d("loadOrCueVideo")
         }
 
         override fun onCurrentSecond(
@@ -34,19 +37,9 @@ class PlayerFragment : DataBindingFragment<FragmentPlayerBinding>(R.layout.fragm
           second: Float
         ) {
           super.onCurrentSecond(youTubePlayer, second)
-//        binding.viewModel?.second = second
+          // binding.viewModel?.second = second
         }
       })
-*/
-
     }
-  }
-
-  private fun observe() {
-
-  }
-
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
   }
 }
