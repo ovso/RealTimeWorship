@@ -5,8 +5,8 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.android.gms.oss-licenses-plugin'
 
-apply from: '../versioning.gradle'
-apply from: '../ktlint.gradle'
+apply from: '../scripts/versioning.gradle'
+apply from: '../scripts/ktlint.gradle'
 
 def keystorePropertiesFile = rootProject.file("../jks/keystore.properties")
 def keystoreProperties = new Properties()

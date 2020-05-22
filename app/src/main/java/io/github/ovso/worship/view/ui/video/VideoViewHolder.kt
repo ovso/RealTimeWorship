@@ -21,7 +21,12 @@ class VideoViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
         binding.item = item
         itemView.setOnClickListener {
             val context = it.context
-            context.startActivity(Intent(context, PlayerActivity::class.java))
+            val intent = Intent(context, PlayerActivity::class.java).apply {
+                putExtra("videoId", item.videoId)
+                putExtra("title", item.title)
+                putExtra("thumbnail", item.thumbnail)
+            }
+            context.startActivity(intent)
         }
 /*
         binding.ytpvMainItem.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
