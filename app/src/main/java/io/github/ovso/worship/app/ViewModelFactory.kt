@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 import io.github.ovso.worship.data.TasksRepository
 import io.github.ovso.worship.view.ui.home.HomeViewModel
+import io.github.ovso.worship.view.ui.player.PlayerViewModel
 import io.github.ovso.worship.view.ui.video.VideoViewModel
 
 /**
@@ -30,6 +31,7 @@ class ViewModelFactory constructor(
         defaultArgs
       )
       isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel()
+      isAssignableFrom(PlayerViewModel::class.java) -> PlayerViewModel()
 /*
             isAssignableFrom(TaskDetailViewModel::class.java) ->
                 TaskDetailViewModel(searchRepository)
