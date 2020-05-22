@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragment_home"
-        android:name="io.github.ovso.worship.view.ui.home.HomeFragment"
+        android:name="io.github.ovso.worship.view.ui.video.VideoFragment"
         android:label="@string/home"
         tools:layout="@layout/fragment_main">
         <argument

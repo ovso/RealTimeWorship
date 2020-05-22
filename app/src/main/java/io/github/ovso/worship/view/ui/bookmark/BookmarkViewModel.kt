@@ -1,10 +1,10 @@
-package io.github.ovso.worship.view.ui.bottom.ui.dashboard
+package io.github.ovso.worship.view.ui.bookmark
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class DashboardViewModel : ViewModel() {
+class BookmarkViewModel : ViewModel() {
 
   private val _text = MutableLiveData<String>().apply {
     value = "This is dashboard Fragment"
