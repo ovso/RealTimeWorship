@@ -1,6 +1,7 @@
 package io.github.ovso.worship.view.ui.player
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
@@ -23,12 +24,11 @@ class PlayerFragment : DataBindingFragment<FragmentPlayerBinding>(R.layout.fragm
   }
 
   private fun play() {
-    val videoId = requireActivity().intent.getStringExtra("videoId")
-    videoId?.let {
+    requireActivity().intent.getStringExtra("videoId")?.let {
       binding.ypvPlayer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
         override fun onReady(youTubePlayer: YouTubePlayer) {
           super.onReady(youTubePlayer)
-          youTubePlayer.loadOrCueVideo(lifecycle, it, 0F)
+          youTubePlayer.loadOrCueVideo(lifecycle, it, viewModel.second)
           Timber.d("loadOrCueVideo")
         }
 
@@ -37,9 +37,14 @@ class PlayerFragment : DataBindingFragment<FragmentPlayerBinding>(R.layout.fragm
           second: Float
         ) {
           super.onCurrentSecond(youTubePlayer, second)
-          // binding.viewModel?.second = second
+          viewModel.second = second
         }
       })
     }
+  }
+
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    requireActivity().finish()
+    return super.onOptionsItemSelected(item)
   }
 }

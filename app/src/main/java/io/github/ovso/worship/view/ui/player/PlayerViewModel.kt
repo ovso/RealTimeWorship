@@ -1,7 +1,8 @@
 package io.github.ovso.worship.view.ui.player
 
-import androidx.lifecycle.ViewModel
+import io.github.ovso.worship.view.base.DisposableViewModel
 
-class PlayerViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+class PlayerViewModel : DisposableViewModel() {
+
+  var second: Float = 0F
 }

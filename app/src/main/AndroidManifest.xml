@@ -16,7 +16,7 @@
         tools:ignore="AllowBackup">
         <activity
             android:name=".view.ui.player.PlayerActivity"
-            android:screenOrientation="sensorPortrait"
+            android:screenOrientation="sensor"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data

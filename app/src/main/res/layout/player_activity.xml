@@ -6,29 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".view.ui.player.PlayerActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/abl_player"
+    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+        android:id="@+id/ypv_player"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <fragment
-        android:name="io.github.ovso.worship.view.ui.player.PlayerFragment"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:tag="PlayerFragment"
+        app:autoPlay="false"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/abl_player" />
-
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"
+        app:showFullScreenButton="true" />
 </androidx.constraintlayout.widget.ConstraintLayout>
