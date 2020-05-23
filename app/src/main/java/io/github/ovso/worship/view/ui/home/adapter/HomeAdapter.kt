@@ -3,9 +3,9 @@ package io.github.ovso.worship.view.ui.home.adapter
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import io.github.ovso.worship.data.view.HomeModel
+import io.github.ovso.worship.data.local.model.ChurchModel
 
-class HomeAdapter : ListAdapter<HomeModel, HomeViewHolder>(
+class HomeAdapter : ListAdapter<ChurchModel, HomeViewHolder>(
   DIFF_UTIL
 ) {
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder =
@@ -15,14 +15,14 @@ class HomeAdapter : ListAdapter<HomeModel, HomeViewHolder>(
     holder.onBindViewHolder(getItem(position))
 }
 
-val DIFF_UTIL = object : DiffUtil.ItemCallback<HomeModel>() {
+val DIFF_UTIL = object : DiffUtil.ItemCallback<ChurchModel>() {
   override fun areItemsTheSame(
-    oldItem: HomeModel,
-    newItem: HomeModel
+    oldItem: ChurchModel,
+    newItem: ChurchModel
   ): Boolean = oldItem.title == newItem.title
 
   override fun areContentsTheSame(
-    oldItem: HomeModel,
-    newItem: HomeModel
+    oldItem: ChurchModel,
+    newItem: ChurchModel
   ): Boolean = areItemsTheSame(oldItem, newItem)
 }

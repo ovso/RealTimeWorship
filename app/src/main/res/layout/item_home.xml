@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="io.github.ovso.worship.data.view.HomeModel" />
+            type="io.github.ovso.worship.data.local.model.ChurchModel" />
     </data>
 
     <androidx.appcompat.widget.AppCompatTextView

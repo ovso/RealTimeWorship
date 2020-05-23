@@ -3,6 +3,7 @@ package io.github.ovso.worship.view.ui.home
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import io.github.ovso.worship.R
@@ -19,6 +20,13 @@ class HomeFragment : DataBindingFragment<FragmentHomeBinding>(R.layout.fragment_
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     setupRv()
+    observe()
+  }
+
+  private fun observe() {
+    viewModel.items.observe(viewLifecycleOwner, Observer {
+      adapter.submitList(it)
+    })
   }
 
   private fun setupRv() {

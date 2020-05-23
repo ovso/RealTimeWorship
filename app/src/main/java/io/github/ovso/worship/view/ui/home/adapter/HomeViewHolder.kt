@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import io.github.ovso.worship.R
-import io.github.ovso.worship.data.view.HomeModel
+import io.github.ovso.worship.data.local.model.ChurchModel
 import io.github.ovso.worship.databinding.ItemHomeBinding
 import io.github.ovso.worship.view.ui.player.PlayerActivity
 
@@ -16,7 +16,7 @@ class HomeViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
 
   private val binding = DataBindingUtil.bind<ItemHomeBinding>(itemView)!!
 
-  fun onBindViewHolder(item: HomeModel) {
+  fun onBindViewHolder(item: ChurchModel) {
     binding.item = item
     itemView.setOnClickListener {
       val context = it.context
