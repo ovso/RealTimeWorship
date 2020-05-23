@@ -6,6 +6,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 import io.github.ovso.worship.data.TasksRepository
+import io.github.ovso.worship.view.ui.home.HomeViewModel
 import io.github.ovso.worship.view.ui.video.VideoViewModel
 import io.github.ovso.worship.view.ui.player.PlayerViewModel
 
@@ -31,6 +32,7 @@ class ViewModelFactory constructor(
       )
       isAssignableFrom(VideoViewModel::class.java) -> VideoViewModel(repository, defaultArgs)
       isAssignableFrom(PlayerViewModel::class.java) -> PlayerViewModel()
+      isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel()
 /*
             isAssignableFrom(TaskDetailViewModel::class.java) ->
                 TaskDetailViewModel(searchRepository)
