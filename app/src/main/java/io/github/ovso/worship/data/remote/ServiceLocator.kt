@@ -1,6 +1,7 @@
 package io.github.ovso.worship.data.remote
 
 import io.github.ovso.worship.data.TasksRepository
+import io.github.ovso.worship.data.local.TasksLocalDataSource
 
 object ServiceLocator {
 
@@ -14,7 +15,7 @@ object ServiceLocator {
     }
 
     private fun createTasksRepository(): TasksRepository {
-        val newRepo = TasksRepository(TasksRemoteDataSource())
+        val newRepo = TasksRepository(TasksRemoteDataSource(), TasksLocalDataSource())
         tasksRepository = newRepo
         return newRepo
     }

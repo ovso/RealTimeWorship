@@ -1,7 +1,8 @@
 package io.github.ovso.worship.view.ui.home
 
-import androidx.lifecycle.ViewModel
+import io.github.ovso.worship.data.TasksRepository
+import io.github.ovso.worship.view.base.DisposableViewModel
 
-class HomeViewModel : ViewModel() {
-  // TODO: Implement the ViewModel
+class HomeViewModel(private val repository: TasksRepository) : DisposableViewModel() {
+
 }

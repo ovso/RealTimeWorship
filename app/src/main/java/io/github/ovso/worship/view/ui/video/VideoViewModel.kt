@@ -30,7 +30,7 @@ class VideoViewModel(
       }
 
       val channelId = it.getString("channel_id")
-      tasksRepository.getVideos(channelId!!)
+      tasksRepository.videos(channelId!!)
         .map(VideoModelMapper::fromResponses)
         .subscribeOn(SchedulerProvider.io())
         .observeOn(SchedulerProvider.ui())

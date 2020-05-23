@@ -32,7 +32,7 @@ class ViewModelFactory constructor(
       )
       isAssignableFrom(VideoViewModel::class.java) -> VideoViewModel(repository, defaultArgs)
       isAssignableFrom(PlayerViewModel::class.java) -> PlayerViewModel()
-      isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel()
+      isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel(repository)
 /*
             isAssignableFrom(TaskDetailViewModel::class.java) ->
                 TaskDetailViewModel(searchRepository)
