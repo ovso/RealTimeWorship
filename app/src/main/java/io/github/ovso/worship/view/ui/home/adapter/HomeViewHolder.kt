@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import io.github.ovso.worship.R
 import io.github.ovso.worship.data.local.model.ChurchModel
 import io.github.ovso.worship.databinding.ItemHomeBinding
-import io.github.ovso.worship.view.ui.player.PlayerActivity
+import io.github.ovso.worship.view.ui.video.VideoActivity
 
 class HomeViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
   LayoutInflater.from(parent.context).inflate(R.layout.item_home, parent, false)
@@ -20,8 +20,8 @@ class HomeViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
     binding.item = item
     itemView.setOnClickListener {
       val context = it.context
-      val intent = Intent(context, PlayerActivity::class.java).apply {
-        putExtra("title", item.title)
+      val intent = Intent(context, VideoActivity::class.java).apply {
+        putExtra("channel_id", item.channelId)
       }
       context.startActivity(intent)
     }
