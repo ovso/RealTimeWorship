@@ -5,4 +5,7 @@ import io.github.ovso.worship.view.base.DisposableViewModel
 
 class HomeViewModel(private val repository: TasksRepository) : DisposableViewModel() {
 
+  init {
+
+  }
 }
