@@ -7,7 +7,7 @@ import io.github.ovso.worship.data.remote.ServiceLocator
 class App : Application() {
 
   val taskRepository: TasksRepository
-    get() = ServiceLocator.provideTasksRepository()
+    get() = ServiceLocator.provideTasksRepository(this)
 
   override fun onCreate() {
     super.onCreate()

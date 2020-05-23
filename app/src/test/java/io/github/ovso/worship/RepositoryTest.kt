@@ -3,7 +3,7 @@
 package io.github.ovso.worship
 
 import io.github.ovso.worship.data.mapper.VideoModelMapper
-import io.github.ovso.worship.data.remote.ServiceLocator
+import io.github.ovso.worship.data.remote.TasksRemoteDataSource
 import io.github.ovso.worship.data.view.VideoModel
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -16,7 +16,7 @@ import org.junit.Test
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 class RepositoryTest {
-  private val tasksRepository by lazy { ServiceLocator.provideTasksRepository() }
+  private val tasksRemoteDataSource by lazy { TasksRemoteDataSource() }
   private val channelId = "UC6vNHBFM5VLNF53CKycyNZw"
 
   @Test
@@ -30,7 +30,7 @@ class RepositoryTest {
       println("items size = ${items.count()}")
     }
 
-    tasksRepository.videos(channelId)
+    tasksRemoteDataSource.videos(channelId)
       .map(VideoModelMapper::fromResponses)
       .subscribeOn(SchedulerProvider.io())
       .observeOn(SchedulerProvider.ui())
