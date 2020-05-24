@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-        <activity android:name=".view.ui.video.VideoActivity"></activity>
+        <activity android:name=".view.ui.video.VideoActivity"/>
         <activity
             android:name=".view.ui.main.Main2Activity"
             android:label="@string/title_activity_main2">

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import io.github.ovso.worship.R
 import io.github.ovso.worship.data.view.VideoModel
 import io.github.ovso.worship.databinding.ItemVideoBinding
-import io.github.ovso.worship.view.ui.bottom.PlayerBottomSheetFragment
+import io.github.ovso.worship.view.ui.bottom.PlayerFragment
 
 class VideoViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
   LayoutInflater.from(parent.context).inflate(R.layout.item_video, parent, false)
@@ -20,9 +20,9 @@ class VideoViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
     binding.item = item
     itemView.setOnClickListener {
       (itemView.context as? FragmentActivity)?.supportFragmentManager?.let { fm ->
-        PlayerBottomSheetFragment.newInstance(item.videoId).show(
+        PlayerFragment.newInstance(item.videoId).show(
           fm,
-          PlayerBottomSheetFragment::class.java.name
+          PlayerFragment::class.java.name
         )
       }
 

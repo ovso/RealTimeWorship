@@ -9,6 +9,7 @@ import androidx.core.os.bundleOf
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.loadOrCueVideo
@@ -17,11 +18,12 @@ import io.github.ovso.worship.R
 import timber.log.Timber
 
 
-class PlayerBottomSheetFragment private constructor() : BottomSheetDialogFragment() {
+class PlayerFragment private constructor() : BottomSheetDialogFragment() {
+  private lateinit var playerView: YouTubePlayerView
 
   companion object {
-    fun newInstance(videoId: String): PlayerBottomSheetFragment =
-      PlayerBottomSheetFragment().apply {
+    fun newInstance(videoId: String): PlayerFragment =
+      PlayerFragment().apply {
         arguments = bundleOf("videoId" to videoId)
       }
   }
@@ -35,7 +37,8 @@ class PlayerBottomSheetFragment private constructor() : BottomSheetDialogFragmen
     val params = container.layoutParams
     params.height = Resources.getSystem().displayMetrics.heightPixels
     container.layoutParams = params
-    play(view)
+    playerView = view.findViewById(R.id.ypv_player)
+    play()
     dialog.setContentView(view)
     behavior = BottomSheetBehavior.from(view.parent as View)
     return dialog
@@ -46,31 +49,33 @@ class PlayerBottomSheetFragment private constructor() : BottomSheetDialogFragmen
     behavior.state = BottomSheetBehavior.STATE_EXPANDED
   }
 
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
-    play(view)
-  }
-
-  private fun play(view: View) {
+  private fun play() {
     arguments?.getString("videoId")?.let {
-      view.findViewById<YouTubePlayerView>(R.id.ypv_player)
-        .addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
-          override fun onReady(youTubePlayer: YouTubePlayer) {
-            super.onReady(youTubePlayer)
-  //            youTubePlayer.loadOrCueVideo(lifecycle, it, viewModel.second)
-            youTubePlayer.loadOrCueVideo(lifecycle, it, 0F)
-            Timber.d("loadOrCueVideo")
-          }
+      playerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+        override fun onReady(youTubePlayer: YouTubePlayer) {
+          super.onReady(youTubePlayer)
+          youTubePlayer.loadOrCueVideo(lifecycle, it, 0F)
+        }
 
-          override fun onCurrentSecond(
-            youTubePlayer: YouTubePlayer,
-            second: Float
-          ) {
-            super.onCurrentSecond(youTubePlayer, second)
-  //            viewModel.second = second
-          }
-        })
+        override fun onCurrentSecond(
+          youTubePlayer: YouTubePlayer,
+          second: Float
+        ) {
+          super.onCurrentSecond(youTubePlayer, second)
+          //            viewModel.second = second
+        }
 
-      }
+        override fun onStateChange(
+          youTubePlayer: YouTubePlayer,
+          state: PlayerConstants.PlayerState
+        ) {
+          super.onStateChange(youTubePlayer, state)
+          Timber.d("onStateChange = $state")
+        }
+
+      })
+    }
   }
 }
+//https://medium.com/@oshanm1/how-to-implement-a-search-dialog-using-full-screen-bottomsheetfragment-29ceb0af3d41
+//https://github.com/Oshan94/BottomSheetDaialogFragmentExample
