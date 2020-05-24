@@ -9,13 +9,11 @@ import androidx.core.os.bundleOf
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.loadOrCueVideo
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import io.github.ovso.worship.R
-import timber.log.Timber
 
 
 class PlayerFragment private constructor() : BottomSheetDialogFragment() {
@@ -63,14 +61,6 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
         ) {
           super.onCurrentSecond(youTubePlayer, second)
           //            viewModel.second = second
-        }
-
-        override fun onStateChange(
-          youTubePlayer: YouTubePlayer,
-          state: PlayerConstants.PlayerState
-        ) {
-          super.onStateChange(youTubePlayer, state)
-          Timber.d("onStateChange = $state")
         }
 
       })
