@@ -2,7 +2,9 @@ package io.github.ovso.worship.view.ui.video
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -16,16 +18,26 @@ import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 
-class VideoFragment : DataBindingFragment<FragmentMainBinding>(R.layout.fragment_main) {
+class VideoFragment private constructor() :
+  DataBindingFragment<FragmentMainBinding>(R.layout.fragment_main) {
+
+  companion object {
+    fun newInstance(channelId: String): VideoFragment {
+      val fragment = VideoFragment()
+      fragment.arguments = bundleOf("channel_id" to channelId)
+      return fragment
+    }
+  }
 
   private val adapter: MainAdapter by inject()
   override val viewModel by viewModels<VideoViewModel> { getViewModelFactory() }
 
-  override fun onActivityCreated(savedInstanceState: Bundle?) {
-    super.onActivityCreated(savedInstanceState)
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
     setupRecyclerView()
     observe()
     startShimmer()
+
   }
 
   private fun startShimmer() {
