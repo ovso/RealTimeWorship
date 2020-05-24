@@ -11,7 +11,7 @@ import io.github.ovso.worship.extensions.getViewModelFactory
 import kotlinx.android.synthetic.main.fragment_player.*
 import timber.log.Timber
 
-class PlayerActivity : AppCompatActivity(R.layout.player_activity) {
+class PlayerActivity : AppCompatActivity(R.layout.activity_player) {
 
   private val viewModel by viewModels<PlayerViewModel> { getViewModelFactory() }
 
