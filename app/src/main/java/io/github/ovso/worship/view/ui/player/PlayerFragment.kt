@@ -40,7 +40,20 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
     dialog.setContentView(view)
     behavior = BottomSheetBehavior.from(view.parent as View)
     play()
+    addEvent()
     return dialog
+  }
+
+  private fun addEvent() {
+    playerView.addFullScreenListener(object : YouTubePlayerFullScreenListener {
+      override fun onYouTubePlayerEnterFullScreen() {
+        playerView.rotation = 90F
+      }
+
+      override fun onYouTubePlayerExitFullScreen() {
+        playerView.rotation = 0F
+      }
+    })
   }
 
   override fun onStart() {
