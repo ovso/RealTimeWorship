@@ -36,9 +36,9 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
     params.height = Resources.getSystem().displayMetrics.heightPixels
     container.layoutParams = params
     playerView = view.findViewById(R.id.ypv_player)
-    play()
     dialog.setContentView(view)
     behavior = BottomSheetBehavior.from(view.parent as View)
+    play()
     return dialog
   }
 
