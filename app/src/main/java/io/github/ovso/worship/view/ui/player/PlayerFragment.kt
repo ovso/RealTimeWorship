@@ -26,7 +26,7 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
       }
   }
 
-  lateinit var behavior: BottomSheetBehavior<View>
+  private lateinit var behavior: BottomSheetBehavior<View>
 
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     val dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
