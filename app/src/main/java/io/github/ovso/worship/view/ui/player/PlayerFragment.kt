@@ -1,4 +1,4 @@
-package io.github.ovso.worship.view.ui.bottom
+package io.github.ovso.worship.view.ui.player
 
 import android.app.Dialog
 import android.content.res.Resources

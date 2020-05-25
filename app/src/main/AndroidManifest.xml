@@ -16,7 +16,7 @@
         tools:ignore="AllowBackup">
         <activity android:name=".view.ui.video.VideoActivity"/>
         <activity
-            android:name=".view.ui.main.Main2Activity"
+            android:name=".view.ui.main.MainActivity"
             android:label="@string/title_activity_main2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

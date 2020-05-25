@@ -9,7 +9,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import io.github.ovso.worship.R
 
-class Main2Activity : AppCompatActivity(R.layout.activity_main2) {
+class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
