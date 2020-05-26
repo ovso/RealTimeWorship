@@ -2,6 +2,7 @@ package io.github.ovso.worship.view.ui.player
 
 import android.app.Dialog
 import android.content.res.Resources
+import android.graphics.Point
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
@@ -15,6 +16,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.You
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.loadOrCueVideo
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import io.github.ovso.worship.R
+import timber.log.Timber
 
 
 class PlayerFragment private constructor() : BottomSheetDialogFragment() {
@@ -37,6 +39,7 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
     params.height = Resources.getSystem().displayMetrics.heightPixels
     container.layoutParams = params
     playerView = view.findViewById(R.id.ypv_player)
+//    setupPlayerView()
     dialog.setContentView(view)
     behavior = BottomSheetBehavior.from(view.parent as View)
     play()
@@ -44,14 +47,20 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
     return dialog
   }
 
+  private fun setupPlayerView() {
+    val params = playerView.layoutParams
+    params.height = getScreenSize().x
+    params.width = getScreenSize().y
+    playerView.layoutParams = params
+    playerView.x = -400F
+    playerView.refreshDrawableState()
+    playerView.rotation = 90F
+  }
+
   private fun addEvent() {
     playerView.addFullScreenListener(object : YouTubePlayerFullScreenListener {
       override fun onYouTubePlayerEnterFullScreen() {
-        val layoutParams = playerView.layoutParams
-        layoutParams.width = 2000
-        playerView.x = -200F
-        playerView.layoutParams = layoutParams
-        playerView.rotation = 90F
+        setupPlayerView()
       }
 
       override fun onYouTubePlayerExitFullScreen() {
@@ -60,12 +69,29 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
     })
   }
 
+  fun getScreenSize(): Point {
+    val display = requireActivity().windowManager.defaultDisplay
+    val size = Point()
+    display.getSize(size)
+    return size
+  }
+  /*
+    public Point getScreenSize(Activity activity) {
+    Display display = activity.getWindowManager().getDefaultDisplay();
+    Point size = new Point();
+    display.getSize(size);
+    return  size;
+  }
+
+   */
+
   override fun onStart() {
     super.onStart()
     behavior.state = BottomSheetBehavior.STATE_EXPANDED
   }
 
   private fun play() {
+
     arguments?.getString("videoId")?.let {
       playerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
         override fun onReady(youTubePlayer: YouTubePlayer) {
