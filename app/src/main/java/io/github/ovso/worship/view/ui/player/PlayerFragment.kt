@@ -47,6 +47,10 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
   private fun addEvent() {
     playerView.addFullScreenListener(object : YouTubePlayerFullScreenListener {
       override fun onYouTubePlayerEnterFullScreen() {
+        val layoutParams = playerView.layoutParams
+        layoutParams.width = 2000
+        playerView.x = -500F
+        playerView.layoutParams = layoutParams
         playerView.rotation = 90F
       }
 
