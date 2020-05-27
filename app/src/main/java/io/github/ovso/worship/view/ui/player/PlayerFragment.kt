@@ -16,7 +16,6 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.You
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.loadOrCueVideo
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import io.github.ovso.worship.R
-import timber.log.Timber
 
 
 class PlayerFragment private constructor() : BottomSheetDialogFragment() {
@@ -53,7 +52,6 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
     params.width = getScreenSize().y
     playerView.layoutParams = params
     playerView.x = -400F
-    playerView.refreshDrawableState()
     playerView.rotation = 90F
   }
 
@@ -65,6 +63,7 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
 
       override fun onYouTubePlayerExitFullScreen() {
         playerView.rotation = 0F
+        playerView.x = 0F
       }
     })
   }
@@ -75,15 +74,6 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
     display.getSize(size)
     return size
   }
-  /*
-    public Point getScreenSize(Activity activity) {
-    Display display = activity.getWindowManager().getDefaultDisplay();
-    Point size = new Point();
-    display.getSize(size);
-    return  size;
-  }
-
-   */
 
   override fun onStart() {
     super.onStart()
