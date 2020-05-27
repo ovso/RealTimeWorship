@@ -69,7 +69,7 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
     })
   }
 
-  fun getScreenSize(): Point {
+  private fun getScreenSize(): Point {
     val display = requireActivity().windowManager.defaultDisplay
     val size = Point()
     display.getSize(size)
