@@ -4,13 +4,10 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import io.github.ovso.worship.R
-import kotlinx.android.synthetic.main.activity_video.*
 
 class VideoActivity : AppCompatActivity(R.layout.activity_video) {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setSupportActionBar(toolbar)
-    supportActionBar?.setDisplayHomeAsUpEnabled(true)
     supportActionBar?.hide()
     val channelId = intent.getStringExtra("channel_id")
     if (savedInstanceState == null) {
