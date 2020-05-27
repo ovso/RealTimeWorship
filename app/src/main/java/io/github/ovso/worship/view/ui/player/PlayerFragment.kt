@@ -51,7 +51,8 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
     params.height = getScreenSize().x
     params.width = getScreenSize().y
     playerView.layoutParams = params
-    playerView.x = -400F
+    playerView.pivotX = 540F
+    playerView.pivotY = 540F
     playerView.rotation = 90F
   }
 
