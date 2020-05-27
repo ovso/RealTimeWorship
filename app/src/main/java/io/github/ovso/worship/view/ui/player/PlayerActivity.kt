@@ -8,7 +8,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.loadOrCueVideo
 import io.github.ovso.worship.R
 import io.github.ovso.worship.extensions.getViewModelFactory
-import kotlinx.android.synthetic.main.fragment_player.*
+import kotlinx.android.synthetic.main.view_player.*
 import timber.log.Timber
 
 class PlayerActivity : AppCompatActivity(R.layout.activity_player) {

@@ -32,41 +32,45 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
 
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     val dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
-    val view = View.inflate(context, R.layout.fragment_player, null)
+    val view = View.inflate(context, R.layout.view_player, null)
     val container = view.findViewById<LinearLayout>(R.id.ll_player_container)
     val params = container.layoutParams
     params.height = Resources.getSystem().displayMetrics.heightPixels
     container.layoutParams = params
     playerView = view.findViewById(R.id.ypv_player)
-//    setupPlayerView()
+    playerView.addFullScreenListener(fullScreenListener)
+    lifecycle.addObserver(playerView)
     dialog.setContentView(view)
     behavior = BottomSheetBehavior.from(view.parent as View)
-    play()
-    addEvent()
+    playVideo()
     return dialog
   }
 
-  private fun setupPlayerView() {
+  private fun switchToLandscapeMode() {
     val params = playerView.layoutParams
-    params.height = getScreenSize().x
-    params.width = getScreenSize().y
+    val screenSizeX = getScreenSize().x
+    val screenSizeY = getScreenSize().y
+    params.height = screenSizeX
+    params.width = screenSizeY
     playerView.layoutParams = params
-    playerView.pivotX = 540F
-    playerView.pivotY = 540F
+    playerView.pivotX = (screenSizeX / 2).toFloat()
+    playerView.pivotY = (screenSizeX / 2).toFloat()
     playerView.rotation = 90F
   }
 
-  private fun addEvent() {
-    playerView.addFullScreenListener(object : YouTubePlayerFullScreenListener {
-      override fun onYouTubePlayerEnterFullScreen() {
-        setupPlayerView()
-      }
+  private fun switchToPortraitMode() {
+    playerView.rotation = 0F
+    playerView.x = 0F
+  }
 
-      override fun onYouTubePlayerExitFullScreen() {
-        playerView.rotation = 0F
-        playerView.x = 0F
-      }
-    })
+  private val fullScreenListener = object : YouTubePlayerFullScreenListener {
+    override fun onYouTubePlayerEnterFullScreen() {
+      switchToLandscapeMode()
+    }
+
+    override fun onYouTubePlayerExitFullScreen() {
+      switchToPortraitMode()
+    }
   }
 
   private fun getScreenSize(): Point {
@@ -81,25 +85,21 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
     behavior.state = BottomSheetBehavior.STATE_EXPANDED
   }
 
-  private fun play() {
-
-    arguments?.getString("videoId")?.let {
+  private fun playVideo() {
+    arguments?.getString("videoId")?.let { videoId ->
       playerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
         override fun onReady(youTubePlayer: YouTubePlayer) {
           super.onReady(youTubePlayer)
-          youTubePlayer.loadOrCueVideo(lifecycle, it, 0F)
-        }
-
-        override fun onCurrentSecond(
-          youTubePlayer: YouTubePlayer,
-          second: Float
-        ) {
-          super.onCurrentSecond(youTubePlayer, second)
-          //            viewModel.second = second
+          youTubePlayer.loadOrCueVideo(lifecycle, videoId, 0F)
         }
 
       })
     }
+  }
+
+  override fun onDestroyView() {
+    playerView.removeFullScreenListener(fullScreenListener)
+    super.onDestroyView()
   }
 }
 //https://medium.com/@oshanm1/how-to-implement-a-search-dialog-using-full-screen-bottomsheetfragment-29ceb0af3d41
