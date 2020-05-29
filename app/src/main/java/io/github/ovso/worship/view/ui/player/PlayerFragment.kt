@@ -4,7 +4,6 @@ import android.app.Dialog
 import android.content.res.Resources
 import android.graphics.Point
 import android.os.Bundle
-import android.util.TypedValue
 import android.view.View
 import android.widget.LinearLayout
 import androidx.core.os.bundleOf
@@ -17,6 +16,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.You
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.loadOrCueVideo
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import io.github.ovso.worship.R
+import io.github.ovso.worship.extensions.getIndicatorSize
 
 
 class PlayerFragment private constructor() : BottomSheetDialogFragment() {
@@ -52,22 +52,11 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
     val screenSizeX = getScreenSize().x
     val screenSizeY = getScreenSize().y
     params.height = screenSizeX
-    params.width = screenSizeY - getIndicatorSize()
+    params.width = screenSizeY  - requireContext().getIndicatorSize()
     playerView.layoutParams = params
     playerView.pivotX = (screenSizeX / 2).toFloat()
     playerView.pivotY = (screenSizeX / 2).toFloat()
     playerView.rotation = 90F
-  }
-
-  private fun getIndicatorSize(): Int {
-    var result = 0
-
-    val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
-
-    if (resourceId > 0) {
-      result = resources.getDimensionPixelSize(resourceId)
-    }
-    return result
   }
 
   private fun switchToPortraitMode() {
