@@ -1,6 +1,6 @@
 ext {
     versions = [
-            'room'                 : '2.0.0',
+            'room'                 : '2.2.5',
             'junit'                : '1.1.0',
             'runner'               : '1.2.0',
             'rules'                : '1.2.0',
@@ -77,6 +77,11 @@ ext {
                     'activity' : "androidx.activity:activity-ktx:$versions.ktx_activity",
                     'core'     : "androidx.core:core-ktx:$versions.core_ktx",
                     'viewmodel': "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle",
+            ],
+
+            'room'          : [
+                    'runtime' : "androidx.room:room-runtime:$versions.room",
+                    "compiler": "androidx.room:room-compiler:$versions.room"
             ],
 
             'kotlin'        : [

@@ -132,6 +132,9 @@ dependencies {
     implementation deps.firebase.values()
     implementation deps.jsoup
     implementation deps.oss_licenses
+    implementation deps.room.runtime
+    kapt deps.room.compiler
+
 
     testImplementation deps.tsl.values()
     androidTestImplementation deps.atsl.values()
