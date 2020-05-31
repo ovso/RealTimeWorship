@@ -12,6 +12,7 @@ import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -101,34 +102,26 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
     behavior.state = BottomSheetBehavior.STATE_EXPANDED
   }
 
-  private fun playVideo() {
-    arguments?.getString("videoId")?.let { videoId ->
-      binding.ypvPlayer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
-        override fun onReady(youTubePlayer: YouTubePlayer) {
-          super.onReady(youTubePlayer)
-          youTubePlayer.loadOrCueVideo(lifecycle, videoId, 0F)
-        }
-
-      })
-    }
+  private fun playVideo(videoId: String) {
+    binding.ypvPlayer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+      override fun onReady(youTubePlayer: YouTubePlayer) {
+        super.onReady(youTubePlayer)
+        youTubePlayer.loadOrCueVideo(lifecycle, videoId, 0F)
+      }
+    })
   }
 
   override fun onAttach(context: Context) {
     super.onAttach(context)
+    Timber.d("Player onAttach")
     var playerModel = arguments?.getString("video_json")?.let {
       Gson().fromJson(it, PlayerModel::class.java)
     }
-    Timber.d("Player onAttach")
   }
 
   override fun onResume() {
     super.onResume()
     Timber.d("Player onResume")
-  }
-
-  override fun onActivityCreated(savedInstanceState: Bundle?) {
-    super.onActivityCreated(savedInstanceState)
-    Timber.d("Player onActivityCreated deprecated")
   }
 
   override fun onCreateView(
@@ -137,12 +130,14 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
     savedInstanceState: Bundle?
   ): View? {
     Timber.d("Player onCreateView")
+    observe()
     return super.onCreateView(inflater, container, savedInstanceState)
   }
 
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
-    Timber.d("Player onViewCreated")
+  private fun observe() {
+    viewModel.videoId.observeForever {
+      playVideo(it)
+    }
   }
 
   override fun onDestroy() {

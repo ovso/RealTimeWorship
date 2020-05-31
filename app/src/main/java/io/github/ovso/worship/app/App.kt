@@ -16,7 +16,6 @@ class App : Application() {
   override fun onCreate() {
     super.onCreate()
     LibraryInit(this)
-    Timber.plant(Timber.DebugTree())
     database = Room.databaseBuilder(this, AppDatabase::class.java, "database").build()
   }
 }
