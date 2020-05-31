@@ -8,8 +8,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
@@ -22,7 +20,6 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerFullScreenListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.loadOrCueVideo
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import io.github.ovso.worship.R
 import io.github.ovso.worship.data.view.PlayerModel
 import io.github.ovso.worship.databinding.ViewPlayerBinding
@@ -32,7 +29,6 @@ import timber.log.Timber
 
 
 class PlayerFragment private constructor() : BottomSheetDialogFragment() {
-  private lateinit var playerView: YouTubePlayerView
   private val viewModel by viewModels<PlayerViewModel> { getViewModelFactory() }
 
   companion object {
@@ -43,58 +39,52 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
   }
 
   private lateinit var behavior: BottomSheetBehavior<View>
-  private lateinit var contentView: View
 
+  private lateinit var binding: ViewPlayerBinding
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     Timber.d("Player onCreateDialog")
+    binding = DataBindingUtil.bind(View.inflate(context, R.layout.view_player, null))!!
+    binding.viewModel = viewModel
+    val playerContainerParams = binding.llPlayerContainer.layoutParams
+    playerContainerParams.height = Resources.getSystem().displayMetrics.heightPixels
+    binding.llPlayerContainer.layoutParams = playerContainerParams
+    binding.ypvPlayer.addFullScreenListener(fullScreenListener)
+    lifecycle.addObserver(binding.ypvPlayer)
     val dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
-    contentView = View.inflate(context, R.layout.view_player, null)
-    val container = contentView.findViewById<LinearLayout>(R.id.ll_player_container)
-    val params = container.layoutParams
-    params.height = Resources.getSystem().displayMetrics.heightPixels
-    container.layoutParams = params
-    playerView = contentView.findViewById(R.id.ypv_player)
-    playerView.addFullScreenListener(fullScreenListener)
-    lifecycle.addObserver(playerView)
-    dialog.setContentView(contentView)
-    dataBinding(contentView)
-    behavior = BottomSheetBehavior.from(contentView.parent as View)
-    playVideo()
+    dialog.setContentView(binding.root)
+    behavior = BottomSheetBehavior.from(binding.root.parent as View)
+//    playVideo()
     return dialog
   }
 
-  private fun dataBinding(view: View) {
-    val bind = DataBindingUtil.bind<ViewPlayerBinding>(view)
-    bind?.viewModel = viewModel
-//    bind?.lifecycleOwner = viewLifecycleOwner
-  }
-
   private fun switchToLandscapeMode() {
-    val params = playerView.layoutParams
+    val params = binding.ypvPlayer.layoutParams
     val screenSizeX = getScreenSize().x
     val screenSizeY = getScreenSize().y
     params.height = screenSizeX
     params.width = screenSizeY - requireContext().getIndicatorSize()
-    playerView.layoutParams = params
-    playerView.pivotX = (screenSizeX / 2).toFloat()
-    playerView.pivotY = (screenSizeX / 2).toFloat()
-    playerView.rotation = 90F
+    with(binding.ypvPlayer) {
+      layoutParams = params
+      pivotX = (screenSizeX / 2).toFloat()
+      pivotY = (screenSizeX / 2).toFloat()
+      rotation = 90F
+    }
   }
 
   private fun switchToPortraitMode() {
-    playerView.rotation = 0F
-    playerView.x = 0F
+    binding.ypvPlayer.rotation = 0F
+    binding.ypvPlayer.x = 0F
   }
 
   private val fullScreenListener = object : YouTubePlayerFullScreenListener {
     override fun onYouTubePlayerEnterFullScreen() {
       switchToLandscapeMode()
-      contentView.findViewById<ImageView>(R.id.iv_player_bookmark).isVisible = false
+      binding.ivPlayerBookmark.isVisible = false
     }
 
     override fun onYouTubePlayerExitFullScreen() {
       switchToPortraitMode()
-      contentView.findViewById<ImageView>(R.id.iv_player_bookmark).isVisible = true
+      binding.ivPlayerBookmark.isVisible = true
     }
   }
 
@@ -113,7 +103,7 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
 
   private fun playVideo() {
     arguments?.getString("videoId")?.let { videoId ->
-      playerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+      binding.ypvPlayer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
         override fun onReady(youTubePlayer: YouTubePlayer) {
           super.onReady(youTubePlayer)
           youTubePlayer.loadOrCueVideo(lifecycle, videoId, 0F)
@@ -162,7 +152,6 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
 
   override fun onDetach() {
     super.onDetach()
-    playerView.removeFullScreenListener(fullScreenListener)
     Timber.d("Player onDetach")
   }
 }
