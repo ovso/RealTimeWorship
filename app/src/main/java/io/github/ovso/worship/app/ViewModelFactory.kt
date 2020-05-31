@@ -26,12 +26,9 @@ class ViewModelFactory constructor(
     handle: SavedStateHandle
   ) = with(modelClass) {
     when {
-      isAssignableFrom(VideoViewModel::class.java) -> VideoViewModel(
-        repository,
-        defaultArgs
-      )
       isAssignableFrom(VideoViewModel::class.java) -> VideoViewModel(repository, defaultArgs)
-      isAssignableFrom(PlayerViewModel::class.java) -> PlayerViewModel()
+      isAssignableFrom(VideoViewModel::class.java) -> VideoViewModel(repository, defaultArgs)
+      isAssignableFrom(PlayerViewModel::class.java) -> PlayerViewModel(repository, defaultArgs)
       isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel(repository)
 /*
             isAssignableFrom(TaskDetailViewModel::class.java) ->

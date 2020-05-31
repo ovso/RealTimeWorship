@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import io.github.ovso.worship.R
 import io.github.ovso.worship.data.view.VideoModel
 import io.github.ovso.worship.databinding.ItemVideoBinding
@@ -20,7 +21,7 @@ class VideoViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
     binding.item = item
     itemView.setOnClickListener {
       (itemView.context as? FragmentActivity)?.supportFragmentManager?.let { fm ->
-        PlayerFragment.newInstance(item.videoId).show(
+        PlayerFragment.newInstance(Gson().toJson(item)).show(
           fm,
           PlayerFragment::class.java.name
         )

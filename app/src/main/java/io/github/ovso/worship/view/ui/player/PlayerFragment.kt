@@ -17,12 +17,14 @@ import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.gson.Gson
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerFullScreenListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.loadOrCueVideo
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import io.github.ovso.worship.R
+import io.github.ovso.worship.data.view.PlayerModel
 import io.github.ovso.worship.databinding.ViewPlayerBinding
 import io.github.ovso.worship.extensions.getIndicatorSize
 import io.github.ovso.worship.extensions.getViewModelFactory
@@ -34,9 +36,9 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
   private val viewModel by viewModels<PlayerViewModel> { getViewModelFactory() }
 
   companion object {
-    fun newInstance(videoId: String): PlayerFragment =
+    fun newInstance(videoJson: String): PlayerFragment =
       PlayerFragment().apply {
-        arguments = bundleOf("videoId" to videoId)
+        arguments = bundleOf("video_json" to videoJson)
       }
   }
 
@@ -121,13 +123,11 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
     }
   }
 
-  override fun onDestroyView() {
-
-    super.onDestroyView()
-  }
-
   override fun onAttach(context: Context) {
     super.onAttach(context)
+    var playerModel = arguments?.getString("video_json")?.let {
+      Gson().fromJson(it, PlayerModel::class.java)
+    }
     Timber.d("Player onAttach")
   }
 
