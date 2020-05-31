@@ -135,9 +135,11 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
   }
 
   private fun observe() {
-    viewModel.videoId.observeForever {
-      playVideo(it)
-    }
+    viewModel.videoId.observeForever(videoIdObserver)
+  }
+
+  private val videoIdObserver: Observer<String> = Observer<String> {
+    playVideo(it)
   }
 
   override fun onDestroy() {
@@ -148,6 +150,7 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
   override fun onDetach() {
     super.onDetach()
     Timber.d("Player onDetach")
+    viewModel.videoId.removeObserver(videoIdObserver)
   }
 }
 //https://medium.com/@oshanm1/how-to-implement-a-search-dialog-using-full-screen-bottomsheetfragment-29ceb0af3d41
