@@ -54,8 +54,17 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
     val dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
     dialog.setContentView(binding.root)
     behavior = BottomSheetBehavior.from(binding.root.parent as View)
-//    playVideo()
     return dialog
+  }
+
+  override fun onCreateView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? {
+    Timber.d("Player onCreateView")
+    observe()
+    return super.onCreateView(inflater, container, savedInstanceState)
   }
 
   private fun switchToLandscapeMode() {
@@ -81,11 +90,13 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
     override fun onYouTubePlayerEnterFullScreen() {
       switchToLandscapeMode()
       binding.ivPlayerBookmark.isVisible = false
+      binding.tvPlayerTitle.isVisible = false
     }
 
     override fun onYouTubePlayerExitFullScreen() {
       switchToPortraitMode()
       binding.ivPlayerBookmark.isVisible = true
+      binding.tvPlayerTitle.isVisible = true
     }
   }
 
@@ -124,22 +135,16 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
     Timber.d("Player onResume")
   }
 
-  override fun onCreateView(
-    inflater: LayoutInflater,
-    container: ViewGroup?,
-    savedInstanceState: Bundle?
-  ): View? {
-    Timber.d("Player onCreateView")
-    observe()
-    return super.onCreateView(inflater, container, savedInstanceState)
-  }
-
   private fun observe() {
     viewModel.videoId.observeForever(videoIdObserver)
+//    viewModel.title.observeForever(titleObserver)
   }
 
-  private val videoIdObserver: Observer<String> = Observer<String> {
+  private val videoIdObserver: Observer<String> = Observer {
     playVideo(it)
+  }
+  private val titleObserver: Observer<String> = Observer {
+    binding.tvPlayerTitle.text = it
   }
 
   override fun onDestroy() {
@@ -151,6 +156,7 @@ class PlayerFragment private constructor() : BottomSheetDialogFragment() {
     super.onDetach()
     Timber.d("Player onDetach")
     viewModel.videoId.removeObserver(videoIdObserver)
+//    viewModel.title.removeObserver(titleObserver)
   }
 }
 //https://medium.com/@oshanm1/how-to-implement-a-search-dialog-using-full-screen-bottomsheetfragment-29ceb0af3d41

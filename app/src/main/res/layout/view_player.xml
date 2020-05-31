@@ -28,9 +28,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:autoPlay="false"
-                app:showFullScreenButton="true" />
+                app:showFullScreenButton="true"
+                app:showSeekBar="true"
+                app:showYouTubeButton="false" />
+
+            <TextView
+                android:id="@+id/tv_player_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.title}"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+                android:textColor="@android:color/darker_gray" />
         </LinearLayout>
 
+        <!--suppress AndroidUnknownAttribute -->
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_player_bookmark"
             android:layout_width="?android:attr/actionBarSize"

@@ -1,7 +1,9 @@
 package io.github.ovso.worship.view.ui.player
 
 import android.os.Bundle
+import androidx.databinding.Observable
 import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.google.gson.Gson
@@ -15,9 +17,10 @@ class PlayerViewModel(
 ) : DisposableViewModel() {
   private val playerModel: MutableLiveData<PlayerModel> = MutableLiveData()
   val videoId = Transformations.map(playerModel) { model -> model.videoId }
-  val title = Transformations.map(playerModel) { model -> model.title }
+  //  val title = Transformations.map(playerModel) { model -> model.title }
   val thumbnail = Transformations.map(playerModel) { model -> model.thumbnail }
   val isBookmarkSelected = ObservableBoolean(false)
+  val title = ObservableField<String>()
   var second = 0F
 
   init {
@@ -25,6 +28,7 @@ class PlayerViewModel(
       Gson().fromJson(it, PlayerModel::class.java)
     }?.let {
       playerModel.value = it
+      title.set(it.title)
     }
   }
 
