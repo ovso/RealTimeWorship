@@ -20,6 +20,6 @@ fun ComponentActivity.getViewModelFactory(): ViewModelFactory {
   return ViewModelFactory(
     repository = repository,
     owner = this,
-    defaultArgs = bundleOf()
+    intent = intent
   )
 }

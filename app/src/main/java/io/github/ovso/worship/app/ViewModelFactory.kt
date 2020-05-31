@@ -1,5 +1,6 @@
 package io.github.ovso.worship.app
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.SavedStateHandle
@@ -17,7 +18,8 @@ import io.github.ovso.worship.view.ui.player.PlayerViewModel
 class ViewModelFactory constructor(
   private val repository: TasksRepository,
   owner: SavedStateRegistryOwner,
-  private val defaultArgs: Bundle? = null
+  private val defaultArgs: Bundle? = null,
+  private val intent:Intent? = null
 ) : AbstractSavedStateViewModelFactory(owner, defaultArgs) {
 
   override fun <T : ViewModel> create(
