@@ -132,7 +132,10 @@ dependencies {
     implementation deps.firebase.values()
     implementation deps.jsoup
     implementation deps.oss_licenses
+
     implementation deps.room.runtime
+    implementation deps.room.ktx
+    implementation deps.room.rxjava2
     kapt deps.room.compiler
 
 
