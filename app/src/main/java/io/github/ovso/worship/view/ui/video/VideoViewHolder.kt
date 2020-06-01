@@ -3,13 +3,12 @@ package io.github.ovso.worship.view.ui.video
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
 import io.github.ovso.worship.R
+import io.github.ovso.worship.data.mapper.toPlayerModel
 import io.github.ovso.worship.data.view.VideoModel
 import io.github.ovso.worship.databinding.ItemVideoBinding
-import io.github.ovso.worship.view.ui.player.PlayerFragment
+import io.github.ovso.worship.view.ui.player.PlayerActivity
 
 class VideoViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
   LayoutInflater.from(parent.context).inflate(R.layout.item_video, parent, false)
@@ -20,13 +19,7 @@ class VideoViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
   fun onBindViewHolder(item: VideoModel) {
     binding.item = item
     itemView.setOnClickListener {
-      (itemView.context as? FragmentActivity)?.supportFragmentManager?.let { fm ->
-        PlayerFragment.newInstance(Gson().toJson(item)).show(
-          fm,
-          PlayerFragment::class.java.name
-        )
-      }
-
+      PlayerActivity.start(it.context, item.toPlayerModel())
     }
   }
 }

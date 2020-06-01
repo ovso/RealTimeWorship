@@ -19,7 +19,7 @@ class ViewModelFactory constructor(
   private val repository: TasksRepository,
   owner: SavedStateRegistryOwner,
   private val defaultArgs: Bundle? = null,
-  private val intent:Intent? = null
+  private val intent: Intent? = null
 ) : AbstractSavedStateViewModelFactory(owner, defaultArgs) {
 
   override fun <T : ViewModel> create(
@@ -30,7 +30,11 @@ class ViewModelFactory constructor(
     when {
       isAssignableFrom(VideoViewModel::class.java) -> VideoViewModel(repository, defaultArgs)
       isAssignableFrom(VideoViewModel::class.java) -> VideoViewModel(repository, defaultArgs)
-      isAssignableFrom(PlayerViewModel::class.java) -> PlayerViewModel(repository, defaultArgs)
+      isAssignableFrom(PlayerViewModel::class.java) -> PlayerViewModel(
+        repository,
+        defaultArgs,
+        intent
+      )
       isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel(repository)
 /*
             isAssignableFrom(TaskDetailViewModel::class.java) ->

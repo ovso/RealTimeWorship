@@ -1,32 +1,35 @@
 package io.github.ovso.worship.view.ui.player
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.databinding.Observable
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import com.google.gson.Gson
 import io.github.ovso.worship.data.TasksRepository
 import io.github.ovso.worship.data.view.PlayerModel
 import io.github.ovso.worship.view.base.DisposableViewModel
 
 class PlayerViewModel(
   private val repository: TasksRepository,
-  arguments: Bundle?
+  arguments: Bundle?,
+  intent: Intent? = null
 ) : DisposableViewModel() {
   private val playerModel: MutableLiveData<PlayerModel> = MutableLiveData()
+
+  //  val title = Transformations.map(playerModel) { model -> model.title }
+  val title = ObservableField<String>()
   val videoId = Transformations.map(playerModel) { model -> model.videoId }
+
   //  val title = Transformations.map(playerModel) { model -> model.title }
   val thumbnail = Transformations.map(playerModel) { model -> model.thumbnail }
+
   val isBookmarkSelected = ObservableBoolean(false)
-  val title = ObservableField<String>()
+
   var second = 0F
 
   init {
-    arguments?.getString("video_json")?.let {
-      Gson().fromJson(it, PlayerModel::class.java)
-    }?.let {
+    intent?.getParcelableExtra<PlayerModel>("model")?.let {
       playerModel.value = it
       title.set(it.title)
     }
