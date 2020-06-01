@@ -1,5 +1,6 @@
 package io.github.ovso.worship.data.mapper
 
+import io.github.ovso.worship.data.local.model.BookmarkEntity
 import io.github.ovso.worship.data.view.PlayerModel
 import io.github.ovso.worship.data.view.VideoModel
 
@@ -12,5 +13,13 @@ fun VideoModel.toPlayerModel(): PlayerModel {
     title = this.title,
     thumbnail = this.thumbnail,
     videoId = this.videoId
+  )
+}
+
+fun PlayerModel.toBookmarkEntity(): BookmarkEntity {
+  return BookmarkEntity(
+    title = this.title,
+    thumbnail = this.thumbnail,
+    video_id = this.videoId
   )
 }

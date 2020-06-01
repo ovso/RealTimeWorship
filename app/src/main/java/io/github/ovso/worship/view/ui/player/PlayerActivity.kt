@@ -27,15 +27,24 @@ class PlayerActivity : DataBindingActivity<ActivityPlayerBinding>(R.layout.activ
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     supportActionBar?.hide()
+    setupBinding()
+    setupPlayer()
     observe()
-//    play()
+  }
+
+  private fun setupBinding() {
+    binding.viewModel = viewModel
+  }
+
+  private fun setupPlayer() {
+    lifecycle.addObserver(binding.ypvPlayer)
+    binding.ypvPlayer.addFullScreenListener(fullScreenListener)
   }
 
   private fun observe() {
     viewModel.videoId.observe(this, Observer {
       play(it)
     })
-    binding.ypvPlayer.addFullScreenListener(fullScreenListener)
   }
 
   private val fullScreenListener = object : YouTubePlayerFullScreenListener {

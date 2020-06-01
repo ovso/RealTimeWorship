@@ -2,40 +2,80 @@ package io.github.ovso.worship.view.ui.player
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.databinding.ObservableBoolean
-import androidx.databinding.ObservableField
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.Transformations
 import io.github.ovso.worship.data.TasksRepository
+import io.github.ovso.worship.data.mapper.toBookmarkEntity
 import io.github.ovso.worship.data.view.PlayerModel
+import io.github.ovso.worship.utils.SchedulerProvider
 import io.github.ovso.worship.view.base.DisposableViewModel
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.kotlin.plusAssign
+import timber.log.Timber
 
 class PlayerViewModel(
   private val repository: TasksRepository,
   arguments: Bundle?,
-  intent: Intent? = null
+  intent: Intent? = null,
+  private val owner: LifecycleOwner
 ) : DisposableViewModel() {
   private val playerModel: MutableLiveData<PlayerModel> = MutableLiveData()
 
-  //  val title = Transformations.map(playerModel) { model -> model.title }
-  val title = ObservableField<String>()
   val videoId = Transformations.map(playerModel) { model -> model.videoId }
-
-  //  val title = Transformations.map(playerModel) { model -> model.title }
+  val title = Transformations.map(playerModel) { model -> model.title }
   val thumbnail = Transformations.map(playerModel) { model -> model.thumbnail }
 
-  val isBookmarkSelected = ObservableBoolean(false)
+  val isBookmarkSelected = MutableLiveData(false)
 
   var second = 0F
 
   init {
     intent?.getParcelableExtra<PlayerModel>("model")?.let {
       playerModel.value = it
-      title.set(it.title)
+      observeBookmark(it.videoId)
     }
   }
 
-  fun onBookmarkClick() {
-    isBookmarkSelected.set(isBookmarkSelected.get().not())
+  private fun observeBookmark(videoId: String) {
+    repository.getBookmark(videoId).observe(owner, Observer {
+      it?.let {
+        isBookmarkSelected.value = true
+      }
+    })
   }
+
+  fun onBookmarkClick() {
+    isBookmarkSelected.value = isBookmarkSelected.value!!.not()
+    playerModel.value?.let {
+      when (isBookmarkSelected.value!!) {
+        true -> addBookmark(it)
+        false -> delBookmark(it)
+      }
+    }
+  }
+
+  private fun addBookmark(it: PlayerModel) {
+    compositeDisposable += Single.fromCallable {
+      repository.addBookmark(it.toBookmarkEntity())
+    }.subscribeOn(SchedulerProvider.io())
+      .subscribe({}, { Timber.e(it) })
+  }
+
+  private fun delBookmark(it: PlayerModel) {
+    fun onSuccess(result: Int) {
+      Timber.d("onSuccess = $result")
+    }
+
+    fun onFailure(t: Throwable) {
+      Timber.d("onFailure")
+    }
+
+    compositeDisposable += Single.fromCallable {
+      repository.delBookmark(it.toBookmarkEntity())
+    }.subscribeOn(SchedulerProvider.io())
+      .subscribe(::onSuccess, ::onFailure)
+  }
+
 }

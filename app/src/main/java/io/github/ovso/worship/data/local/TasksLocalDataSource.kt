@@ -1,6 +1,7 @@
 package io.github.ovso.worship.data.local
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 import com.google.gson.Gson
 import io.github.ovso.worship.app.App
 import io.github.ovso.worship.data.local.model.BookmarkEntity
@@ -10,6 +11,7 @@ import io.github.ovso.worship.utils.AssetsUtil
 import io.reactivex.rxjava3.core.Single
 
 class TasksLocalDataSource(private val context: Context) {
+  private val database = (context.applicationContext as App).database
 
   fun churches(): Single<List<ChurchEntity>> {
     return Single.fromCallable {
@@ -19,14 +21,15 @@ class TasksLocalDataSource(private val context: Context) {
     }
   }
 
-  fun bookmark(title: String, thumbnail: String, video_id: String) {
-    val database = (context.applicationContext as? App)?.database
-    database?.bookmarkDao()?.insert(
-      BookmarkEntity(
-        title = title,
-        thumbnail = thumbnail,
-        video_id = video_id
-      )
-    )
+  fun addBookmark(entity: BookmarkEntity) {
+    database.bookmarkDao().insert(entity)
+  }
+
+  fun delBookmark(entity: BookmarkEntity): Int {
+    return database.bookmarkDao().delete(entity)
+  }
+
+  fun getBookmark(videoId:String):LiveData<BookmarkEntity?> {
+    return database.bookmarkDao().getBookmark(videoId)
   }
 }

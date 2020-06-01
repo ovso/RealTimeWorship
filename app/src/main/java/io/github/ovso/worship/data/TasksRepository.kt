@@ -1,6 +1,8 @@
 package io.github.ovso.worship.data
 
+import androidx.lifecycle.LiveData
 import io.github.ovso.worship.data.local.TasksLocalDataSource
+import io.github.ovso.worship.data.local.model.BookmarkEntity
 import io.github.ovso.worship.data.local.model.ChurchEntity
 import io.github.ovso.worship.data.remote.TasksRemoteDataSource
 import io.github.ovso.worship.data.remote.response.VideoResponse
@@ -17,6 +19,18 @@ class TasksRepository(
 
   override fun churches(): Single<List<ChurchEntity>> {
     return localDataSource.churches()
+  }
+
+  override fun addBookmark(entity: BookmarkEntity) {
+    localDataSource.addBookmark(entity)
+  }
+
+  override fun delBookmark(entity: BookmarkEntity): Int {
+    return localDataSource.delBookmark(entity)
+  }
+
+  override fun getBookmark(videoId: String): LiveData<BookmarkEntity?> {
+    return localDataSource.getBookmark(videoId)
   }
 
 }

@@ -3,6 +3,7 @@ package io.github.ovso.worship.app
 import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.AbstractSavedStateViewModelFactory
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
@@ -17,7 +18,7 @@ import io.github.ovso.worship.view.ui.player.PlayerViewModel
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory constructor(
   private val repository: TasksRepository,
-  owner: SavedStateRegistryOwner,
+  private val owner: SavedStateRegistryOwner,
   private val defaultArgs: Bundle? = null,
   private val intent: Intent? = null
 ) : AbstractSavedStateViewModelFactory(owner, defaultArgs) {
@@ -33,7 +34,8 @@ class ViewModelFactory constructor(
       isAssignableFrom(PlayerViewModel::class.java) -> PlayerViewModel(
         repository,
         defaultArgs,
-        intent
+        intent,
+        owner
       )
       isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel(repository)
 /*
