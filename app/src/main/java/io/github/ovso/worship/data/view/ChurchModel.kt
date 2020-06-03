@@ -1,4 +1,4 @@
-package io.github.ovso.worship.data.local.model
+package io.github.ovso.worship.data.view
 
 
 import com.google.gson.annotations.SerializedName

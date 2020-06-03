@@ -29,7 +29,11 @@ class TasksLocalDataSource(private val context: Context) {
     return database.bookmarkDao().delete(entity)
   }
 
-  fun getBookmark(videoId:String):LiveData<BookmarkEntity?> {
+  fun getBookmark(videoId: String): LiveData<BookmarkEntity?> {
     return database.bookmarkDao().getBookmark(videoId)
+  }
+
+  fun getBookmarks(): LiveData<List<BookmarkEntity>> {
+    return database.bookmarkDao().bookmarks()
   }
 }

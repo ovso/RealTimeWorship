@@ -1,4 +1,4 @@
-package io.github.ovso.worship.view.ui.video
+package io.github.ovso.worship.view.ui.video.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

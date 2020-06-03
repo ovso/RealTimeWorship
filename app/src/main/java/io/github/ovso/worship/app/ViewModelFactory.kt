@@ -3,14 +3,14 @@ package io.github.ovso.worship.app
 import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.AbstractSavedStateViewModelFactory
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 import io.github.ovso.worship.data.TasksRepository
+import io.github.ovso.worship.view.ui.bookmark.BookmarkViewModel
 import io.github.ovso.worship.view.ui.home.HomeViewModel
-import io.github.ovso.worship.view.ui.video.VideoViewModel
 import io.github.ovso.worship.view.ui.player.PlayerViewModel
+import io.github.ovso.worship.view.ui.video.VideoViewModel
 
 /**
  * Factory for all ViewModels.
@@ -30,7 +30,6 @@ class ViewModelFactory constructor(
   ) = with(modelClass) {
     when {
       isAssignableFrom(VideoViewModel::class.java) -> VideoViewModel(repository, defaultArgs)
-      isAssignableFrom(VideoViewModel::class.java) -> VideoViewModel(repository, defaultArgs)
       isAssignableFrom(PlayerViewModel::class.java) -> PlayerViewModel(
         repository,
         defaultArgs,
@@ -38,6 +37,7 @@ class ViewModelFactory constructor(
         owner
       )
       isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel(repository)
+      isAssignableFrom(BookmarkViewModel::class.java) -> BookmarkViewModel(owner, repository)
 /*
             isAssignableFrom(TaskDetailViewModel::class.java) ->
                 TaskDetailViewModel(searchRepository)

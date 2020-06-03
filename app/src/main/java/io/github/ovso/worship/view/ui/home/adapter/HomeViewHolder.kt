@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import io.github.ovso.worship.R
-import io.github.ovso.worship.data.local.model.ChurchModel
+import io.github.ovso.worship.data.view.ChurchModel
 import io.github.ovso.worship.databinding.ItemHomeBinding
 import io.github.ovso.worship.view.ui.video.VideoActivity
 

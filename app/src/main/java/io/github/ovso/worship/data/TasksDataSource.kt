@@ -12,4 +12,5 @@ interface TasksDataSource {
   fun addBookmark(entity: BookmarkEntity)
   fun delBookmark(entity: BookmarkEntity): Int
   fun getBookmark(videoId: String): LiveData<BookmarkEntity?>
+  fun getBookmarks(): LiveData<List<BookmarkEntity>>
 }

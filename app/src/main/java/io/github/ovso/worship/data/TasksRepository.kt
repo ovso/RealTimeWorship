@@ -33,4 +33,8 @@ class TasksRepository(
     return localDataSource.getBookmark(videoId)
   }
 
+  override fun getBookmarks(): LiveData<List<BookmarkEntity>> {
+    return localDataSource.getBookmarks()
+  }
+
 }

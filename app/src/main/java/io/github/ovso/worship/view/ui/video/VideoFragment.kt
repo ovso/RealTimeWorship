@@ -14,6 +14,7 @@ import io.github.ovso.worship.R
 import io.github.ovso.worship.databinding.FragmentMainBinding
 import io.github.ovso.worship.extensions.getViewModelFactory
 import io.github.ovso.worship.view.base.DataBindingFragment
+import io.github.ovso.worship.view.ui.video.adapter.MainAdapter
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.android.ext.android.inject
 import timber.log.Timber
