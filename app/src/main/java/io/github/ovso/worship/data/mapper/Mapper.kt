@@ -27,6 +27,14 @@ fun BookmarkModel.toPlayerModel(): PlayerModel {
   )
 }
 
+fun BookmarkModel.toEntity(): BookmarkEntity {
+  return BookmarkEntity(
+    title = this.title,
+    thumbnail = this.thumbnail,
+    video_id = this.videoId
+  )
+}
+
 fun PlayerModel.toBookmarkEntity(): BookmarkEntity {
   return BookmarkEntity(
     title = this.title,
