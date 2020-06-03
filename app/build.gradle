@@ -6,7 +6,7 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.android.gms.oss-licenses-plugin'
 
 apply from: '../scripts/versioning.gradle'
-apply from: '../scripts/ktlint.gradle'
+//apply from: '../scripts/ktlint.gradle'
 
 def keystorePropertiesFile = rootProject.file("../jks/keystore.properties")
 def keystoreProperties = new Properties()
@@ -42,13 +42,14 @@ android {
         }
     }
 
+/*
     flavorDimensions "version"
     productFlavors {
         dev {
             dimension "version"
             versionCode gitVersionCodeTime
             versionName gitVersionName
-            applicationId config.applicationId + ".dev"
+            applicationId config.applicationId
             signingConfig signingConfigs.debug
         }
 
@@ -60,6 +61,7 @@ android {
             signingConfig signingConfigs.release
         }
     }
+*/
 
     buildTypes {
         debug {
@@ -74,6 +76,7 @@ android {
             resValue("string", "ads_app_id", "ca-app-pub-3940256099942544~3347511713")
             resValue("string", "ads_banner_unit_id", "ca-app-pub-3940256099942544/6300978111")
             resValue("string", "ads_interstitial_unit_id", "ca-app-pub-3940256099942544/1033173712")
+            signingConfig signingConfigs.release
         }
     }
 

@@ -100,8 +100,8 @@ ext {
 
 
             'firebase'      : [
-                    'ads': "com.google.firebase:firebase-ads:$versions.firebase_ads",
-                    //'core': "com.google.firebase:firebase-core:$versions.firebase_core",
+                    'ads'      : "com.google.firebase:firebase-ads:$versions.firebase_ads",
+                    'analytics': "com.google.firebase:firebase-analytics:17.2.2"
             ],
 
 
