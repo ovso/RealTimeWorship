@@ -6,6 +6,7 @@ import com.google.gson.Gson
 import io.github.ovso.worship.app.App
 import io.github.ovso.worship.data.local.model.BookmarkEntity
 import io.github.ovso.worship.data.local.model.ChurchEntity
+import io.github.ovso.worship.data.local.model.HistoryEntity
 import io.github.ovso.worship.extensions.fromJson
 import io.github.ovso.worship.utils.AssetsUtil
 import io.reactivex.rxjava3.core.Single
@@ -35,5 +36,21 @@ class TasksLocalDataSource(private val context: Context) {
 
   fun getBookmarks(): LiveData<List<BookmarkEntity>> {
     return database.bookmarkDao().bookmarks()
+  }
+
+  fun getHistories(): LiveData<List<HistoryEntity>> {
+    return database.historyDao().histories()
+  }
+
+  fun getHistory(videoId: String): LiveData<HistoryEntity?> {
+    return database.historyDao().getHistory(videoId)
+  }
+
+  fun addHistory(entity: HistoryEntity) {
+    return database.historyDao().addHistory(entity)
+  }
+
+  fun delHistory(entity: HistoryEntity): Int {
+    return database.historyDao().delete(entity)
   }
 }

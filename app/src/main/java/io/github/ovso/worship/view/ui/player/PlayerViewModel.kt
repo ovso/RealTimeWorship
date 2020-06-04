@@ -1,3 +1,5 @@
+@file:Suppress("UNUSED_PARAMETER")
+
 package io.github.ovso.worship.view.ui.player
 
 import android.content.Intent
@@ -8,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.Transformations
 import io.github.ovso.worship.data.TasksRepository
 import io.github.ovso.worship.data.mapper.toBookmarkEntity
+import io.github.ovso.worship.data.mapper.toHistoryEntity
 import io.github.ovso.worship.data.view.PlayerModel
 import io.github.ovso.worship.utils.SchedulerProvider
 import io.github.ovso.worship.view.base.DisposableViewModel
@@ -35,7 +38,18 @@ class PlayerViewModel(
     intent?.getParcelableExtra<PlayerModel>("model")?.let {
       playerModel.value = it
       observeBookmark(it.videoId)
+      historyExists(it.videoId)
     }
+  }
+
+  private fun historyExists(videoId: String) {
+    repository.getHistory(videoId).observe(owner, Observer {
+      if (it == null) {
+        playerModel.value?.let { pModel ->
+          Thread { repository.addHistory(pModel.toHistoryEntity()) }.start()
+        }
+      }
+    })
   }
 
   private fun observeBookmark(videoId: String) {
@@ -69,7 +83,7 @@ class PlayerViewModel(
     }
 
     fun onFailure(t: Throwable) {
-      Timber.d("onFailure")
+      Timber.d("onFailure = ${t.printStackTrace()}")
     }
 
     compositeDisposable += Single.fromCallable {
@@ -77,5 +91,4 @@ class PlayerViewModel(
     }.subscribeOn(SchedulerProvider.io())
       .subscribe(::onSuccess, ::onFailure)
   }
-
 }

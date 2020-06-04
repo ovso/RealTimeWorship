@@ -9,7 +9,7 @@ import androidx.room.Query
 @Dao
 interface HistoryDao {
   @Insert
-  fun insert(entity: HistoryEntity)
+  fun addHistory(entity: HistoryEntity)
 
   @Delete
   fun delete(entity: HistoryEntity): Int
@@ -18,5 +18,9 @@ interface HistoryDao {
   fun removeAll()
 
   @Query("SELECT * FROM history")
-  fun bookmarks(): LiveData<List<HistoryEntity>>
+  fun histories(): LiveData<List<HistoryEntity>>
+
+  @Query("SELECT * FROM history WHERE video_id LIKE :videoId")
+  fun getHistory(videoId: String): LiveData<HistoryEntity?>
+
 }

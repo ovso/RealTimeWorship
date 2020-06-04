@@ -8,6 +8,7 @@ import io.github.ovso.worship.data.mapper.toBookmarkModels
 import io.github.ovso.worship.data.view.BookmarkModel
 import io.github.ovso.worship.utils.SchedulerProvider
 import io.github.ovso.worship.view.base.DisposableViewModel
+import io.reactivex.rxjava3.kotlin.plusAssign
 import timber.log.Timber
 
 class BookmarkViewModel(owner: SavedStateRegistryOwner, repository: TasksRepository) :
@@ -18,7 +19,7 @@ class BookmarkViewModel(owner: SavedStateRegistryOwner, repository: TasksReposit
 
   init {
     repository.getBookmarks().observe(owner, Observer {
-      it.toBookmarkModels()
+      compositeDisposable += it.toBookmarkModels()
         .subscribeOn(SchedulerProvider.io())
         .subscribe({ models ->
           _items.postValue(models)

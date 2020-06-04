@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "history")
 data class HistoryEntity(
-  val id: Int,
+  val id: Int = 0,
   val title: String,
   val thumbnail: String,
   @PrimaryKey @NonNull val video_id: String

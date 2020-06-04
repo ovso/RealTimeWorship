@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import io.github.ovso.worship.data.local.TasksLocalDataSource
 import io.github.ovso.worship.data.local.model.BookmarkEntity
 import io.github.ovso.worship.data.local.model.ChurchEntity
+import io.github.ovso.worship.data.local.model.HistoryEntity
 import io.github.ovso.worship.data.remote.TasksRemoteDataSource
 import io.github.ovso.worship.data.remote.response.VideoResponse
 import io.reactivex.rxjava3.core.Single
@@ -37,4 +38,19 @@ class TasksRepository(
     return localDataSource.getBookmarks()
   }
 
+  override fun getHistories(): LiveData<List<HistoryEntity>> {
+    return localDataSource.getHistories()
+  }
+
+  override fun getHistory(videoId: String): LiveData<HistoryEntity?> {
+    return localDataSource.getHistory(videoId)
+  }
+
+  override fun addHistory(entity: HistoryEntity) {
+    localDataSource.addHistory(entity)
+  }
+
+  override fun delHistory(entity: HistoryEntity): Int {
+    return localDataSource.delHistory(entity)
+  }
 }
