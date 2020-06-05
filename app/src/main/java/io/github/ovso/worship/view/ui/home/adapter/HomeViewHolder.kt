@@ -22,6 +22,7 @@ class HomeViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
       val context = it.context
       val intent = Intent(context, VideoActivity::class.java).apply {
         putExtra("channel_id", item.channelId)
+        putExtra("title", item.title)
       }
       context.startActivity(intent)
     }
