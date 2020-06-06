@@ -3,6 +3,7 @@
 package io.github.ovso.worship
 
 import io.github.ovso.worship.data.mapper.VideoModelMapper
+import io.github.ovso.worship.data.toVideoModels
 import io.github.ovso.worship.data.remote.TasksRemoteDataSource
 import io.github.ovso.worship.data.view.VideoModel
 import io.reactivex.rxjava3.core.Scheduler
@@ -31,7 +32,7 @@ class RepositoryTest {
     }
 
     tasksRemoteDataSource.videos(channelId)
-      .map(VideoModelMapper::fromResponses)
+      .map { it.toVideoModels() }
       .subscribeOn(SchedulerProvider.io())
       .observeOn(SchedulerProvider.ui())
       .subscribe(::onSuccess, ::onFailure)

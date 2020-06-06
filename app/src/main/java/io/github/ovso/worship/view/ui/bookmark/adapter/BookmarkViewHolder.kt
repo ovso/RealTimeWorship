@@ -7,8 +7,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import io.github.ovso.worship.R
 import io.github.ovso.worship.app.App
-import io.github.ovso.worship.data.mapper.toEntity
-import io.github.ovso.worship.data.mapper.toPlayerModel
+import io.github.ovso.worship.data.toEntity
+import io.github.ovso.worship.data.toPlayerModel
 import io.github.ovso.worship.data.view.BookmarkModel
 import io.github.ovso.worship.databinding.ItemBookmarkBinding
 import io.github.ovso.worship.view.ui.player.PlayerActivity

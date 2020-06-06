@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import io.github.ovso.worship.R
-import io.github.ovso.worship.data.mapper.toPlayerModel
+import io.github.ovso.worship.data.toPlayerModel
 import io.github.ovso.worship.data.view.VideoModel
 import io.github.ovso.worship.databinding.ItemVideoBinding
 import io.github.ovso.worship.view.ui.player.PlayerActivity

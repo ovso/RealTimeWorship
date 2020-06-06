@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.github.ovso.worship.data.TasksRepository
-import io.github.ovso.worship.data.mapper.VideoModelMapper
+import io.github.ovso.worship.data.toVideoModels
 import io.github.ovso.worship.data.view.VideoModel
 import io.github.ovso.worship.utils.SchedulerProvider
 import io.github.ovso.worship.view.base.DisposableViewModel
@@ -31,7 +31,7 @@ class VideoViewModel(
 
       val channelId = it.getString("channel_id")
       tasksRepository.videos(channelId!!)
-        .map(VideoModelMapper::fromResponses)
+        .map { response -> response.toVideoModels() }
         .subscribeOn(SchedulerProvider.io())
         .observeOn(SchedulerProvider.ui())
         .subscribe(::onSuccess, ::onFailure)

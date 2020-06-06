@@ -1,11 +1,10 @@
-package io.github.ovso.worship.data.mapper
+package io.github.ovso.worship.data
 
 import io.github.ovso.worship.data.local.model.BookmarkEntity
+import io.github.ovso.worship.data.local.model.ChurchEntity
 import io.github.ovso.worship.data.local.model.HistoryEntity
-import io.github.ovso.worship.data.view.BookmarkModel
-import io.github.ovso.worship.data.view.HistoryModel
-import io.github.ovso.worship.data.view.PlayerModel
-import io.github.ovso.worship.data.view.VideoModel
+import io.github.ovso.worship.data.remote.response.VideoResponse
+import io.github.ovso.worship.data.view.*
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.toObservable
 
@@ -93,3 +92,21 @@ fun HistoryModel.toEntity(): HistoryEntity {
   )
 }
 
+fun List<ChurchEntity>.toChurchModels(): List<ChurchModel> {
+  return this.toObservable().map {
+    ChurchModel(
+      title = it.title,
+      channelId = it.channelId
+    )
+  }.toList().blockingGet()
+}
+
+fun List<VideoResponse>.toVideoModels(): List<VideoModel> {
+  return this.toObservable().map {
+    VideoModel(
+      title = it.gridVideoRenderer.title.simpleText,
+      thumbnail = it.gridVideoRenderer.thumbnail.thumbnails.last().url,
+      videoId = it.gridVideoRenderer.videoId
+    )
+  }.toList().blockingGet()
+}

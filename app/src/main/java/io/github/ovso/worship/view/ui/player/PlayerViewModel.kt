@@ -9,8 +9,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.Transformations
 import io.github.ovso.worship.data.TasksRepository
-import io.github.ovso.worship.data.mapper.toBookmarkEntity
-import io.github.ovso.worship.data.mapper.toHistoryEntity
+import io.github.ovso.worship.data.toBookmarkEntity
+import io.github.ovso.worship.data.toHistoryEntity
 import io.github.ovso.worship.data.view.PlayerModel
 import io.github.ovso.worship.utils.SchedulerProvider
 import io.github.ovso.worship.view.base.DisposableViewModel
