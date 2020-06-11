@@ -1,4 +1,4 @@
-# Depreacted
+# Deprecated
 
 이 프로젝트는 더이상 진행하지 않는다. 
 
