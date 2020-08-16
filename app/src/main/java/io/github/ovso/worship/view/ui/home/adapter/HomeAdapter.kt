@@ -1,15 +1,16 @@
 package io.github.ovso.worship.view.ui.home.adapter
 
 import android.view.ViewGroup
+import androidx.navigation.NavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import io.github.ovso.worship.data.view.ChurchModel
 
-class HomeAdapter : ListAdapter<ChurchModel, HomeViewHolder>(
+class HomeAdapter(private val navC:NavController) : ListAdapter<ChurchModel, HomeViewHolder>(
   DIFF_UTIL
 ) {
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder =
-    HomeViewHolder(parent)
+    HomeViewHolder(navC, parent)
 
   override fun onBindViewHolder(holder: HomeViewHolder, position: Int): Unit =
     holder.onBindViewHolder(getItem(position))

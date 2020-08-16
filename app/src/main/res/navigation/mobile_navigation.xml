@@ -9,7 +9,14 @@
         android:id="@+id/navigation_home"
         android:name="io.github.ovso.worship.view.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_video" />
+        tools:layout="@layout/fragment_video" >
+        <action
+            android:id="@+id/action_navigation_home_to_videoFragment"
+            app:destination="@id/videoFragment" />
+        <argument
+            android:name="channel_id"
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_bookmark"
@@ -22,4 +29,8 @@
         android:name="io.github.ovso.worship.view.ui.history.HistoryFragment"
         android:label="@string/title_history"
         tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/videoFragment"
+        android:name="io.github.ovso.worship.view.ui.video.VideoFragment"
+        android:label="VideoFragment" />
 </navigation>

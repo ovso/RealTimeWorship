@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import io.github.ovso.worship.R
@@ -15,7 +16,7 @@ import io.github.ovso.worship.view.ui.home.adapter.HomeAdapter
 class HomeFragment : DataBindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
   override val viewModel: HomeViewModel by viewModels { getViewModelFactory() }
 
-  private val adapter by lazy { HomeAdapter() }
+  private val adapter by lazy { HomeAdapter(findNavController()) }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
