@@ -12,7 +12,7 @@ import io.github.ovso.worship.data.TasksRepository
 import io.github.ovso.worship.data.toBookmarkEntity
 import io.github.ovso.worship.data.toHistoryEntity
 import io.github.ovso.worship.data.view.PlayerModel
-import io.github.ovso.worship.utils.SchedulerProvider
+import io.github.ovso.worship.utils.rx.SchedulerProvider
 import io.github.ovso.worship.view.base.DisposableViewModel
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.plusAssign
