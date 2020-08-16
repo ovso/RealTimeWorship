@@ -2,9 +2,8 @@
 
 package io.github.ovso.worship
 
-import io.github.ovso.worship.data.mapper.VideoModelMapper
-import io.github.ovso.worship.data.toVideoModels
 import io.github.ovso.worship.data.remote.TasksRemoteDataSource
+import io.github.ovso.worship.data.toVideoModels
 import io.github.ovso.worship.data.view.VideoModel
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -44,7 +43,6 @@ class RepositoryTest {
     val document =
       Jsoup.connect("https://www.youtube.com/channel/UC6vNHBFM5VLNF53CKycyNZw/videos?view=0&sort=dd&shelf_id=0")
         .get()
-    val elementsByClass = document.body().getElementsByClass(className)
     val contents = document.body().getElementById("contents")
     println("class name = $contents")
   }
