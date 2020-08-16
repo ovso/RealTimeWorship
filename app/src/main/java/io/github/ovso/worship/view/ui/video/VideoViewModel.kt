@@ -16,17 +16,21 @@ class VideoViewModel(
 ) : DisposableViewModel() {
 
   private val _items = MutableLiveData<List<VideoModel>>()
-  fun getItems(): LiveData<List<VideoModel>> = _items
+  val items: LiveData<List<VideoModel>> = _items
+  private val _isLoading = MutableLiveData<Boolean>(true)
+  val isLoading = _isLoading
 
   init {
     defaultArgs?.let {
       fun onFailure(t: Throwable) {
         println(t.message)
+        _isLoading.value = false
       }
 
       fun onSuccess(items: List<VideoModel>) {
         println("items size = ${items.count()}")
         _items.value = items
+        _isLoading.value = false
       }
 
       val channelId = it.getString("channel_id")

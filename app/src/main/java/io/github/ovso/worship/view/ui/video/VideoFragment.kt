@@ -37,8 +37,6 @@ class VideoFragment private constructor() :
     super.onViewCreated(view, savedInstanceState)
     setupRecyclerView()
     observe()
-    startShimmer()
-
   }
 
   private fun startShimmer() {
@@ -54,9 +52,14 @@ class VideoFragment private constructor() :
   }
 
   private fun observe() {
-    viewModel.getItems().observe(viewLifecycleOwner, Observer {
+    viewModel.items.observe(viewLifecycleOwner, Observer {
       adapter.submitList(it)
-      stopShimmer()
+    })
+    viewModel.isLoading.observe(viewLifecycleOwner, Observer {
+      when (it) {
+        true -> startShimmer()
+        else -> stopShimmer()
+      }
     })
   }
 
