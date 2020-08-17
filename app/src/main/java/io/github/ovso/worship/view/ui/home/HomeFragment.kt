@@ -6,11 +6,10 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.RecyclerView
 import io.github.ovso.worship.R
 import io.github.ovso.worship.data.view.HomeItemModel
 import io.github.ovso.worship.databinding.FragmentHomeBinding
+import io.github.ovso.worship.extensions.defaultDivider
 import io.github.ovso.worship.extensions.getViewModelFactory
 import io.github.ovso.worship.view.base.DataBindingFragment
 import io.github.ovso.worship.view.ui.home.adapter.HomeAdapter
@@ -39,9 +38,8 @@ class HomeFragment : DataBindingFragment<FragmentHomeBinding>(R.layout.fragment_
   }
 
   private fun setupRv() {
-    binding.rvHome.addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
     with(binding.rvHome) {
-      addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
+      defaultDivider()
       adapter = this@HomeFragment.adapter
     }
   }
