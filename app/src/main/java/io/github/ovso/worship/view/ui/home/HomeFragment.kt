@@ -9,10 +9,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import io.github.ovso.worship.R
-import io.github.ovso.worship.data.view.ChurchModel
+import io.github.ovso.worship.data.view.HomeItemModel
 import io.github.ovso.worship.databinding.FragmentHomeBinding
 import io.github.ovso.worship.extensions.getViewModelFactory
-import io.github.ovso.worship.extensions.toast
 import io.github.ovso.worship.view.base.DataBindingFragment
 import io.github.ovso.worship.view.ui.home.adapter.HomeAdapter
 
@@ -20,13 +19,10 @@ class HomeFragment : DataBindingFragment<FragmentHomeBinding>(R.layout.fragment_
   override val viewModel: HomeViewModel by viewModels { getViewModelFactory() }
 
   private val adapter by lazy {
-    HomeAdapter(findNavController()).also {
-      it.onItemClickListener = onItemClickListener
-    }
+    HomeAdapter(onItemClickListener)
   }
 
-  private val onItemClickListener: ((ChurchModel) -> Unit) = {
-    toast(it.toString())
+  private val onItemClickListener: ((HomeItemModel) -> Unit) = {
     findNavController().navigate(R.id.videoFragment, bundleOf("channel_id" to it.channelId))
   }
 

@@ -92,9 +92,9 @@ fun HistoryModel.toEntity(): HistoryEntity {
   )
 }
 
-fun List<ChurchEntity>.toChurchModels(): List<ChurchModel> {
+fun List<ChurchEntity>.toChurchModels(): List<HomeItemModel> {
   return this.toObservable().map {
-    ChurchModel(
+    HomeItemModel(
       title = it.title,
       channelId = it.channelId
     )
