@@ -34,4 +34,15 @@ class HomeFragment : DataBindingFragment<FragmentHomeBinding>(R.layout.fragment_
       adapter = this@HomeFragment.adapter
     }
   }
+
+  override fun onPause() {
+    super.onPause()
+    hideBottomNav()
+  }
+
+  override fun onResume() {
+    super.onResume()
+    showBottomNav()
+  }
+
 }

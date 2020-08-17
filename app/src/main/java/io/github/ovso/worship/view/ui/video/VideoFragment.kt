@@ -26,7 +26,6 @@ class VideoFragment :
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    hideBottomNav()
     setupRecyclerView()
     observe()
 //    addOnBackPressedCallback()
@@ -34,7 +33,6 @@ class VideoFragment :
 
   private fun addOnBackPressedCallback() {
     activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner) {
-      showBottomNav()
       activity?.supportFragmentManager?.popBackStack()
     }
   }
@@ -68,11 +66,6 @@ class VideoFragment :
     val shimmerFrameLayout = root?.getChildAt(1) as? ShimmerFrameLayout
     shimmerFrameLayout?.stopShimmer()
     shimmerFrameLayout?.let { root.removeView(shimmerFrameLayout) }
-  }
-
-  override fun onDestroyView() {
-    super.onDestroyView()
-    showBottomNav()
   }
 
   companion object {

@@ -94,7 +94,4 @@ class PlayerFragment : DataBindingFragment<FragmentPlayerBinding>(R.layout.fragm
       playVideo(it)
     })
   }
-
 }
-//https://medium.com/@oshanm1/how-to-implement-a-search-dialog-using-full-screen-bottomsheetfragment-29ceb0af3d41
-//https://github.com/Oshan94/BottomSheetDaialogFragmentExample
