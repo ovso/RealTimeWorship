@@ -35,7 +35,8 @@ class PlayerViewModel(
   var second = 0F
 
   init {
-    intent?.getParcelableExtra<PlayerModel>("model")?.let {
+
+    arguments?.getParcelable<PlayerModel>("model")?.let {
       playerModel.value = it
       observeBookmark(it.videoId)
       historyExists(it.videoId)

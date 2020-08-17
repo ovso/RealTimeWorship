@@ -13,9 +13,6 @@
         <action
             android:id="@+id/action_navigation_home_to_videoFragment"
             app:destination="@id/videoFragment" />
-        <argument
-            android:name="channel_id"
-            app:argType="string" />
     </fragment>
 
     <fragment
@@ -32,5 +29,13 @@
     <fragment
         android:id="@+id/videoFragment"
         android:name="io.github.ovso.worship.view.ui.video.VideoFragment"
-        android:label="VideoFragment" />
+        android:label="VideoFragment" >
+        <action
+            android:id="@+id/action_videoFragment_to_playerFragment"
+            app:destination="@id/playerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playerFragment"
+        android:name="io.github.ovso.worship.view.ui.player.PlayerFragment"
+        android:label="PlayerFragment" />
 </navigation>
