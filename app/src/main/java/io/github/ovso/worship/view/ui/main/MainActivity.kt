@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    val navView: BottomNavigationView = findViewById(R.id.nav_view)
+    val navView: BottomNavigationView = findViewById(R.id.bnv_main)
 
     val navController = findNavController(R.id.nav_host_fragment)
     // Passing each menu ID as a set of Ids because each

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -25,8 +26,17 @@ class VideoFragment :
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    hideBottomNav()
     setupRecyclerView()
     observe()
+//    addOnBackPressedCallback()
+  }
+
+  private fun addOnBackPressedCallback() {
+    activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner) {
+      showBottomNav()
+      activity?.supportFragmentManager?.popBackStack()
+    }
   }
 
   private fun startShimmer() {
@@ -58,6 +68,11 @@ class VideoFragment :
     val shimmerFrameLayout = root?.getChildAt(1) as? ShimmerFrameLayout
     shimmerFrameLayout?.stopShimmer()
     shimmerFrameLayout?.let { root.removeView(shimmerFrameLayout) }
+  }
+
+  override fun onDestroyView() {
+    super.onDestroyView()
+    showBottomNav()
   }
 
   companion object {
