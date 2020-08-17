@@ -2,15 +2,16 @@ package io.github.ovso.worship.view.ui.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import io.github.ovso.worship.R
 import io.github.ovso.worship.data.view.HomeItemModel
 import io.github.ovso.worship.databinding.ItemHomeBinding
 
 class HomeViewHolder(
-  parent: ViewGroup,
-  private val onItemClickListener: ((HomeItemModel) -> Unit)? = null
+  parent: ViewGroup
 ) : RecyclerView.ViewHolder(
   LayoutInflater.from(parent.context).inflate(R.layout.item_home, parent, false)
 ) {
@@ -20,7 +21,10 @@ class HomeViewHolder(
   fun onBindViewHolder(item: HomeItemModel) {
     binding.item = item
     itemView.setOnClickListener {
-      onItemClickListener?.invoke(item)
+      it.findNavController().navigate(
+        R.id.videoFragment,
+        bundleOf("channel_id" to item.channelId)
+      )
     }
   }
 }

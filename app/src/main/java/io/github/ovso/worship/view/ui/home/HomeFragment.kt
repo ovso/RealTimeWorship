@@ -2,12 +2,9 @@ package io.github.ovso.worship.view.ui.home
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import io.github.ovso.worship.R
-import io.github.ovso.worship.data.view.HomeItemModel
 import io.github.ovso.worship.databinding.FragmentHomeBinding
 import io.github.ovso.worship.extensions.defaultDivider
 import io.github.ovso.worship.extensions.getViewModelFactory
@@ -17,13 +14,7 @@ import io.github.ovso.worship.view.ui.home.adapter.HomeAdapter
 class HomeFragment : DataBindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
   override val viewModel: HomeViewModel by viewModels { getViewModelFactory() }
 
-  private val adapter by lazy {
-    HomeAdapter(onItemClickListener)
-  }
-
-  private val onItemClickListener: ((HomeItemModel) -> Unit) = {
-    findNavController().navigate(R.id.videoFragment, bundleOf("channel_id" to it.channelId))
-  }
+  private val adapter by lazy { HomeAdapter() }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
@@ -43,5 +34,4 @@ class HomeFragment : DataBindingFragment<FragmentHomeBinding>(R.layout.fragment_
       adapter = this@HomeFragment.adapter
     }
   }
-
 }

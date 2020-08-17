@@ -5,13 +5,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import io.github.ovso.worship.data.view.HomeItemModel
 
-class HomeAdapter(
-  private var onItemClickListener: ((HomeItemModel) -> Unit)? = null
-) : ListAdapter<HomeItemModel, HomeViewHolder>(
+class HomeAdapter : ListAdapter<HomeItemModel, HomeViewHolder>(
   DIFF_UTIL
 ) {
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder =
-    HomeViewHolder(parent, onItemClickListener)
+    HomeViewHolder(parent)
 
   override fun onBindViewHolder(holder: HomeViewHolder, position: Int): Unit =
     holder.onBindViewHolder(getItem(position))
