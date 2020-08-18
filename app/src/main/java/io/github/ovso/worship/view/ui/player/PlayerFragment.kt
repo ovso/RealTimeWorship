@@ -74,10 +74,9 @@ class PlayerFragment : DataBindingFragment<FragmentPlayerBinding>(R.layout.fragm
   }
 
   private fun getScreenSize(): Point {
-    val display = requireActivity().windowManager.defaultDisplay
-    val size = Point()
-    display.getSize(size)
-    return size
+    return Point().apply {
+      requireActivity().windowManager.defaultDisplay.getSize(this)
+    }
   }
 
   private fun playVideo(videoId: String) {
