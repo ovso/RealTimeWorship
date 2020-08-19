@@ -4,6 +4,7 @@ package io.github.ovso.worship.view.ui.player
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -30,7 +31,7 @@ class PlayerViewModel(
   val title = Transformations.map(playerModel) { model -> model.title }
   val thumbnail = Transformations.map(playerModel) { model -> model.thumbnail }
 
-  val isBookmarkSelected = MutableLiveData(false)
+  val isBookmarkSelected = ObservableBoolean(false)
 
   var second = 0F
 
@@ -59,15 +60,15 @@ class PlayerViewModel(
   private fun observeBookmark(videoId: String) {
     repository.getBookmark(videoId).observe(owner, Observer {
       it?.let {
-        isBookmarkSelected.value = true
+        isBookmarkSelected.set(true)
       }
     })
   }
 
   fun onBookmarkClick() {
-    isBookmarkSelected.value = isBookmarkSelected.value!!.not()
+    isBookmarkSelected.set(isBookmarkSelected.get().not())
     playerModel.value?.let {
-      when (isBookmarkSelected.value!!) {
+      when (isBookmarkSelected.get()) {
         true -> addBookmark(it)
         false -> delBookmark(it)
       }
