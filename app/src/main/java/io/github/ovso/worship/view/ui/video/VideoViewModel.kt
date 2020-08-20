@@ -42,10 +42,6 @@ class VideoViewModel(
     }
   }
 
-  private fun clearList() {
-    _items.value = listOf()
-  }
-
   override fun onCleared() {
     super.onCleared()
     Timber.d("onCleared()")

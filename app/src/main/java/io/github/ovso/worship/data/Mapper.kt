@@ -104,7 +104,7 @@ fun List<ChurchEntity>.toChurchModels(): List<HomeItemModel> {
 fun List<VideoResponse>.toVideoModels(): List<VideoModel> {
   return this.toObservable().map {
     VideoModel(
-      title = it.gridVideoRenderer.title.simpleText ?: "",
+      title = it.gridVideoRenderer.title.runs.first().text ?: "",
       thumbnail = it.gridVideoRenderer.thumbnail.thumbnails.last().url,
       videoId = it.gridVideoRenderer.videoId
     )

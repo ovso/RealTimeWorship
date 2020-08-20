@@ -32,7 +32,14 @@ data class Thumbnail(
 
 data class Title(
   @SerializedName("simpleText")
-  val simpleText: String
+  val simpleText: String,
+  @SerializedName("runs")
+  val runs: List<Run>
+)
+
+data class Run(
+  @SerializedName("text")
+  val text: String
 )
 
 data class ViewCountText(
