@@ -93,4 +93,14 @@ class PlayerFragment : DataBindingFragment<FragmentPlayerBinding>(R.layout.fragm
       playVideo(it)
     })
   }
+
+  override fun onResume() {
+    super.onResume()
+    hideBottomNav()
+  }
+
+  override fun onStop() {
+    super.onStop()
+    showBottomNav()
+  }
 }
