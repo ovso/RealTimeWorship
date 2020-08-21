@@ -27,9 +27,13 @@ class PlayerViewModel(
 ) : DisposableViewModel() {
   private val playerModel: MutableLiveData<PlayerModel> = MutableLiveData()
 
-  val videoId = Transformations.map(playerModel) { model -> model.videoId }
-  val title = Transformations.map(playerModel) { model -> model.title }
-  val thumbnail = Transformations.map(playerModel) { model -> model.thumbnail }
+  val videoId = Transformations.map(playerModel) { model ->
+    title.value = model.title
+    thumbnail.value = model.thumbnail
+    model.videoId
+  }
+  val title = MutableLiveData<String>()
+  val thumbnail = MutableLiveData<String>()
 
   val isBookmarkSelected = ObservableBoolean(false)
 
