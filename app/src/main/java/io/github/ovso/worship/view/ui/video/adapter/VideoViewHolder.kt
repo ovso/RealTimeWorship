@@ -20,11 +20,10 @@ class VideoViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
   fun onBindViewHolder(item: VideoModel) {
     binding?.item = item
     itemView.setOnClickListener {
-      it.findNavController()
-        .navigate(
-          R.id.playerFragment,
-          bundleOf("model" to item.toPlayerModel())
-        )
+      it.findNavController().navigate(
+        R.id.playerFragment,
+        bundleOf("model" to item.toPlayerModel())
+      )
     }
   }
 }

@@ -19,13 +19,21 @@
         android:id="@+id/navigation_bookmark"
         android:name="io.github.ovso.worship.view.ui.bookmark.BookmarkFragment"
         android:label="@string/title_bookmark"
-        tools:layout="@layout/fragment_bookmark" />
+        tools:layout="@layout/fragment_bookmark" >
+        <action
+            android:id="@+id/action_navigation_bookmark_to_playerFragment"
+            app:destination="@id/playerFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_history"
         android:name="io.github.ovso.worship.view.ui.history.HistoryFragment"
         android:label="@string/title_history"
-        tools:layout="@layout/fragment_history" />
+        tools:layout="@layout/fragment_history" >
+        <action
+            android:id="@+id/action_navigation_history_to_playerFragment"
+            app:destination="@id/playerFragment" />
+    </fragment>
     <fragment
         android:id="@+id/videoFragment"
         android:name="io.github.ovso.worship.view.ui.video.VideoFragment"
