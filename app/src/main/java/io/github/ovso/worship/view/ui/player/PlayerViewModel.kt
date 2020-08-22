@@ -8,8 +8,8 @@ import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.Transformations
 import io.github.ovso.worship.data.TasksRepository
+import io.github.ovso.worship.data.local.model.HistoryEntity
 import io.github.ovso.worship.data.toBookmarkEntity
 import io.github.ovso.worship.data.toHistoryEntity
 import io.github.ovso.worship.data.view.PlayerModel
@@ -25,13 +25,8 @@ class PlayerViewModel(
   intent: Intent? = null,
   private val owner: LifecycleOwner
 ) : DisposableViewModel() {
-  private val playerModel: MutableLiveData<PlayerModel> = MutableLiveData()
-
-  val videoId = Transformations.map(playerModel) { model ->
-    title.value = model.title
-    thumbnail.value = model.thumbnail
-    model.videoId
-  }
+  private var playerModel = MutableLiveData<PlayerModel>()
+  val videoId = MutableLiveData<String>()
   val title = MutableLiveData<String>()
   val thumbnail = MutableLiveData<String>()
 
@@ -40,28 +35,42 @@ class PlayerViewModel(
   var second = 0F
 
   init {
+    observe()
     handleArgs(arguments)
+  }
+
+  private fun observe() {
+    playerModel.observe(owner, Observer {
+      videoId.value = it.videoId
+      title.value = it.title
+      thumbnail.value = it.thumbnail
+      checkBookmark(it.videoId)
+      checkHistory(it.videoId)
+    })
   }
 
   private fun handleArgs(arguments: Bundle?) {
     arguments?.getParcelable<PlayerModel>("model")?.let {
       playerModel.value = it
-      observeBookmark(it.videoId)
-      historyExists(it.videoId)
     }
   }
 
-  private fun historyExists(videoId: String) {
+  private fun checkHistory(videoId: String) {
+
+    fun addHistory(history: HistoryEntity) {
+      Thread { repository.addHistory(history) }.start()
+    }
+
     repository.getHistory(videoId).observe(owner, Observer {
       if (it == null) {
-        playerModel.value?.let { pModel ->
-          Thread { repository.addHistory(pModel.toHistoryEntity()) }.start()
+        playerModel.value?.toHistoryEntity()?.let { historyEntity ->
+          addHistory(historyEntity)
         }
       }
     })
   }
 
-  private fun observeBookmark(videoId: String) {
+  private fun checkBookmark(videoId: String) {
     repository.getBookmark(videoId).observe(owner, Observer {
       it?.let {
         isBookmarkSelected.set(true)
