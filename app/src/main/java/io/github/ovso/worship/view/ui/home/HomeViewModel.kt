@@ -2,8 +2,8 @@ package io.github.ovso.worship.view.ui.home
 
 import androidx.lifecycle.MutableLiveData
 import io.github.ovso.worship.data.TasksRepository
-import io.github.ovso.worship.data.view.HomeItemModel
 import io.github.ovso.worship.data.toChurchModels
+import io.github.ovso.worship.data.view.HomeItemModel
 import io.github.ovso.worship.utils.rx.SchedulerProvider
 import io.github.ovso.worship.view.base.DisposableViewModel
 import io.reactivex.rxjava3.kotlin.plusAssign
@@ -28,6 +28,11 @@ class HomeViewModel(private val repository: TasksRepository) : DisposableViewMod
 
     compositeDisposable += repository.churches()
       .map { it.toChurchModels() }
+      .map { it ->
+        it.sortedBy {
+          it.title
+        }
+      }
       .subscribeOn(SchedulerProvider.io())
       .observeOn(SchedulerProvider.ui())
       .subscribe(::onSuccess, ::onFailure)
