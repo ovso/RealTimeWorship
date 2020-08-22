@@ -2,7 +2,10 @@
 
 package io.github.ovso.worship
 
+import com.google.gson.annotations.SerializedName
 import io.github.ovso.worship.data.remote.TasksRemoteDataSource
+import io.github.ovso.worship.data.remote.response.Thumbnail
+import io.github.ovso.worship.data.remote.response.Title
 import io.github.ovso.worship.data.toVideoModels
 import io.github.ovso.worship.data.view.VideoModel
 import io.reactivex.rxjava3.core.Scheduler
@@ -37,14 +40,71 @@ class RepositoryTest {
       .subscribe(::onSuccess, ::onFailure)
   }
 
+  data class Video(
+    @SerializedName("thumbnail")
+    val thumbnail: Thumbnail,
+    @SerializedName("title")
+    val title: Title,
+    @SerializedName("videoId")
+    val videoId: String,
+    @SerializedName("channelId")
+    val channelId: String
+  )
+
   @Test
-  fun `Jsoup 테스트`() {
-    val className = "video-skeleton"
-    val document =
-      Jsoup.connect("https://www.youtube.com/channel/UC6vNHBFM5VLNF53CKycyNZw/videos?view=0&sort=dd&shelf_id=0")
-        .get()
-    val contents = document.body().getElementById("contents")
-    println("class name = $contents")
+  fun `주일설교`() {
+
+    /*
+          val document = Jsoup.connect("https://www.youtube.com/channel/$channelId/videos").get()
+      val scriptElements = document.getElementsByTag("script")
+      val prefix = "[{\"gridVideoRenderer"
+      val itemsElement = scriptElements.first { it.data().contains(prefix) }
+      val startIndex = itemsElement.data().indexOf(prefix)
+      val endIndex = itemsElement.data().indexOf(",\"continuations\"")
+      val jsonArrayString = itemsElement.data().substring(startIndex, endIndex)
+      Gson().fromJson<List<VideoResponse>>(jsonArrayString)
+
+     */
+    val url = "https://www.youtube.com/playlist?list=PLGrnuYtP8VGGhqMgCo9FNwCB-_iwfcFCM"
+    val document = Jsoup.connect(url).get()
+    val scriptElements = document.getElementsByTag("script")
+    val prefix = "[{\"playlistVideoRenderer"
+    val itemsElement = scriptElements.first { it.data().contains(prefix) }
+    val startIndex = itemsElement.data().indexOf(prefix)
+    val endIndex = itemsElement.data().indexOf(",\"continuations\"")
+    val jsonArrayString = itemsElement.data().substring(startIndex, endIndex)
+    println(document)
+  }
+
+  @Test
+  fun `주일설교2`() {
+
+    /*
+          val document = Jsoup.connect("https://www.youtube.com/channel/$channelId/videos").get()
+      val scriptElements = document.getElementsByTag("script")
+      val prefix = "[{\"gridVideoRenderer"
+      val itemsElement = scriptElements.first { it.data().contains(prefix) }
+      val startIndex = itemsElement.data().indexOf(prefix)
+      val endIndex = itemsElement.data().indexOf(",\"continuations\"")
+      val jsonArrayString = itemsElement.data().substring(startIndex, endIndex)
+      Gson().fromJson<List<VideoResponse>>(jsonArrayString)
+
+     */
+    val url = "https://www.youtube.com/playlist?list=PLGrnuYtP8VGGhqMgCo9FNwCB-_iwfcFCM"
+    val document = Jsoup.connect(url).get()
+    val elementsByTag = document.getElementsByTag("ytd-app")
+    val masthead = elementsByTag.first()
+
+    val elementsByTag2 = masthead.getElementsByTag("ytd-two-column-browse-results-renderer")
+    val first = elementsByTag2.first()
+    val scriptElements = document.getElementsByTag("script")
+    val prefix = "[{\"playlistVideoRenderer"
+    val suffix = "endpoint"
+    val itemsElement = scriptElements.first { it.data().contains(prefix) }
+    val startIndex = itemsElement.data().indexOf(prefix)
+    val endIndex = itemsElement.data().indexOf("}}]}}]}}}}")
+    val jsonArrayString = itemsElement.data().substring(startIndex, endIndex)
+    println(document)
   }
 
   object SchedulerProvider {
