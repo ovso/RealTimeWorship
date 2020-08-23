@@ -1,6 +1,7 @@
 package io.github.ovso.worship.view.ui.main
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -13,8 +14,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    supportActionBar?.setDisplayHomeAsUpEnabled(true)
     val navView: BottomNavigationView = findViewById(R.id.bnv_main)
-
     val navController = findNavController(R.id.nav_host_fragment)
     // Passing each menu ID as a set of Ids because each
     // menu should be considered as top level destinations.
@@ -25,6 +26,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     )
     setupActionBarWithNavController(navController, appBarConfiguration)
     navView.setupWithNavController(navController)
-    supportActionBar?.hide()
+  }
+
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    onBackPressed()
+    return super.onOptionsItemSelected(item)
   }
 }

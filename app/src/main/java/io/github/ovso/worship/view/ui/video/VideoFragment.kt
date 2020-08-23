@@ -1,10 +1,10 @@
 package io.github.ovso.worship.view.ui.video
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.addCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -29,12 +29,6 @@ class VideoFragment :
     setupRecyclerView()
     observe()
 //    addOnBackPressedCallback()
-  }
-
-  private fun addOnBackPressedCallback() {
-    activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner) {
-      activity?.supportFragmentManager?.popBackStack()
-    }
   }
 
   private fun startShimmer() {
@@ -74,5 +68,10 @@ class VideoFragment :
       fragment.arguments = bundleOf("channel_id" to channelId)
       return fragment
     }
+  }
+
+  override fun onAttach(context: Context) {
+    super.onAttach(context)
+    hideBottomNav()
   }
 }
