@@ -2,21 +2,19 @@ package io.github.ovso.worship.view.ui.history
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.RecyclerView
 import io.github.ovso.worship.R
+import io.github.ovso.worship.databinding.FragmentHistoryBinding
+import io.github.ovso.worship.extensions.defaultDivider
 import io.github.ovso.worship.extensions.getViewModelFactory
+import io.github.ovso.worship.view.base.DataBindingFragment
 import io.github.ovso.worship.view.ui.history.adapter.HistoryAdapter
 import kotlinx.android.synthetic.main.fragment_history.*
 
-class HistoryFragment : Fragment(R.layout.fragment_history) {
+class HistoryFragment : DataBindingFragment<FragmentHistoryBinding>(R.layout.fragment_history) {
 
-  private val viewModel: HistoryViewModel by viewModels { getViewModelFactory() }
-
-  private val adapter by lazy { HistoryAdapter() }
+  override val viewModel: HistoryViewModel by viewModels { getViewModelFactory() }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
@@ -26,13 +24,19 @@ class HistoryFragment : Fragment(R.layout.fragment_history) {
 
   private fun observe() {
     viewModel.items.observe(viewLifecycleOwner, Observer {
-      adapter.submitList(it)
+      (rv_history.adapter as? HistoryAdapter)?.submitList(it)
     })
   }
 
   private fun setupRv() {
-    rv_history.adapter = adapter
-    rv_history.addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
+    rv_history.apply {
+      defaultDivider()
+      adapter = HistoryAdapter()
+    }
   }
 
+  override fun onResume() {
+    super.onResume()
+    showBottomNav()
+  }
 }

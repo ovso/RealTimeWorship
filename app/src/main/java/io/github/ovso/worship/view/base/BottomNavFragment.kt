@@ -2,10 +2,9 @@ package io.github.ovso.worship.view.base
 
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import io.github.ovso.worship.R
 
-abstract class BottomNavFragment : Fragment() {
+abstract class BottomNavFragment : ActionBarFragment() {
   open fun showBottomNav() {
     activity?.findViewById<View>(R.id.bnv_main)?.isVisible = true
   }

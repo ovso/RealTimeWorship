@@ -1,5 +1,6 @@
 package io.github.ovso.worship.view.ui.player
 
+import android.content.Context
 import android.graphics.Point
 import android.os.Bundle
 import android.view.View
@@ -62,12 +63,14 @@ class PlayerFragment : DataBindingFragment<FragmentPlayerBinding>(R.layout.fragm
   private val fullScreenListener = object : YouTubePlayerFullScreenListener {
     override fun onYouTubePlayerEnterFullScreen() {
       switchToLandscapeMode()
+      hideSupportActionBar()
       binding.ivPlayerBookmark.isVisible = false
       binding.tvPlayerTitle.isVisible = false
     }
 
     override fun onYouTubePlayerExitFullScreen() {
       switchToPortraitMode()
+      showSupportActionBar()
       binding.ivPlayerBookmark.isVisible = true
       binding.tvPlayerTitle.isVisible = true
     }
@@ -94,13 +97,13 @@ class PlayerFragment : DataBindingFragment<FragmentPlayerBinding>(R.layout.fragm
     })
   }
 
-  override fun onResume() {
-    super.onResume()
+  override fun onAttach(context: Context) {
+    super.onAttach(context)
     hideBottomNav()
   }
 
-  override fun onStop() {
-    super.onStop()
-    showBottomNav()
+  override fun onDetach() {
+    super.onDetach()
+    showSupportActionBar()
   }
 }
