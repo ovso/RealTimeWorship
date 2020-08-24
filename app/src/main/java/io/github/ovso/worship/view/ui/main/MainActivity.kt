@@ -9,6 +9,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.github.ovso.worship.R
+import io.github.ovso.worship.extensions.loadAdaptiveBanner
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
@@ -26,6 +28,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     )
     setupActionBarWithNavController(navController, appBarConfiguration)
     navView.setupWithNavController(navController)
+    loadAdaptiveBanner(ads_container)
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="aa">aa</string>
+    <string name="ads_app_id">ca-app-pub-8679189423397017~5992406207</string>
+    <string name="ads_banner_unit_id">ca-app-pub-8679189423397017/5800834511</string>
 </resources>

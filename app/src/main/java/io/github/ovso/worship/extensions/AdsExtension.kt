@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
+import io.github.ovso.worship.R
 
 fun Activity.adaptiveBannerAdSize(): AdSize {
   val display = windowManager.defaultDisplay
@@ -47,6 +48,20 @@ fun Activity.loadAdaptiveBanner(container: ViewGroup, unitId: String) {
 
   fun load() {
     adView.adUnitId = unitId
+    adView.adSize = adaptiveBannerAdSize()
+    val adRequest = AdRequest.Builder().build()
+    adView.loadAd(adRequest)
+  }
+
+  load()
+}
+
+fun Activity.loadAdaptiveBanner(container: ViewGroup) {
+  val adView = AdView(container.context)
+  container.addView(adView)
+
+  fun load() {
+    adView.adUnitId = container.resources.getString(R.string.ads_banner_unit_id)
     adView.adSize = adaptiveBannerAdSize()
     val adRequest = AdRequest.Builder().build()
     adView.loadAd(adRequest)
