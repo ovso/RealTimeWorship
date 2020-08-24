@@ -8,12 +8,12 @@ apply plugin: 'com.google.android.gms.oss-licenses-plugin'
 apply from: '../scripts/versioning.gradle'
 //apply from: '../scripts/ktlint.gradle'
 
-//def keystorePropertiesFile = rootProject.file("../jks/keystore.properties")
-//def keystoreProperties = new Properties()
-//keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+def keystorePropertiesFile = rootProject.file("../jks/keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
-//    println(keystoreProperties["storeFile"])
+    println(keystoreProperties["storeFile"])
     compileSdkVersion config.compileSdkVersion
     defaultConfig {
         applicationId config.applicationId
@@ -28,17 +28,17 @@ android {
 
     signingConfigs {
         debug {
-//            keyAlias keystoreProperties['dKeyAlias']
-//            keyPassword keystoreProperties['dKeyPassword']
-//            storeFile file(keystoreProperties['dStoreFile'])
-//            storePassword keystoreProperties['dStorePassword']
+            keyAlias keystoreProperties['dKeyAlias']
+            keyPassword keystoreProperties['dKeyPassword']
+            storeFile file(keystoreProperties['dStoreFile'])
+            storePassword keystoreProperties['dStorePassword']
         }
 
         release {
-//            keyAlias keystoreProperties['keyAlias']
-//            keyPassword keystoreProperties['keyPassword']
-//            storeFile file(keystoreProperties['storeFile'])
-//            storePassword keystoreProperties['storePassword']
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
         }
     }
 
@@ -66,16 +66,16 @@ android {
     buildTypes {
         debug {
             minifyEnabled false
-            resValue("string", "ads_app_id", "ca-app-pub-3940256099942544~3347511713")
-            resValue("string", "ads_banner_unit_id", "ca-app-pub-3940256099942544/6300978111")
-            resValue("string", "ads_interstitial_unit_id", "ca-app-pub-3940256099942544/1033173712")
+//            resValue("string", "ads_app_id", "ca-app-pub-3940256099942544~3347511713")
+//            resValue("string", "ads_banner_unit_id", "ca-app-pub-3940256099942544/6300978111")
+//            resValue("string", "ads_interstitial_unit_id", "ca-app-pub-3940256099942544/1033173712")
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            resValue("string", "ads_app_id", "ca-app-pub-3940256099942544~3347511713")
-            resValue("string", "ads_banner_unit_id", "ca-app-pub-3940256099942544/6300978111")
-            resValue("string", "ads_interstitial_unit_id", "ca-app-pub-3940256099942544/1033173712")
+//            resValue("string", "ads_app_id", "ca-app-pub-3940256099942544~3347511713")
+//            resValue("string", "ads_banner_unit_id", "ca-app-pub-3940256099942544/6300978111")
+//            resValue("string", "ads_interstitial_unit_id", "ca-app-pub-3940256099942544/1033173712")
             signingConfig signingConfigs.release
         }
     }
