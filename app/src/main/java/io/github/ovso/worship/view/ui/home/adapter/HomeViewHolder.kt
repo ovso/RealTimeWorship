@@ -13,7 +13,11 @@ import io.github.ovso.worship.databinding.ItemHomeBinding
 class HomeViewHolder(
   parent: ViewGroup
 ) : RecyclerView.ViewHolder(
-  LayoutInflater.from(parent.context).inflate(R.layout.item_home, parent, false)
+  LayoutInflater.from(parent.context).inflate(
+    R.layout.item_home,
+    parent,
+    false
+  )
 ) {
 
   private val binding = DataBindingUtil.bind<ItemHomeBinding>(itemView)!!
@@ -23,7 +27,7 @@ class HomeViewHolder(
     itemView.setOnClickListener {
       it.findNavController().navigate(
         R.id.videoFragment,
-        bundleOf("channel_id" to item.channelId)
+        bundleOf("channel_id" to item.channelId, "title" to item.title)
       )
     }
   }

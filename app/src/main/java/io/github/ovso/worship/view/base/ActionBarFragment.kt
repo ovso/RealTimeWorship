@@ -11,4 +11,8 @@ abstract class ActionBarFragment : Fragment() {
   open fun hideSupportActionBar() {
     (activity as? AppCompatActivity)?.supportActionBar?.hide()
   }
+
+  open fun setTitle(title: String) {
+    (activity as? AppCompatActivity)?.supportActionBar?.title = title
+  }
 }

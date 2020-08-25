@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import io.github.ovso.worship.data.view.VideoModel
 
-class MainAdapter : ListAdapter<VideoModel, VideoViewHolder>(DIFF_UTIL) {
+class VideoAdapter : ListAdapter<VideoModel, VideoViewHolder>(DIFF_UTIL) {
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder =
     VideoViewHolder(parent)
 

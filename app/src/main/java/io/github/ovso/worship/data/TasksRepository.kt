@@ -7,6 +7,7 @@ import io.github.ovso.worship.data.local.model.ChurchEntity
 import io.github.ovso.worship.data.local.model.HistoryEntity
 import io.github.ovso.worship.data.remote.TasksRemoteDataSource
 import io.github.ovso.worship.data.remote.response.VideoResponse
+import io.github.ovso.worship.utils.rx.SchedulerProvider
 import io.reactivex.rxjava3.core.Single
 
 class TasksRepository(
@@ -15,7 +16,7 @@ class TasksRepository(
 ) : TasksDataSource {
 
   override fun videos(channelId: String): Single<List<VideoResponse>> {
-    return remoteDataSource.videos(channelId)
+    return remoteDataSource.videos(channelId).subscribeOn(SchedulerProvider.io())
   }
 
   override fun churches(): Single<List<ChurchEntity>> {

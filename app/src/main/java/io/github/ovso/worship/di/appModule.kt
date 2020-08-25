@@ -4,7 +4,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.google.android.gms.ads.AdRequest
 import io.github.ovso.worship.R
-import io.github.ovso.worship.view.ui.video.adapter.MainAdapter
+import io.github.ovso.worship.view.ui.video.adapter.VideoAdapter
 import org.koin.dsl.module
 
 val appModule = module {
@@ -14,7 +14,7 @@ val appModule = module {
         factory { FemaleAdapter() }
         factory { VideoAdapter() }
     */
-    single { MainAdapter() }
+    single { VideoAdapter() }
     factory { AdRequest.Builder().build() }
     single {
         DividerItemDecoration(get(), DividerItemDecoration.VERTICAL).apply {

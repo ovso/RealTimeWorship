@@ -8,7 +8,7 @@ import io.github.ovso.worship.data.toVideoModels
 import io.github.ovso.worship.data.view.VideoModel
 import io.github.ovso.worship.utils.rx.SchedulerProvider
 import io.github.ovso.worship.view.base.DisposableViewModel
-import timber.log.Timber
+import io.reactivex.rxjava3.kotlin.plusAssign
 
 class VideoViewModel(
   private val tasksRepository: TasksRepository,
@@ -18,36 +18,33 @@ class VideoViewModel(
   private val _items = MutableLiveData<List<VideoModel>>()
   val items: LiveData<List<VideoModel>> = _items
   private val _isLoading = MutableLiveData<Boolean>(true)
-  val isLoading = _isLoading
+  val isLoading: LiveData<Boolean> = _isLoading
+  private val _title = MutableLiveData<String>()
+  val title: LiveData<String> = _title
 
   init {
-    defaultArgs?.let {
-      fun onFailure(t: Throwable) {
-        println(t.message)
-        _isLoading.value = false
-      }
-
-      fun onSuccess(items: List<VideoModel>) {
-        println("items size = ${items.count()}")
-        _items.value = items
-        _isLoading.value = false
-      }
-
-      val channelId = it.getString("channel_id")
-      tasksRepository.videos(channelId!!)
-        .map { response -> response.toVideoModels() }
-        .subscribeOn(SchedulerProvider.io())
-        .observeOn(SchedulerProvider.ui())
-        .subscribe(::onSuccess, ::onFailure)
+    defaultArgs?.let { args ->
+      args.getString("channel_id")?.let { reqVideos(it) }
+      args.getString("title")?.let { _title.value = it }
     }
   }
 
-  override fun onCleared() {
-    super.onCleared()
-    Timber.d("onCleared()")
+  private fun reqVideos(channelId: String?) {
+    fun onFailure(t: Throwable) {
+      println(t.message)
+      _isLoading.value = false
+    }
+
+    fun onSuccess(items: List<VideoModel>) {
+      println("items size = ${items.count()}")
+      _items.value = items
+      _isLoading.value = false
+    }
+
+    compositeDisposable += tasksRepository.videos(channelId!!)
+      .map { response -> response.toVideoModels() }
+      .observeOn(SchedulerProvider.ui())
+      .subscribe(::onSuccess, ::onFailure)
   }
 
-  fun onClick(id: Int) {
-    Timber.i("id = $id")
-  }
 }

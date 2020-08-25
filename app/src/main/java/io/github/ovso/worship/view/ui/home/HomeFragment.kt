@@ -14,8 +14,6 @@ import io.github.ovso.worship.view.ui.home.adapter.HomeAdapter
 class HomeFragment : DataBindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
   override val viewModel: HomeViewModel by viewModels { getViewModelFactory() }
 
-  private val adapter by lazy { HomeAdapter() }
-
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     setupRv()
@@ -24,14 +22,14 @@ class HomeFragment : DataBindingFragment<FragmentHomeBinding>(R.layout.fragment_
 
   private fun observe() {
     viewModel.items.observe(viewLifecycleOwner, Observer {
-      adapter.submitList(it)
+      (binding.rvHome.adapter as? HomeAdapter)?.submitList(it)
     })
   }
 
   private fun setupRv() {
     with(binding.rvHome) {
       defaultDivider()
-      adapter = this@HomeFragment.adapter
+      adapter = HomeAdapter()
     }
   }
 

@@ -8,27 +8,23 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
 import io.github.ovso.worship.R
-import io.github.ovso.worship.databinding.FragmentMainBinding
+import io.github.ovso.worship.databinding.FragmentVideoBinding
+import io.github.ovso.worship.extensions.defaultDivider
 import io.github.ovso.worship.extensions.getViewModelFactory
 import io.github.ovso.worship.view.base.DataBindingFragment
-import io.github.ovso.worship.view.ui.video.adapter.MainAdapter
-import kotlinx.android.synthetic.main.fragment_main.*
+import io.github.ovso.worship.view.ui.video.adapter.VideoAdapter
 
 class VideoFragment :
-  DataBindingFragment<FragmentMainBinding>(R.layout.fragment_main) {
+  DataBindingFragment<FragmentVideoBinding>(R.layout.fragment_video) {
 
   override val viewModel by viewModels<VideoViewModel> { getViewModelFactory() }
-  private val adapter by lazy { MainAdapter() }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     setupRecyclerView()
     observe()
-//    addOnBackPressedCallback()
   }
 
   private fun startShimmer() {
@@ -39,13 +35,15 @@ class VideoFragment :
   }
 
   private fun setupRecyclerView() {
-    rv_main.adapter = adapter
-    rv_main.addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
+    with(binding.rvVideo) {
+      adapter = VideoAdapter()
+      defaultDivider()
+    }
   }
 
   private fun observe() {
     viewModel.items.observe(viewLifecycleOwner, Observer {
-      adapter.submitList(it)
+      (binding.rvVideo.adapter as? VideoAdapter)?.submitList(it)
     })
     viewModel.isLoading.observe(viewLifecycleOwner, Observer {
       when (it) {
@@ -53,13 +51,16 @@ class VideoFragment :
         else -> stopShimmer()
       }
     })
+    viewModel.title.observe(viewLifecycleOwner, Observer { setTitle(it) })
   }
 
   private fun stopShimmer() {
     val root = binding.root as? ViewGroup
     val shimmerFrameLayout = root?.getChildAt(1) as? ShimmerFrameLayout
-    shimmerFrameLayout?.stopShimmer()
-    shimmerFrameLayout?.let { root.removeView(shimmerFrameLayout) }
+    shimmerFrameLayout?.let {
+      it.stopShimmer()
+      root.removeView(shimmerFrameLayout)
+    }
   }
 
   companion object {

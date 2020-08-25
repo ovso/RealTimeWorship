@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -8,19 +10,19 @@
             type="io.github.ovso.worship.view.ui.video.VideoViewModel" />
     </data>
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="io.github.ovso.worship.view.ui.video.VideoFragment">
+        android:background="@android:color/white"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_home"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_video"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize="50sp"
-            android:text="홈 화면" />
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="5"
+            tools:listitem="@layout/item_video" />
 
     </FrameLayout>
-
 </layout>
