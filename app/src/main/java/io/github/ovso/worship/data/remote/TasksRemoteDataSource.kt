@@ -10,7 +10,8 @@ class TasksRemoteDataSource {
 
   fun videos(channelId: String): Single<List<VideoResponse>> {
     return Single.fromCallable {
-      val document = Jsoup.connect("https://www.youtube.com/channel/$channelId/videos").get()
+      val document =
+        Jsoup.connect("https://www.youtube.com/channel/$channelId/videos").timeout(60 * 1000).get()
       val scriptElements = document.getElementsByTag("script")
       val prefix = "[{\"gridVideoRenderer"
       val itemsElement = scriptElements.first { it.data().contains(prefix) }
