@@ -8,6 +8,7 @@ import io.github.ovso.worship.R
 import io.github.ovso.worship.databinding.FragmentHomeBinding
 import io.github.ovso.worship.extensions.defaultDivider
 import io.github.ovso.worship.extensions.getViewModelFactory
+import io.github.ovso.worship.extensions.showBottomNav
 import io.github.ovso.worship.view.base.DataBindingFragment
 import io.github.ovso.worship.view.ui.home.adapter.HomeAdapter
 

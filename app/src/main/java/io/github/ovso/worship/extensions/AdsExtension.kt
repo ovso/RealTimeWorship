@@ -3,6 +3,7 @@ package io.github.ovso.worship.extensions
 import android.app.Activity
 import android.util.DisplayMetrics
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
@@ -68,6 +69,22 @@ fun Activity.loadAdaptiveBanner(container: ViewGroup) {
   }
 
   load()
+}
+
+fun Activity.hideBanner() {
+  findViewById<ViewGroup>(R.id.ads_container)?.isVisible = false
+}
+
+fun Activity.showBanner() {
+  findViewById<ViewGroup>(R.id.ads_container)?.isVisible = true
+}
+
+fun Fragment.hideBanner() {
+  activity?.findViewById<ViewGroup>(R.id.ads_container)?.isVisible = false
+}
+
+fun Fragment.showBanner() {
+  activity?.findViewById<ViewGroup>(R.id.ads_container)?.isVisible = true
 }
 
 fun Fragment.loadAdaptiveBanner(container: ViewGroup, unitId: String) {

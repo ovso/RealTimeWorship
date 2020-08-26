@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Point
 import android.os.Bundle
 import android.view.View
-import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -14,21 +13,13 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.You
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.loadOrCueVideo
 import io.github.ovso.worship.R
 import io.github.ovso.worship.databinding.FragmentPlayerBinding
-import io.github.ovso.worship.extensions.getIndicatorSize
-import io.github.ovso.worship.extensions.getViewModelFactory
+import io.github.ovso.worship.extensions.*
 import io.github.ovso.worship.view.base.DataBindingFragment
 
 
 class PlayerFragment : DataBindingFragment<FragmentPlayerBinding>(R.layout.fragment_player) {
 
   override val viewModel by viewModels<PlayerViewModel> { getViewModelFactory() }
-
-  companion object {
-    fun newInstance(videoJson: String): PlayerFragment =
-      PlayerFragment().apply {
-        arguments = bundleOf("video_json" to videoJson)
-      }
-  }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
@@ -100,10 +91,12 @@ class PlayerFragment : DataBindingFragment<FragmentPlayerBinding>(R.layout.fragm
   override fun onAttach(context: Context) {
     super.onAttach(context)
     hideBottomNav()
+    hideBanner()
   }
 
   override fun onDetach() {
     super.onDetach()
     showSupportActionBar()
+    showBanner()
   }
 }

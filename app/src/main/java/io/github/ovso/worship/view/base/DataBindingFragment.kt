@@ -7,12 +7,13 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import io.github.ovso.worship.BR
 
 abstract class DataBindingFragment<T : ViewDataBinding>(
   @LayoutRes private val layoutRes: Int
-) : BottomNavFragment() {
+) : Fragment() {
   protected lateinit var binding: T
   override fun onCreateView(
     inflater: LayoutInflater,
