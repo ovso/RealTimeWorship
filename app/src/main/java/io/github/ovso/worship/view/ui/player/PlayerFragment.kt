@@ -25,6 +25,7 @@ class PlayerFragment : DataBindingFragment<FragmentPlayerBinding>(R.layout.fragm
     super.onViewCreated(view, savedInstanceState)
     setupPlayer()
     observe()
+    setTitle(getString(R.string.player_title))
   }
 
   private fun setupPlayer() {

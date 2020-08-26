@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import io.github.ovso.worship.data.TasksRepository
@@ -26,10 +27,12 @@ class PlayerViewModel(
   private val owner: LifecycleOwner
 ) : DisposableViewModel() {
   private var playerModel = MutableLiveData<PlayerModel>()
-  val videoId = MutableLiveData<String>()
-  val title = MutableLiveData<String>()
-  val thumbnail = MutableLiveData<String>()
-
+  private val _videoId = MutableLiveData<String>()
+  val videoId: LiveData<String> = _videoId
+  private val _desc = MutableLiveData<String>()
+  val desc: LiveData<String> = _desc
+  private val _thumbnail = MutableLiveData<String>()
+  val thumbnail: LiveData<String> = _thumbnail
   val isBookmarkSelected = ObservableBoolean(false)
 
   var second = 0F
@@ -41,9 +44,9 @@ class PlayerViewModel(
 
   private fun observe() {
     playerModel.observe(owner, Observer {
-      videoId.value = it.videoId
-      title.value = it.title
-      thumbnail.value = it.thumbnail
+      _videoId.value = it.videoId
+      _desc.value = it.title
+      _thumbnail.value = it.thumbnail
       checkBookmark(it.videoId)
       checkHistory(it.videoId)
     })

@@ -36,7 +36,7 @@
                 android:id="@+id/tv_player_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.title}"
+                android:text="@{viewModel.desc}"
                 android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
                 android:textColor="@android:color/darker_gray" />
         </LinearLayout>
