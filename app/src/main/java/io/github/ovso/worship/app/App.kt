@@ -5,7 +5,6 @@ import androidx.room.Room
 import io.github.ovso.worship.data.TasksRepository
 import io.github.ovso.worship.data.local.AppDatabase
 import io.github.ovso.worship.data.remote.ServiceLocator
-import timber.log.Timber
 
 class App : Application() {
 
