@@ -103,6 +103,7 @@ fun List<ChurchEntity>.toChurchModels(): List<HomeItemModel> {
 
 fun List<VideoResponse>.toVideoModels(): List<VideoModel> {
   return this.toObservable().map {
+    @Suppress("USELESS_ELVIS")
     VideoModel(
       title = it.gridVideoRenderer.title.runs.first().text ?: "",
       thumbnail = it.gridVideoRenderer.thumbnail.thumbnails.last().url,
