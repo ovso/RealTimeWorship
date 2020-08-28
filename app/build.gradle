@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.android.gms.oss-licenses-plugin'
+apply plugin: 'dagger.hilt.android.plugin'
 
 apply from: '../scripts/versioning.gradle'
 //apply from: '../scripts/ktlint.gradle'
@@ -132,6 +133,8 @@ dependencies {
     implementation deps.room.rxjava2
     kapt deps.room.compiler
 
+    implementation deps.hilt.android
+    kapt deps.hilt.compiler
 
     testImplementation deps.tsl.values()
     androidTestImplementation deps.atsl.values()
