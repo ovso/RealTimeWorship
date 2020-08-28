@@ -111,7 +111,6 @@ dependencies {
     implementation deps.androidx.values()
     implementation deps.androidx_ktx.values()
     implementation deps.dagger.dagger
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt deps.dagger.compiler
     implementation deps.retrofit.values()
     implementation deps.rx.values()
