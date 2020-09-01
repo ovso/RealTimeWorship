@@ -53,6 +53,7 @@ ext {
             'navigation_ui'        : '2.2.2',
             'oss_licenses_plugin'  : '0.10.2',
             'oss_licenses'         : '17.0.0',
+            'startup'              : '1.0.0-alpha03'
     ]
 
     deps = [
@@ -70,7 +71,7 @@ ext {
                     'legacy_support_v4'    : "androidx.legacy:legacy-support-v4:$versions.legacy_support_v4",
                     'navigation_ui'        : "androidx.navigation:navigation-ui-ktx:$versions.navigation_ui",
                     'navigation_fragment'  : "androidx.navigation:navigation-fragment-ktx:$versions.navigation_ui",
-                    'startup'              : "androidx.startup:startup-runtime:1.0.0-alpha03"
+                    'startup'              : "androidx.startup:startup-runtime:$versions.startup"
             ],
 
             'androidx_ktx'  : [
