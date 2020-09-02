@@ -7,7 +7,7 @@ apply plugin: 'com.google.android.gms.oss-licenses-plugin'
 apply plugin: 'dagger.hilt.android.plugin'
 
 apply from: '../scripts/versioning.gradle'
-//apply from: '../scripts/ktlint.gradle'
+apply from: '../scripts/ktlint.gradle'
 
 def keystorePropertiesFile = rootProject.file("../jks/keystore.properties")
 def keystoreProperties = new Properties()
