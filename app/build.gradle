@@ -111,12 +111,16 @@ dependencies {
     implementation deps.kotlin.values()
     implementation deps.androidx.values()
     implementation deps.androidx_ktx.values()
+
     implementation deps.dagger.dagger
     kapt deps.dagger.compiler
+
     implementation deps.retrofit.values()
     implementation deps.rx.values()
+
     implementation deps.glide.runtime
     kapt deps.glide.compiler
+
     implementation deps.autodispose.values()
     implementation deps.koin.values()
     implementation deps.timber
