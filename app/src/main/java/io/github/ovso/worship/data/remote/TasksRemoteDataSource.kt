@@ -27,10 +27,11 @@ class TasksRemoteDataSource {
       val document =
         Jsoup.connect("https://www.youtube.com/channel/$channelId/videos").timeout(60 * 1000).get()
       val scriptElements = document.getElementsByTag("script")
-      val prefix = "[{\"gridVideoRenderer"
+      val prefix = "{\"responseContext\":{"
       val itemsElement = scriptElements.first { it.data().contains(prefix) }
       val startIndex = itemsElement.data().indexOf(prefix)
-      val endIndex = itemsElement.data().indexOf(",\"continuations\"")
+//      val endIndex = itemsElement.data().lastIndexOf("ytInitialPlayerResponse")
+      val endIndex = itemsElement.data().lastIndexOf("window[\"ytInitialPlayerResponse")
       val jsonArrayString = itemsElement.data().substring(startIndex, endIndex)
       Gson().fromJson<List<VideoResponse>>(jsonArrayString)
     }
