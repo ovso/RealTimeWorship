@@ -30,6 +30,7 @@ class VideoViewModel(
   }
 
   private fun reqVideos(channelId: String?) {
+    _isLoading.value = true
     fun onFailure(t: Throwable) {
       println(t.message)
       _isLoading.value = false
