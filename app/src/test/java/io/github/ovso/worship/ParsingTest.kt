@@ -4,8 +4,6 @@ package io.github.ovso.worship
 
 import com.google.gson.Gson
 import com.google.gson.JsonElement
-import io.github.ovso.worship.data.remote.response.VideoResponse
-import io.github.ovso.worship.extensions.fromJson
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.jsoup.Jsoup
@@ -29,9 +27,10 @@ class ParsingTest {
     val startIndex = itemsElement.data().indexOf(prefix)
 //      val endIndex = itemsElement.data().lastIndexOf("ytInitialPlayerResponse")
     val endIndex = itemsElement.data().lastIndexOf("window[\"ytInitialPlayerResponse")
-    val jsonString = itemsElement.data().substring(startIndex, endIndex-1)
+    val jsonString = itemsElement.data().substring(startIndex, endIndex - 1)
 //    Gson().fromJson<List<VideoResponse>>(jsonArrayString)
-    val fromJson = Gson().fromJson(jsonString, JsonElement::class.java)
+    val jsonString2 = jsonString.substring(jsonString.lastIndex)
+    val fromJson = Gson().fromJson(jsonString2, JsonElement::class.java)
   }
 
   object SchedulerProvider {
