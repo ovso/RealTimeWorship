@@ -1,7 +1,11 @@
 package io.github.ovso.worship.data.remote
 
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonElement
+import com.google.gson.JsonObject
 import io.github.ovso.worship.data.remote.response.VideoResponse
+import io.github.ovso.worship.data.toVideoResponses
 import io.github.ovso.worship.extensions.fromJson
 import io.reactivex.rxjava3.core.Single
 import org.jsoup.Jsoup
@@ -30,10 +34,10 @@ class TasksRemoteDataSource {
       val prefix = "{\"responseContext\":{"
       val itemsElement = scriptElements.first { it.data().contains(prefix) }
       val startIndex = itemsElement.data().indexOf(prefix)
-//      val endIndex = itemsElement.data().lastIndexOf("ytInitialPlayerResponse")
       val endIndex = itemsElement.data().lastIndexOf("window[\"ytInitialPlayerResponse")
-      val jsonArrayString = itemsElement.data().substring(startIndex, endIndex)
-      Gson().fromJson<List<VideoResponse>>(jsonArrayString)
+      val fullJsonString = itemsElement.data().substring(startIndex, endIndex)
+      val stableJsonString = fullJsonString.substring(0, fullJsonString.indexOf(";"))
+      GsonBuilder().setLenient().create().fromJson(stableJsonString, JsonElement::class.java).toVideoResponses()
     }
   }
 }

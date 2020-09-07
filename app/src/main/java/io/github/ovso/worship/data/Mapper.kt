@@ -1,10 +1,13 @@
 package io.github.ovso.worship.data
 
+import com.google.gson.Gson
+import com.google.gson.JsonElement
 import io.github.ovso.worship.data.local.model.BookmarkEntity
 import io.github.ovso.worship.data.local.model.ChurchEntity
 import io.github.ovso.worship.data.local.model.HistoryEntity
 import io.github.ovso.worship.data.remote.response.VideoResponse
 import io.github.ovso.worship.data.view.*
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.toObservable
 
@@ -110,4 +113,29 @@ fun List<VideoResponse>.toVideoModels(): List<VideoModel> {
       videoId = it.gridVideoRenderer.videoId
     )
   }.toList().blockingGet()
+}
+
+fun JsonElement.toVideoResponses(): List<VideoResponse> {
+  try {
+    val gson = Gson()
+    val asJsonArray = asJsonObject["contents"]
+      .asJsonObject["twoColumnBrowseResultsRenderer"]
+      .asJsonObject["tabs"]
+      .asJsonArray[1]
+      .asJsonObject["tabRenderer"]
+      .asJsonObject["content"]
+      .asJsonObject["sectionListRenderer"]
+      .asJsonObject["contents"]
+      .asJsonArray.first()
+      .asJsonObject["itemSectionRenderer"]
+      .asJsonObject["contents"]
+      .asJsonArray.first()
+      .asJsonObject["gridRenderer"]
+      .asJsonObject["items"].asJsonArray
+    return Observable.fromIterable(asJsonArray).map {
+      gson.fromJson(it.toString(), VideoResponse::class.java)
+    }.toList().blockingGet()
+  } catch (e: Throwable) {
+    return listOf()
+  }
 }

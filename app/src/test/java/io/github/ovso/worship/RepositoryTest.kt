@@ -2,15 +2,11 @@
 
 package io.github.ovso.worship
 
-import com.google.gson.annotations.SerializedName
 import io.github.ovso.worship.data.remote.TasksRemoteDataSource
-import io.github.ovso.worship.data.remote.response.Thumbnail
-import io.github.ovso.worship.data.remote.response.Title
 import io.github.ovso.worship.data.toVideoModels
 import io.github.ovso.worship.data.view.VideoModel
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.schedulers.Schedulers
-import org.jsoup.Jsoup
 import org.junit.Test
 
 /**
@@ -27,6 +23,7 @@ class RepositoryTest {
 
     fun onFailure(t: Throwable) {
       println(t.message)
+      t.printStackTrace()
     }
 
     fun onSuccess(items: List<VideoModel>) {

@@ -29,8 +29,9 @@ class ParsingTest {
     val endIndex = itemsElement.data().lastIndexOf("window[\"ytInitialPlayerResponse")
     val jsonString = itemsElement.data().substring(startIndex, endIndex - 1)
 //    Gson().fromJson<List<VideoResponse>>(jsonArrayString)
-    val jsonString2 = jsonString.substring(jsonString.lastIndex)
+    val jsonString2 = jsonString.substring(0, jsonString.lastIndex)
     val fromJson = Gson().fromJson(jsonString2, JsonElement::class.java)
+    println(fromJson)
   }
 
   object SchedulerProvider {
