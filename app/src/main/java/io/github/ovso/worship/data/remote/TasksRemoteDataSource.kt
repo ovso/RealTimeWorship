@@ -20,8 +20,10 @@ class TasksRemoteDataSource {
       val endIndex = itemsElement.data().lastIndexOf("window[\"ytInitialPlayerResponse")
       val fullJsonString = itemsElement.data().substring(startIndex, endIndex)
       val stableJsonString = fullJsonString.substring(0, fullJsonString.indexOf(";"))
-      GsonBuilder().setLenient().create().fromJson(stableJsonString, JsonElement::class.java)
-        .toVideoResponses()
+      val json = GsonBuilder().setLenient().create().fromJson(
+        stableJsonString, JsonElement::class.java
+      )
+      json.toVideoResponses()
     }
   }
 }

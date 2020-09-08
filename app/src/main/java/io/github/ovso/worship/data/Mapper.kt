@@ -5,6 +5,7 @@ import com.google.gson.JsonElement
 import io.github.ovso.worship.data.local.model.BookmarkEntity
 import io.github.ovso.worship.data.local.model.ChurchEntity
 import io.github.ovso.worship.data.local.model.HistoryEntity
+import io.github.ovso.worship.data.remote.response.VideoHeaderResponse
 import io.github.ovso.worship.data.remote.response.VideoResponse
 import io.github.ovso.worship.data.view.*
 import io.reactivex.rxjava3.core.Observable
@@ -118,7 +119,8 @@ fun List<VideoResponse>.toVideoModels(): List<VideoModel> {
 fun JsonElement.toVideoResponses(): List<VideoResponse> {
   try {
     val gson = Gson()
-    val asJsonArray = asJsonObject["contents"]
+//    val header = asJsonObject["header"].asJsonObject["c4TabbedHeaderRenderer"].toHeader()
+    val videoItemsJson = asJsonObject["contents"]
       .asJsonObject["twoColumnBrowseResultsRenderer"]
       .asJsonObject["tabs"]
       .asJsonArray[1]
@@ -132,10 +134,19 @@ fun JsonElement.toVideoResponses(): List<VideoResponse> {
       .asJsonArray.first()
       .asJsonObject["gridRenderer"]
       .asJsonObject["items"].asJsonArray
-    return Observable.fromIterable(asJsonArray).map {
+    return Observable.fromIterable(videoItemsJson).map {
       gson.fromJson(it.toString(), VideoResponse::class.java)
     }.toList().blockingGet()
   } catch (e: Throwable) {
     return listOf()
+  }
+}
+
+fun JsonElement.toHeader(): VideoHeaderResponse {
+  return try {
+    val headerJsonString = asJsonObject["header"].asJsonObject["c4TabbedHeaderRenderer"].toString()
+    Gson().fromJson(headerJsonString, VideoHeaderResponse::class.java)
+  } catch (e: Throwable) {
+    VideoHeaderResponse()
   }
 }
