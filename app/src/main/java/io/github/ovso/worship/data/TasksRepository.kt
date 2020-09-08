@@ -16,7 +16,7 @@ class TasksRepository(
 ) : TasksDataSource {
 
   override fun videos(channelId: String): Single<List<VideoResponse>> {
-    return remoteDataSource.videos2(channelId).subscribeOn(SchedulerProvider.io())
+    return remoteDataSource.videos(channelId).subscribeOn(SchedulerProvider.io())
   }
 
   override fun churches(): Single<List<ChurchEntity>> {
