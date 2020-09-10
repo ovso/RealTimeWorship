@@ -7,7 +7,7 @@ import io.github.ovso.worship.data.local.model.BookmarkEntity
 import io.github.ovso.worship.data.local.model.HistoryDao
 import io.github.ovso.worship.data.local.model.HistoryEntity
 
-@Database(entities = [BookmarkEntity::class, HistoryEntity::class], version = 1)
+@Database(entities = [BookmarkEntity::class, HistoryEntity::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
   abstract fun bookmarkDao(): BookmarkDao
   abstract fun historyDao(): HistoryDao
