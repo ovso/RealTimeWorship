@@ -16,7 +16,7 @@ import org.junit.Test
  */
 class RepositoryTest {
   private val tasksRemoteDataSource by lazy { TasksRemoteDataSource() }
-  private val channelId = "UCwibCFAl4jqx5T5BueGc9ig"
+  private val channelId = "UCQ6HHfdElel_hK8XzREU-2g"
 
   @Test
   fun `레파지토리 테스트`() {

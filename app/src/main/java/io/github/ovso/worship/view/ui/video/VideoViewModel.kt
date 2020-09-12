@@ -8,7 +8,7 @@ import io.github.ovso.worship.data.toVideoModels
 import io.github.ovso.worship.data.view.VideoModel
 import io.github.ovso.worship.utils.rx.SchedulerProvider
 import io.github.ovso.worship.view.base.DisposableViewModel
-import io.reactivex.rxjava3.kotlin.plusAssign
+import io.reactivex.rxjava3.kotlin.addTo
 
 class VideoViewModel(
   private val tasksRepository: TasksRepository,
@@ -17,7 +17,7 @@ class VideoViewModel(
 
   private val _items = MutableLiveData<List<VideoModel>>()
   val items: LiveData<List<VideoModel>> = _items
-  private val _isLoading = MutableLiveData<Boolean>(true)
+  private val _isLoading = MutableLiveData(true)
   val isLoading: LiveData<Boolean> = _isLoading
   private val _title = MutableLiveData<String>()
   val title: LiveData<String> = _title
@@ -42,10 +42,11 @@ class VideoViewModel(
       _isLoading.value = false
     }
 
-    compositeDisposable += tasksRepository.videos(channelId!!)
+    tasksRepository.videos(channelId!!)
       .map { response -> response.toVideoModels() }
+      .subscribeOn(SchedulerProvider.io())
       .observeOn(SchedulerProvider.ui())
-      .subscribe(::onSuccess, ::onFailure)
+      .subscribe(::onSuccess, ::onFailure).addTo(compositeDisposable)
   }
 
 }
