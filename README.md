@@ -11,3 +11,4 @@
 - Custom Service locator(ViewModel)
 - Koin
 - App Versioning(From git info)
+- Kotlin DSL
