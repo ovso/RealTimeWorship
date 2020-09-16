@@ -14,11 +14,11 @@ buildscript {
 apply(plugin = "org.ajoberstar.grgit")
 
 val git: Grgit = Grgit.open()
-val gitVersionName = git.describe()
+val gitVersionName: String = git.describe()
 //val gitVersionCode = git.tag.list().size()
 val gitVersionCode = git.lsremote().size
 val gitVersionCodeTime = git.head().time
-
+println(gitVersionName)
 
 //println(Ext.git.tag)
 
