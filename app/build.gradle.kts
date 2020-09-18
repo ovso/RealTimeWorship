@@ -9,12 +9,33 @@ plugins {
   id("com.google.gms.google-services")
   id("com.google.android.gms.oss-licenses-plugin")
   id("dagger.hilt.android.plugin")
+  id("org.ajoberstar.grgit") version "2.3.0"
 }
 
+/*
+val git = org.ajoberstar.grgit.Grgit.open()
+val gitVersionName = git.describe()
+val gitVersionCode = git.lsremote().size
+val gitVersionCodeTime = git.head().dateTime
+System.out.println(gitVersionName)
+System.out.println(gitVersionCode)
+System.out.println(gitVersionCodeTime)
+*/
+
+val grgit = org.ajoberstar.grgit.Grgit.open(mapOf("currentDir" to project.rootDir))
+System.out.println(grgit.branch.current())
+System.out.println(grgit.describe())
+System.out.println(grgit.head().dateTime)
+System.out.println(grgit.branch.current().name)
+val describe = org.ajoberstar.grgit.operation.DescribeOp(grgit.repository).call()
+val branch = grgit.branch.current().name
+System.out.println(describe)
+System.out.println(branch)
 
 val keystorePropertiesFile = rootProject.file("../jks/keystore.properties")
 val keystoreProperties = Properties()
 keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+
 android {
 //    println(keystoreProperties["storeFile"])
   compileSdkVersion(DefaultConfig.compileSdk)
