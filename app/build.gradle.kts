@@ -15,13 +15,6 @@ plugins {
 val keystorePropertiesFile = rootProject.file("../jks/keystore.properties")
 val keystoreProperties = Properties()
 keystoreProperties.load(FileInputStream(keystorePropertiesFile))
-val git = org.ajoberstar.grgit.Grgit.open()
-val gitVersionName = git.describe()
-val gitVersionCode = git.lsremote().size
-val gitVersionCodeTime = git.head().dateTime
-System.out.println(gitVersionName)
-System.out.println(gitVersionCode)
-System.out.println(gitVersionCodeTime)
 android {
 //    println(keystoreProperties["storeFile"])
   compileSdkVersion(DefaultConfig.compileSdk)

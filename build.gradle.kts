@@ -30,3 +30,12 @@ allprojects {
 tasks.register("clean", Delete::class) {
   delete(rootProject.buildDir)
 }
+
+val git = org.ajoberstar.grgit.Grgit.open()
+val gitVersionName = git.describe()
+val gitVersionCode = git.lsremote().size
+val gitVersionCodeTime = git.head().dateTime
+System.out.println(gitVersionName)
+System.out.println(gitVersionCode)
+System.out.println(gitVersionCodeTime)
+
