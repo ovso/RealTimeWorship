@@ -14,25 +14,21 @@ plugins {
   id("org.ajoberstar.grgit") version "4.0.2"
 }
 
-fun getVersionName(grgit: Grgit) {
-  val ts = TagService(grgit.repository)
+fun getVersionName(grGit: Grgit): String {
+  val ts = TagService(grGit.repository)
   val tag = ts.list().last()
   val tagName = tag.name
   val tagShortId = tag.commit.id.substring(0, 8)
-  val commitCount = grgit.lsremote().count()
-  println(commitCount)
+  return "$tagName-$tagShortId"
+}
+
+fun getVersionCode(grGit: Grgit): Int {
+  return TagService(grGit.repository).list().size
 }
 
 val grgit = Grgit.open(mapOf("currentDir" to project.rootDir))
-getVersionName(grgit)
-/*
-System.out.println("grgit = $grgit")
-System.out.println("grgit.tag = ${grgit.tag}")
-System.out.println("grgit.describe = ${grgit.describe()}")
-val tagService = TagService(grgit.repository)
-val name = tagService.list().last().name
-*/
 
+getVersionName(grgit)
 val keystorePropertiesFile = rootProject.file("../jks/keystore.properties")
 val keystoreProperties = Properties()
 keystoreProperties.load(FileInputStream(keystorePropertiesFile))
@@ -44,12 +40,15 @@ android {
     applicationId = DefaultConfig.appId
     minSdkVersion(DefaultConfig.minSdk)
     targetSdkVersion(DefaultConfig.targetSdk)
-    versionCode = 1
-    versionName = "1.0.0"
+    versionCode = getVersionCode(grgit)
+    versionName = getVersionName(grgit)
     multiDexEnabled = true
     vectorDrawables.useSupportLibrary = true
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    println("versionName = $versionName")
+    println("versionCode = $versionCode")
   }
+
 
 /*
   signingConfigs {
