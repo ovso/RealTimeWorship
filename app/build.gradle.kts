@@ -1,3 +1,5 @@
+import org.ajoberstar.grgit.Grgit
+import org.ajoberstar.grgit.service.TagService
 import org.jetbrains.kotlin.konan.properties.Properties
 import java.io.FileInputStream
 
@@ -9,28 +11,27 @@ plugins {
   id("com.google.gms.google-services")
   id("com.google.android.gms.oss-licenses-plugin")
   id("dagger.hilt.android.plugin")
-  id("org.ajoberstar.grgit") version "2.3.0"
+  id("org.ajoberstar.grgit") version "4.0.2"
 }
 
-/*
-val git = org.ajoberstar.grgit.Grgit.open()
-val gitVersionName = git.describe()
-val gitVersionCode = git.lsremote().size
-val gitVersionCodeTime = git.head().dateTime
-System.out.println(gitVersionName)
-System.out.println(gitVersionCode)
-System.out.println(gitVersionCodeTime)
-*/
+fun getVersionName(grgit: Grgit) {
+  val ts = TagService(grgit.repository)
+  val tag = ts.list().last()
+  val tagName = tag.name
+  val tagShortId = tag.commit.id.substring(0, 8)
+  val commitCount = grgit.lsremote().count()
+  println(commitCount)
+}
 
-val grgit = org.ajoberstar.grgit.Grgit.open(mapOf("currentDir" to project.rootDir))
-System.out.println(grgit.branch.current())
-System.out.println(grgit.describe())
-System.out.println(grgit.head().dateTime)
-System.out.println(grgit.branch.current().name)
-val describe = org.ajoberstar.grgit.operation.DescribeOp(grgit.repository).call()
-val branch = grgit.branch.current().name
-System.out.println(describe)
-System.out.println(branch)
+val grgit = Grgit.open(mapOf("currentDir" to project.rootDir))
+getVersionName(grgit)
+/*
+System.out.println("grgit = $grgit")
+System.out.println("grgit.tag = ${grgit.tag}")
+System.out.println("grgit.describe = ${grgit.describe()}")
+val tagService = TagService(grgit.repository)
+val name = tagService.list().last().name
+*/
 
 val keystorePropertiesFile = rootProject.file("../jks/keystore.properties")
 val keystoreProperties = Properties()
