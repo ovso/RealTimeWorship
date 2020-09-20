@@ -123,8 +123,8 @@ dependencies {
   implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.8")
 
   // kotlin
-  implementation("org.jetbrains.kotlin:kotlin-reflect:1.4.10")
-  implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.10")
+  implementation("org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}")
+  implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}")
 
   // support library
   implementation("androidx.appcompat:appcompat:1.2.0")
@@ -162,18 +162,18 @@ dependencies {
   implementation("androidx.paging:paging-rxjava2-ktx:2.1.2")
 
   // dagger
-  implementation("com.google.dagger:dagger:2.28.1")
-  kapt("com.google.dagger:dagger-compiler:2.28.1")
-  implementation("com.google.dagger:dagger-android:2.27")
-  implementation("com.google.dagger:dagger-android-support:2.27")
-  kapt("com.google.dagger:dagger-android-processor:2.27")
+  implementation("com.google.dagger:dagger:${Versions.dagger}")
+  kapt("com.google.dagger:dagger-compiler:${Versions.dagger}")
+  implementation("com.google.dagger:dagger-android:${Versions.dagger_android}")
+  implementation("com.google.dagger:dagger-android-support:${Versions.dagger_android}")
+  kapt("com.google.dagger:dagger-android-processor:${Versions.dagger_android}")
 
   // dagger hilt
-  implementation("com.google.dagger:hilt-android:2.28.1-alpha")
-  kapt("com.google.dagger:hilt-android-compiler:2.28.1-alpha")
-  implementation("androidx.hilt:hilt-common:1.0.0-alpha02")
-  implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02")
-  kapt("androidx.hilt:hilt-compiler:1.0.0-alpha02")
+  implementation("com.google.dagger:hilt-android:${Versions.hilt_android}")
+  kapt("com.google.dagger:hilt-android-compiler:${Versions.hilt_android}")
+  implementation("androidx.hilt:hilt-common:${Versions.hilt_viewmodel}")
+  implementation("androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hilt_viewmodel}")
+  kapt("androidx.hilt:hilt-compiler:${Versions.hilt_viewmodel}")
 
   // database
   implementation("androidx.room:room-runtime:2.2.5")

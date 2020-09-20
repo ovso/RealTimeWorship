@@ -12,3 +12,6 @@
 - Automatic VersionCode
 - Kotlin DSL
 - Dagger Hilt
+- Navigation UI
+- Proguard
+
