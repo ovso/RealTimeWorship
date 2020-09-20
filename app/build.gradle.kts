@@ -176,27 +176,27 @@ dependencies {
   kapt("androidx.hilt:hilt-compiler:${Versions.hilt_viewmodel}")
 
   // database
-  implementation("androidx.room:room-runtime:2.2.5")
-  kapt("androidx.room:room-compiler:2.2.5")
-  implementation("androidx.room:room-ktx:2.2.5")
-  implementation("androidx.room:room-rxjava2:2.2.5")
+  implementation("androidx.room:room-runtime:${Versions.room}")
+  kapt("androidx.room:room-compiler:${Versions.room}")
+  implementation("androidx.room:room-ktx:${Versions.room}")
+  implementation("androidx.room:room-rxjava2:${Versions.room}")
 
   // firebase
-  implementation("com.google.firebase:firebase-ads:19.4.0")
-  implementation("com.google.firebase:firebase-analytics:17.5.0")
+  implementation("com.google.firebase:firebase-ads:${Versions.firebase_ads}")
+  implementation("com.google.firebase:firebase-analytics:${Versions.firebase_ads}")
 
   // network
-  implementation("com.squareup.retrofit2:retrofit:2.9.0")
-  implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-  implementation("com.squareup.retrofit2:adapter-rxjava2:2.6.2")
-  implementation("com.squareup.okhttp3:logging-interceptor:4.7.2")
-  implementation("com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0")
+  implementation("com.squareup.retrofit2:retrofit:${Versions.retrofit}")
+  implementation("com.squareup.retrofit2:converter-gson:${Versions.retrofit}")
+  implementation("com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit_rxjava2}")
+  implementation("com.squareup.okhttp3:logging-interceptor:${Versions.logging_interceptor}")
+  implementation("com.github.akarnokd:rxjava3-retrofit-adapter:${Versions.retrofit_rxjava3}")
 
   // rx
-  implementation("io.reactivex.rxjava3:rxjava:3.0.5")
-  implementation("io.reactivex.rxjava3:rxandroid:3.0.0")
-  implementation("io.reactivex.rxjava3:rxkotlin:3.0.0")
-  implementation("com.uber.autodispose2:autodispose:2.0.0")
+  implementation("io.reactivex.rxjava3:rxjava:${Versions.rxjava3}")
+  implementation("io.reactivex.rxjava3:rxandroid:${Versions.rxjava3_rxandroid}")
+  implementation("io.reactivex.rxjava3:rxkotlin:${Versions.rxjava3_rxkotlin}")
+  implementation("com.uber.autodispose2:autodispose:${Versions.autodispose}")
 
   // licenses
   implementation("com.google.android.gms:play-services-oss-licenses:17.0.0")
