@@ -9,6 +9,6 @@
 - fragment-ktx
 - Activity-ktx
 - Custom Service locator(ViewModel)
-- App Versioning(From git info)
+- Automatic VersionCode
 - Kotlin DSL
 - Dagger Hilt
