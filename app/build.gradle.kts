@@ -183,7 +183,7 @@ dependencies {
 
   // firebase
   implementation("com.google.firebase:firebase-ads:${Versions.firebase_ads}")
-  implementation("com.google.firebase:firebase-analytics:${Versions.firebase_ads}")
+  implementation("com.google.firebase:firebase-analytics:${Versions.firebase_analytics}")
 
   // network
   implementation("com.squareup.retrofit2:retrofit:${Versions.retrofit}")
@@ -199,42 +199,42 @@ dependencies {
   implementation("com.uber.autodispose2:autodispose:${Versions.autodispose}")
 
   // licenses
-  implementation("com.google.android.gms:play-services-oss-licenses:17.0.0")
+  implementation("com.google.android.gms:play-services-oss-licenses:${Versions.licenses}")
 
   // log
-  implementation("com.jakewharton.timber:timber:4.7.1")
+  implementation("com.jakewharton.timber:timber:${Versions.timber}")
 
   // youtube
-  implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5")
+  implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:${Versions.androidyoutubeplayer}")
 
   // prefs
-  implementation("com.github.AgustaRC.koap:koap:1.0.1")
+  implementation("com.github.AgustaRC.koap:koap:${Versions.koap}")
 
   // loading
-  implementation("com.facebook.shimmer:shimmer:0.5.0")
+  implementation("com.facebook.shimmer:shimmer:${Versions.shimmer}")
 
   // image ani
-  implementation("com.airbnb.android:lottie:3.0.2")
+  implementation("com.airbnb.android:lottie:${Versions.lottie}")
 
   // image
-  implementation("com.github.bumptech.glide:glide:4.11.0")
-  kapt("com.github.bumptech.glide:compiler:4.11.0")
+  implementation("com.github.bumptech.glide:glide:${Versions.glide}")
+  kapt("com.github.bumptech.glide:compiler:${Versions.glide}")
 
   // scraping
-  implementation("org.jsoup:jsoup:1.13.1")
+  implementation("org.jsoup:jsoup:${Versions.jsoup}")
 
   // test
-  testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.7")
-  testImplementation("org.mockito:mockito-core:2.23.0")
+  testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines_test}")
+  testImplementation("org.mockito:mockito-core:${Versions.mockito_core}")
 
   // atsl
-  testImplementation("androidx.test.ext:junit:1.1.2")
-  testImplementation("androidx.test:runner:1.3.0")
-  testImplementation("androidx.test:rules:1.3.0")
-  testImplementation("androidx.test.espresso:espresso-core:3.3.0")
-  testImplementation("androidx.test.espresso:espresso-contrib:3.3.0")
-  testImplementation("androidx.test.espresso:espresso-intents:3.3.0")
-  testImplementation("androidx.arch.core:core-testing:2.1.0")
-  testImplementation("androidx.work:work-testing:2.4.0")
+  testImplementation("androidx.test.ext:junit:${Versions.atsl_junit}")
+  testImplementation("androidx.test:runner:${Versions.atsl_runner}")
+  testImplementation("androidx.test:rules:${Versions.atsl_rules}")
+  testImplementation("androidx.test.espresso:espresso-core:${Versions.atsl_espresso}")
+  testImplementation("androidx.test.espresso:espresso-contrib:${Versions.atsl_espresso}")
+  testImplementation("androidx.test.espresso:espresso-intents:${Versions.atsl_espresso}")
+  testImplementation("androidx.arch.core:core-testing:${Versions.atsl_core_testing}")
+  testImplementation("androidx.work:work-testing:${Versions.atsl_work_testing}")
 
 }

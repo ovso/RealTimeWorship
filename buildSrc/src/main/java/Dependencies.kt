@@ -34,12 +34,29 @@ object Versions {
   const val rxjava3_rxkotlin = "3.0.0"
   const val autodispose = "2.0.0"
 
-  const val junit = "4.12"
-
   const val hilt_android = "2.28.1-alpha"
   const val hilt_viewmodel = "1.0.0-alpha02"
-
   const val dagger = "2.28.1"
   const val dagger_android = "2.27"
+
+  const val licenses = "17.0.0"
+  const val timber = "4.7.1"
+  const val androidyoutubeplayer = "10.0.5"
+  const val koap = "1.0.1"
+  const val shimmer = "0.5.0"
+  const val lottie = "3.0.2"
+  const val glide = "4.11.0"
+  const val jsoup = "1.13.1"
+
+  const val coroutines_test = "1.3.7"
+  const val mockito_core = "2.23.0"
+
+  const val atsl_junit = "1.1.2"
+  const val atsl_runner = "1.3.0"
+  const val atsl_rules = "1.3.0"
+  const val atsl_espresso = "3.3.0"
+  const val atsl_core_testing = "2.1.0"
+  const val atsl_work_testing = "2.4.0"
+  const val junit = "4.12"
 
 }
