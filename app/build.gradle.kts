@@ -26,15 +26,14 @@ fun getVersionCode(grGit: Grgit): Int {
   return TagService(grGit.repository).list().size
 }
 
-val grgit = Grgit.open(mapOf("currentDir" to project.rootDir))
+val grgit: Grgit = Grgit.open(mapOf("currentDir" to project.rootDir))
 
-getVersionName(grgit)
 val keystorePropertiesFile = rootProject.file("../jks/keystore.properties")
 val keystoreProperties = Properties()
 keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 
 android {
-//    println(keystoreProperties["storeFile"])
+
   compileSdkVersion(DefaultConfig.compileSdk)
   defaultConfig {
     applicationId = DefaultConfig.appId
@@ -49,24 +48,21 @@ android {
     println("versionCode = $versionCode")
   }
 
-
-/*
   signingConfigs {
     getByName("debug") {
-      keyAlias(keystoreProperties.getProperty("dKeyAlias"))
-      keyPassword(keystoreProperties.getProperty("dKeyPassword"))
-      storeFile(file(keystoreProperties.getProperty("dStoreFile")))
-      storePassword(keystoreProperties.getProperty("dStorePassword"))
+      keyAlias = keystoreProperties.getProperty("dKeyAlias")
+      keyPassword = keystoreProperties.getProperty("dKeyPassword")
+      storeFile = file(keystoreProperties.getProperty("dStoreFile"))
+      storePassword = keystoreProperties.getProperty("dStorePassword")
     }
 
-    getByName("release") {
-      keyAlias(keystoreProperties.getProperty("keyAlias"))
-      keyPassword(keystoreProperties.getProperty("keyPassword"))
-      storeFile(file(keystoreProperties.getProperty("storeFile")))
-      storePassword(keystoreProperties.getProperty("storePassword"))
+    create("release") {
+      keyAlias = keystoreProperties.getProperty("keyAlias")
+      keyPassword = keystoreProperties.getProperty("keyPassword")
+      storeFile = file(keystoreProperties.getProperty("storeFile"))
+      storePassword = keystoreProperties.getProperty("storePassword")
     }
   }
-*/
 
 
   buildTypes {
@@ -77,13 +73,16 @@ android {
         getDefaultProguardFile("proguard-android-optimize.txt"),
         "proguard-rules.pro"
       )
+      signingConfig = signingConfigs.getByName("debug")
     }
     getByName("release") {
       isMinifyEnabled = false
+      isDebuggable = false
       proguardFiles(
         getDefaultProguardFile("proguard-android-optimize.txt"),
         "proguard-rules.pro"
       )
+      signingConfig = signingConfigs.getByName("release")
     }
   }
 
@@ -103,11 +102,11 @@ android {
   }
 
   androidExtensions {
-    val experimental = true
+    isExperimental = true
   }
 
   lintOptions {
-    val disable = "MissingTranslation"
+    disable("MissingTranslation")
   }
 
   packagingOptions {
@@ -159,7 +158,7 @@ dependencies {
   implementation("androidx.core:core-ktx:1.3.1")
 
   // startup
-  implementation("androidx.startup:startup-runtime:1.0.0-alpha03")
+  implementation("androidx.startup:startup-runtime:1.0.0-beta01")
 
   // paging
   implementation("androidx.paging:paging-runtime-ktx:2.1.2")
@@ -172,7 +171,7 @@ dependencies {
   implementation("com.google.dagger:dagger-android-support:2.27")
   kapt("com.google.dagger:dagger-android-processor:2.27")
 
-  // hilt
+  // dagger hilt
   implementation("com.google.dagger:hilt-android:2.28.1-alpha")
   kapt("com.google.dagger:hilt-android-compiler:2.28.1-alpha")
 
