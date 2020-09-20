@@ -14,19 +14,14 @@ plugins {
   id("org.ajoberstar.grgit") version "4.0.2"
 }
 
+val grGit: Grgit = Grgit.open(mapOf("currentDir" to project.rootDir))
 fun getVersionName(grGit: Grgit): String {
-  val ts = TagService(grGit.repository)
-  val tag = ts.list().last()
-  val tagName = tag.name
-  val tagShortId = tag.commit.id.substring(0, 8)
-  return "$tagName-$tagShortId"
+  return TagService(grGit.repository).list().last().name
 }
 
 fun getVersionCode(grGit: Grgit): Int {
   return TagService(grGit.repository).list().size
 }
-
-val grgit: Grgit = Grgit.open(mapOf("currentDir" to project.rootDir))
 
 val keystorePropertiesFile = rootProject.file("../jks/keystore.properties")
 val keystoreProperties = Properties()
@@ -67,22 +62,24 @@ android {
 
   buildTypes {
     getByName("debug") {
-      isMinifyEnabled = false
-      isDebuggable = true
-      proguardFiles(
-        getDefaultProguardFile("proguard-android-optimize.txt"),
-        "proguard-rules.pro"
-      )
       signingConfig = signingConfigs.getByName("debug")
+      versionNameSuffix = "-debug"
     }
     getByName("release") {
-      isMinifyEnabled = false
-      isDebuggable = false
-      proguardFiles(
-        getDefaultProguardFile("proguard-android-optimize.txt"),
-        "proguard-rules.pro"
-      )
       signingConfig = signingConfigs.getByName("release")
+      isDebuggable = false
+      isZipAlignEnabled = true
+      isMinifyEnabled = true
+      proguardFile(getDefaultProguardFile("proguard-android.txt"))
+      // global proguard settings
+      proguardFile(file("proguard-rules.pro"))
+      // library proguard settings
+      val files = rootProject.file("proguard")
+        .listFiles()
+        ?.filter { it.name.startsWith("proguard") }
+        ?.toTypedArray()
+
+      proguardFiles(*files ?: arrayOf())
     }
   }
 
