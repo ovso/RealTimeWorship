@@ -8,9 +8,8 @@ import io.github.ovso.worship.data.local.model.HistoryEntity
 import io.github.ovso.worship.data.remote.TasksRemoteDataSource
 import io.github.ovso.worship.data.remote.response.VideoResponse
 import io.reactivex.rxjava3.core.Single
-import javax.inject.Inject
 
-class TasksRepository @Inject constructor(
+class TasksRepository (
   private val remoteDataSource: TasksRemoteDataSource,
   private val localDataSource: TasksLocalDataSource
 ) : TasksDataSource {

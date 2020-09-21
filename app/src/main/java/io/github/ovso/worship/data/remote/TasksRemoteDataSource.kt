@@ -6,9 +6,8 @@ import io.github.ovso.worship.data.remote.response.VideoResponse
 import io.github.ovso.worship.data.toVideoResponses
 import io.reactivex.rxjava3.core.Single
 import org.jsoup.Jsoup
-import javax.inject.Inject
 
-class TasksRemoteDataSource @Inject constructor() {
+class TasksRemoteDataSource {
 
   fun videos(channelId: String): Single<List<VideoResponse>> {
     return Single.fromCallable {

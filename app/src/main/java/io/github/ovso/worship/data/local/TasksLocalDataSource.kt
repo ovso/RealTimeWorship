@@ -10,9 +10,8 @@ import io.github.ovso.worship.data.local.model.HistoryEntity
 import io.github.ovso.worship.extensions.fromJson
 import io.github.ovso.worship.utils.AssetsUtil
 import io.reactivex.rxjava3.core.Single
-import javax.inject.Inject
 
-class TasksLocalDataSource @Inject constructor(private val context: Context) {
+class TasksLocalDataSource(private val context: Context) {
   private val database = (context.applicationContext as App).database
 
   fun churches(): Single<List<ChurchEntity>> {

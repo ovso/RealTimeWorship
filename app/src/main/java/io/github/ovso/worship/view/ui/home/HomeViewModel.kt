@@ -9,13 +9,12 @@ import io.github.ovso.worship.data.toChurchModels
 import io.github.ovso.worship.data.view.HomeItemModel
 import io.github.ovso.worship.utils.rx.SchedulerProvider
 import io.github.ovso.worship.view.base.DisposableViewModel
-import io.reactivex.rxjava3.kotlin.plusAssign
+import io.reactivex.rxjava3.kotlin.addTo
 
 class HomeViewModel @ViewModelInject constructor(
   private val repository: TasksRepository,
   @Assisted private val savedStateHandle: SavedStateHandle,
-) :
-  DisposableViewModel() {
+) : DisposableViewModel() {
 
   val items = MutableLiveData<List<HomeItemModel>>()
 
@@ -33,7 +32,7 @@ class HomeViewModel @ViewModelInject constructor(
       t.printStackTrace()
     }
 
-    compositeDisposable += repository.churches()
+    repository.churches()
       .map { it.toChurchModels() }
       .map { it ->
         it.sortedBy {
@@ -43,5 +42,6 @@ class HomeViewModel @ViewModelInject constructor(
       .subscribeOn(SchedulerProvider.io())
       .observeOn(SchedulerProvider.ui())
       .subscribe(::onSuccess, ::onFailure)
+      .addTo(compositeDisposable)
   }
 }
