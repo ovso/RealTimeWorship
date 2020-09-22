@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerFullScreenListener
@@ -25,7 +24,6 @@ class PlayerFragment : DataBindingFragment<FragmentPlayerBinding>(R.layout.fragm
     super.onViewCreated(view, savedInstanceState)
     setupPlayer()
     observe()
-    setTitle(getString(R.string.player_title))
   }
 
   private fun setupPlayer() {
@@ -84,9 +82,12 @@ class PlayerFragment : DataBindingFragment<FragmentPlayerBinding>(R.layout.fragm
   }
 
   private fun observe() {
-    viewModel.videoId.observe(viewLifecycleOwner, Observer {
+    viewModel.videoId.observe(viewLifecycleOwner, {
       playVideo(it)
     })
+    viewModel.desc.observe(viewLifecycleOwner) {
+      setTitle(it)
+    }
   }
 
   override fun onAttach(context: Context) {
