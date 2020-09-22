@@ -39,7 +39,7 @@ class ViewModelFactory constructor(
       )
 //      isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel(repository)
       isAssignableFrom(BookmarkViewModel::class.java) -> BookmarkViewModel(owner, repository)
-      isAssignableFrom(HistoryViewModel::class.java) -> HistoryViewModel(owner, repository)
+//      isAssignableFrom(HistoryViewModel::class.java) -> HistoryViewModel(owner, repository)
 /*
             isAssignableFrom(TaskDetailViewModel::class.java) ->
                 TaskDetailViewModel(searchRepository)

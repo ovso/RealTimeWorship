@@ -1,7 +1,6 @@
 package io.github.ovso.worship.extensions
 
 import androidx.activity.ComponentActivity
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import io.github.ovso.worship.app.App
 import io.github.ovso.worship.app.ViewModelFactory
