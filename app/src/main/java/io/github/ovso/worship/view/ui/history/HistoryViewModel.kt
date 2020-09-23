@@ -1,6 +1,6 @@
 package io.github.ovso.worship.view.ui.history
 
-import androidx.lifecycle.LifecycleOwner
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import io.github.ovso.worship.data.TasksRepository
@@ -10,8 +10,7 @@ import io.github.ovso.worship.view.base.DisposableViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class HistoryViewModel(
-  private val owner: LifecycleOwner,
+class HistoryViewModel @ViewModelInject constructor(
   private val repository: TasksRepository,
 ) : DisposableViewModel() {
 
@@ -26,8 +25,7 @@ class HistoryViewModel(
 
   private fun reqHistory() {
     job = viewModelScope.launch {
-      val toHistoryModels = repository.getHistoriesAsync().toHistoryModels()
-      _items.value = toHistoryModels
+      _items.value =  repository.getHistoriesAsync().toHistoryModels()
     }
   }
 
