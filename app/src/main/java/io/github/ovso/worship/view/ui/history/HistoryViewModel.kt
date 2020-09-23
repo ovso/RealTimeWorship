@@ -1,11 +1,7 @@
 package io.github.ovso.worship.view.ui.history
 
-import androidx.hilt.Assisted
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
-import androidx.savedstate.SavedStateRegistryOwner
 import io.github.ovso.worship.data.TasksRepository
 import io.github.ovso.worship.data.toHistoryModels
 import io.github.ovso.worship.data.view.HistoryModel
@@ -14,17 +10,19 @@ import io.github.ovso.worship.view.base.DisposableViewModel
 import io.reactivex.rxjava3.kotlin.addTo
 import timber.log.Timber
 
-class HistoryViewModel @ViewModelInject constructor(
+class HistoryViewModel(
+  private val owner: LifecycleOwner,
   private val repository: TasksRepository,
-  @Assisted private val savedStateHandle: SavedStateHandle,
 ) : DisposableViewModel() {
 
   private val _items = MutableLiveData<List<HistoryModel>>()
   val items = _items
 
   init {
+    reqHistory()
+  }
 
-/*
+  private fun reqHistory() {
     repository.getHistories().observe(owner, {
       it.toHistoryModels()
         .subscribeOn(SchedulerProvider.io())
@@ -33,7 +31,6 @@ class HistoryViewModel @ViewModelInject constructor(
         }, { t -> Timber.e(t) })
         .addTo(compositeDisposable)
     })
-*/
   }
 
 }
