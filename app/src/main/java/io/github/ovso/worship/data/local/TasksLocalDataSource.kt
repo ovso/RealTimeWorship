@@ -42,6 +42,10 @@ class TasksLocalDataSource(private val context: Context) {
     return database.historyDao().histories()
   }
 
+  suspend fun getHistoriesAsync(): List<HistoryEntity> {
+    return database.historyDao().historiesAsync()
+  }
+
   fun getHistory(videoId: String): LiveData<HistoryEntity?> {
     return database.historyDao().getHistory(videoId)
   }

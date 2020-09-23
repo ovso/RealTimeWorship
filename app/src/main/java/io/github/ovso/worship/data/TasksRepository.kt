@@ -42,6 +42,10 @@ class TasksRepository (
     return localDataSource.getHistories()
   }
 
+  suspend fun getHistoriesAsync(): List<HistoryEntity> {
+    return localDataSource.getHistoriesAsync()
+  }
+
   override fun getHistory(videoId: String): LiveData<HistoryEntity?> {
     return localDataSource.getHistory(videoId)
   }

@@ -74,10 +74,10 @@ fun HistoryEntity.toHistoryModel(): HistoryModel {
   )
 }
 
-fun List<HistoryEntity>.toHistoryModels(): Single<List<HistoryModel>> {
+fun List<HistoryEntity>.toHistoryModels(): List<HistoryModel> {
   return toObservable().map {
     it.toHistoryModel()
-  }.toList()
+  }.toList().blockingGet()
 }
 
 fun HistoryModel.toPlayerModel(): PlayerModel {

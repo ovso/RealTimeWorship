@@ -20,6 +20,9 @@ interface HistoryDao {
   @Query("SELECT * FROM history")
   fun histories(): LiveData<List<HistoryEntity>>
 
+  @Query("SELECT * FROM history")
+  suspend fun historiesAsync(): List<HistoryEntity>
+
   @Query("SELECT * FROM history WHERE video_id LIKE :videoId")
   fun getHistory(videoId: String): LiveData<HistoryEntity?>
 
