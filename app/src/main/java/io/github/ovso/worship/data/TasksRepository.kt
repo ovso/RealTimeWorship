@@ -12,7 +12,7 @@ import io.reactivex.rxjava3.core.Single
 class TasksRepository (
   private val remoteDataSource: TasksRemoteDataSource,
   private val localDataSource: TasksLocalDataSource
-) : TasksDataSource {
+) : Repository {
 
   override fun videos(channelId: String): Single<List<VideoResponse>> {
     return remoteDataSource.videos(channelId)
@@ -38,7 +38,7 @@ class TasksRepository (
     return localDataSource.getBookmarks()
   }
 
-  suspend fun getBookmarksAsync(): List<BookmarkEntity> {
+  override suspend fun getBookmarksAsync(): List<BookmarkEntity> {
     return localDataSource.getBookmarksAsync()
   }
 
@@ -46,7 +46,7 @@ class TasksRepository (
     return localDataSource.getHistories()
   }
 
-  suspend fun getHistoriesAsync(): List<HistoryEntity> {
+  override suspend fun getHistoriesAsync(): List<HistoryEntity> {
     return localDataSource.getHistoriesAsync()
   }
 
