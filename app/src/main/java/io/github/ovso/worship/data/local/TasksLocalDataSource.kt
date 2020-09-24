@@ -38,6 +38,10 @@ class TasksLocalDataSource(private val context: Context) {
     return database.bookmarkDao().bookmarks()
   }
 
+  suspend fun getBookmarksAsync(): List<BookmarkEntity> {
+    return database.bookmarkDao().bookmarksAsync()
+  }
+
   fun getHistories(): LiveData<List<HistoryEntity>> {
     return database.historyDao().histories()
   }

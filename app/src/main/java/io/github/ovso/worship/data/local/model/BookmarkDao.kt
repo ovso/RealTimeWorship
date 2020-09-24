@@ -20,6 +20,9 @@ interface BookmarkDao {
   @Query("SELECT * FROM bookmark")
   fun bookmarks(): LiveData<List<BookmarkEntity>>
 
+  @Query("SELECT * FROM bookmark")
+  suspend fun bookmarksAsync(): List<BookmarkEntity>
+
   @Query("SELECT * FROM bookmark WHERE video_id LIKE :videoId")
   fun getBookmark(videoId: String): LiveData<BookmarkEntity?>
 }

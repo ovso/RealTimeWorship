@@ -7,9 +7,6 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 import io.github.ovso.worship.data.TasksRepository
-import io.github.ovso.worship.view.ui.bookmark.BookmarkViewModel
-import io.github.ovso.worship.view.ui.history.HistoryViewModel
-import io.github.ovso.worship.view.ui.home.HomeViewModel
 import io.github.ovso.worship.view.ui.player.PlayerViewModel
 import io.github.ovso.worship.view.ui.video.VideoViewModel
 
@@ -38,7 +35,7 @@ class ViewModelFactory constructor(
         owner
       )
 //      isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel(repository)
-      isAssignableFrom(BookmarkViewModel::class.java) -> BookmarkViewModel(owner, repository)
+//      isAssignableFrom(BookmarkViewModel::class.java) -> BookmarkViewModel(owner, repository)
 //      isAssignableFrom(HistoryViewModel::class.java) -> HistoryViewModel(owner, repository)
 /*
             isAssignableFrom(TaskDetailViewModel::class.java) ->

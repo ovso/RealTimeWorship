@@ -38,6 +38,10 @@ class TasksRepository (
     return localDataSource.getBookmarks()
   }
 
+  suspend fun getBookmarksAsync(): List<BookmarkEntity> {
+    return localDataSource.getBookmarksAsync()
+  }
+
   override fun getHistories(): LiveData<List<HistoryEntity>> {
     return localDataSource.getHistories()
   }

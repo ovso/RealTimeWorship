@@ -1,5 +1,6 @@
 package io.github.ovso.worship.data
 
+import androidx.annotation.WorkerThread
 import com.google.gson.Gson
 import com.google.gson.JsonElement
 import io.github.ovso.worship.data.local.model.BookmarkEntity
@@ -60,10 +61,11 @@ fun BookmarkEntity.toBookmarkModel(): BookmarkModel {
   )
 }
 
-fun List<BookmarkEntity>.toBookmarkModels(): Single<List<BookmarkModel>> {
+@WorkerThread
+fun List<BookmarkEntity>.toBookmarkModels(): List<BookmarkModel> {
   return toObservable().map {
     it.toBookmarkModel()
-  }.toList()
+  }.toList().blockingGet()
 }
 
 fun HistoryEntity.toHistoryModel(): HistoryModel {
