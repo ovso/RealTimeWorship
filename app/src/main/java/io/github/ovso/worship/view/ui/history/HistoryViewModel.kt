@@ -25,7 +25,7 @@ class HistoryViewModel @ViewModelInject constructor(
 
   private fun reqHistory() {
     job = viewModelScope.launch {
-      _items.value =  repository.getHistoriesAsync().toHistoryModels()
+      _items.value = repository.getHistoriesAsync().toHistoryModels()
     }
   }
 
