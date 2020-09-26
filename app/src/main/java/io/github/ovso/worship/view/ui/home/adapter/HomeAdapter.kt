@@ -4,8 +4,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import io.github.ovso.worship.data.view.HomeItemModel
+import javax.inject.Inject
 
-class HomeAdapter : ListAdapter<HomeItemModel, HomeViewHolder>(
+class HomeAdapter @Inject constructor() : ListAdapter<HomeItemModel, HomeViewHolder>(
   DIFF_UTIL
 ) {
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder =

@@ -4,8 +4,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import io.github.ovso.worship.data.view.BookmarkModel
+import javax.inject.Inject
 
-class BookmarkAdapter : ListAdapter<BookmarkModel, BookmarkViewHolder>(
+class BookmarkAdapter @Inject constructor() : ListAdapter<BookmarkModel, BookmarkViewHolder>(
   DIFF_UTIL
 ) {
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookmarkViewHolder =

@@ -4,8 +4,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import io.github.ovso.worship.data.view.HistoryModel
+import javax.inject.Inject
 
-class HistoryAdapter : ListAdapter<HistoryModel, HistoryViewHolder>(
+class HistoryAdapter @Inject constructor() : ListAdapter<HistoryModel, HistoryViewHolder>(
   DIFF_UTIL
 ) {
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder =

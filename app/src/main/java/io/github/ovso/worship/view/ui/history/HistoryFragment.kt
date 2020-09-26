@@ -10,10 +10,13 @@ import io.github.ovso.worship.extensions.defaultDivider
 import io.github.ovso.worship.extensions.showBottomNav
 import io.github.ovso.worship.view.base.DataBindingFragment
 import io.github.ovso.worship.view.ui.history.adapter.HistoryAdapter
-import kotlinx.android.synthetic.main.fragment_history.*
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class HistoryFragment : DataBindingFragment<FragmentHistoryBinding>(R.layout.fragment_history) {
+
+  @Inject
+  lateinit var adapter: HistoryAdapter
 
   override val viewModel by viewModels<HistoryViewModel>()
 
@@ -25,15 +28,13 @@ class HistoryFragment : DataBindingFragment<FragmentHistoryBinding>(R.layout.fra
 
   private fun observe() {
     viewModel.items.observe(viewLifecycleOwner, {
-      (rv_history.adapter as? HistoryAdapter)?.submitList(it)
+      adapter.submitList(it)
     })
   }
 
   private fun setupRv() {
-    rv_history.apply {
-      defaultDivider()
-      adapter = HistoryAdapter()
-    }
+    binding.rvHistory.defaultDivider()
+    binding.rvHistory.adapter = adapter
   }
 
   override fun onResume() {

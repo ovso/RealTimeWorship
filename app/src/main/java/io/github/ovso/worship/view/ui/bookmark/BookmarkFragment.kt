@@ -10,10 +10,13 @@ import io.github.ovso.worship.extensions.defaultDivider
 import io.github.ovso.worship.extensions.showBottomNav
 import io.github.ovso.worship.view.base.DataBindingFragment
 import io.github.ovso.worship.view.ui.bookmark.adapter.BookmarkAdapter
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class BookmarkFragment : DataBindingFragment<FragmentBookmarkBinding>(R.layout.fragment_bookmark) {
 
+  @Inject
+  lateinit var adapter: BookmarkAdapter
   override val viewModel by viewModels<BookmarkViewModel>()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -24,7 +27,7 @@ class BookmarkFragment : DataBindingFragment<FragmentBookmarkBinding>(R.layout.f
 
   private fun observe() {
     viewModel.items.observe(viewLifecycleOwner, {
-      (binding.rvBookmark.adapter as? BookmarkAdapter)?.submitList(it)
+      adapter.submitList(it)
     })
   }
 
@@ -33,6 +36,8 @@ class BookmarkFragment : DataBindingFragment<FragmentBookmarkBinding>(R.layout.f
       defaultDivider()
       adapter = BookmarkAdapter()
     }
+    binding.rvBookmark.defaultDivider()
+    binding.rvBookmark.adapter = adapter
   }
 
   override fun onResume() {
