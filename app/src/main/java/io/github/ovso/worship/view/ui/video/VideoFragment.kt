@@ -9,6 +9,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.facebook.shimmer.ShimmerFrameLayout
+import dagger.hilt.android.AndroidEntryPoint
 import io.github.ovso.worship.R
 import io.github.ovso.worship.databinding.FragmentVideoBinding
 import io.github.ovso.worship.extensions.defaultDivider
@@ -17,9 +18,14 @@ import io.github.ovso.worship.extensions.hideBottomNav
 import io.github.ovso.worship.extensions.setTitle
 import io.github.ovso.worship.view.base.DataBindingFragment
 import io.github.ovso.worship.view.ui.video.adapter.VideoAdapter
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class VideoFragment :
   DataBindingFragment<FragmentVideoBinding>(R.layout.fragment_video) {
+
+  @Inject
+  lateinit var adapter: VideoAdapter
 
   override val viewModel by viewModels<VideoViewModel> { getViewModelFactory() }
 
@@ -37,10 +43,8 @@ class VideoFragment :
   }
 
   private fun setupRecyclerView() {
-    with(binding.rvVideo) {
-      adapter = VideoAdapter()
-      defaultDivider()
-    }
+    binding.rvVideo.defaultDivider()
+    binding.rvVideo.adapter = adapter
   }
 
   private fun observe() {
