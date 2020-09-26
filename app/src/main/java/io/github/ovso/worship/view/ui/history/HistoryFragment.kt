@@ -2,6 +2,7 @@ package io.github.ovso.worship.view.ui.history
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.ovso.worship.R
@@ -30,6 +31,9 @@ class HistoryFragment : DataBindingFragment<FragmentHistoryBinding>(R.layout.fra
     viewModel.items.observe(viewLifecycleOwner, {
       adapter.submitList(it)
     })
+    viewModel.toast.observe(viewLifecycleOwner) {
+      Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+    }
   }
 
   private fun setupRv() {

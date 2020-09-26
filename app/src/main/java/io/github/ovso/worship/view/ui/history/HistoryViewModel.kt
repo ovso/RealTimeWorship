@@ -1,12 +1,15 @@
 package io.github.ovso.worship.view.ui.history
 
 import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import io.github.ovso.worship.R
 import io.github.ovso.worship.data.TasksRepository
 import io.github.ovso.worship.data.toHistoryModels
 import io.github.ovso.worship.data.view.HistoryModel
 import io.github.ovso.worship.view.base.DisposableViewModel
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
@@ -18,13 +21,18 @@ class HistoryViewModel @ViewModelInject constructor(
   val items = _items
 
   private var job: Job? = null
+  private val _toast = MutableLiveData<Int>()
+  val toast: LiveData<Int> = _toast
 
   init {
     reqHistory()
   }
 
   private fun reqHistory() {
-    job = viewModelScope.launch {
+    val handler = CoroutineExceptionHandler { _, _ ->
+      _toast.value = R.string.all_error
+    }
+    job = viewModelScope.launch(context = handler) {
       _items.value = repository.getHistoriesAsync().toHistoryModels()
     }
   }
