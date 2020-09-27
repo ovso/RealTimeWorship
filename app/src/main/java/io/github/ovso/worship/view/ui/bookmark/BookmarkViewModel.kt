@@ -1,15 +1,17 @@
 package io.github.ovso.worship.view.ui.bookmark
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.savedstate.SavedStateRegistryOwner
 import io.github.ovso.worship.data.TasksRepository
 import io.github.ovso.worship.data.toBookmarkModels
 import io.github.ovso.worship.data.view.BookmarkModel
+import io.github.ovso.worship.utils.rx.SchedulerProvider
 import io.github.ovso.worship.view.base.DisposableViewModel
-import kotlinx.coroutines.launch
+import io.reactivex.rxjava3.kotlin.addTo
+import timber.log.Timber
 
-class BookmarkViewModel @ViewModelInject constructor(
+class BookmarkViewModel constructor(
+  private val owner: SavedStateRegistryOwner,
   private val repository: TasksRepository
 ) : DisposableViewModel() {
 
@@ -17,8 +19,17 @@ class BookmarkViewModel @ViewModelInject constructor(
   val items = _items
 
   init {
-    viewModelScope.launch {
-      _items.value = repository.getBookmarksAsync().toBookmarkModels()
-    }
+    reqBookmarks()
+  }
+
+  private fun reqBookmarks() {
+    repository.getBookmarks().observe(owner, {
+      it.toBookmarkModels()
+        .subscribeOn(SchedulerProvider.io())
+        .subscribe({ models ->
+          _items.postValue(models)
+        }, Timber::e)
+        .addTo(compositeDisposable)
+    })
   }
 }

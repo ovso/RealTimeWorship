@@ -62,10 +62,10 @@ fun BookmarkEntity.toBookmarkModel(): BookmarkModel {
 }
 
 @WorkerThread
-fun List<BookmarkEntity>.toBookmarkModels(): List<BookmarkModel> {
+fun List<BookmarkEntity>.toBookmarkModels(): Single<List<BookmarkModel>> {
   return toObservable().map {
     it.toBookmarkModel()
-  }.toList().blockingGet()
+  }.toList()
 }
 
 fun HistoryEntity.toHistoryModel(): HistoryModel {
