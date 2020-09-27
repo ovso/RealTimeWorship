@@ -6,6 +6,7 @@ import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.ovso.worship.R
 import io.github.ovso.worship.databinding.FragmentBookmarkBinding
+import io.github.ovso.worship.di.TestClass
 import io.github.ovso.worship.extensions.defaultDivider
 import io.github.ovso.worship.extensions.getViewModelFactory
 import io.github.ovso.worship.extensions.showBottomNav
@@ -19,6 +20,9 @@ class BookmarkFragment : DataBindingFragment<FragmentBookmarkBinding>(R.layout.f
   @Inject
   lateinit var adapter: BookmarkAdapter
   override val viewModel: BookmarkViewModel by viewModels { getViewModelFactory() }
+
+  @Inject
+  lateinit var testClass: TestClass
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
