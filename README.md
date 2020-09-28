@@ -11,7 +11,7 @@
 - Custom Service locator(ViewModel)
 - Automatic VersionCode
 - Kotlin DSL
-- Dagger Hilt
+- Hilt
 - Navigation UI
 - Proguard
 
