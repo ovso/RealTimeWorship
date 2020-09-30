@@ -21,7 +21,10 @@ class TasksRemoteDataSource @Inject constructor() {
       val startIndex = itemsElement.data().indexOf(prefix)
       val endIndex = itemsElement.data().lastIndexOf("window[\"ytInitialPlayerResponse")
       val fullJsonString = itemsElement.data().substring(startIndex, endIndex)
-      val stableJsonString = fullJsonString.substring(0, fullJsonString.indexOf(";"))
+      val indexOfLastSemicolon = fullJsonString.indexOfLast {
+        it == ";".single()
+      }
+      val stableJsonString = fullJsonString.substring(0, indexOfLastSemicolon)
       val json = GsonBuilder().setLenient().create().fromJson(
         stableJsonString, JsonElement::class.java
       )
