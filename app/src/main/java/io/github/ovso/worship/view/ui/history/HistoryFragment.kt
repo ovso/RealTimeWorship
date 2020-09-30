@@ -8,6 +8,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.github.ovso.worship.R
 import io.github.ovso.worship.databinding.FragmentHistoryBinding
 import io.github.ovso.worship.extensions.defaultDivider
+import io.github.ovso.worship.extensions.getViewModelFactory
 import io.github.ovso.worship.extensions.showBottomNav
 import io.github.ovso.worship.view.base.DataBindingFragment
 import io.github.ovso.worship.view.ui.history.adapter.HistoryAdapter
@@ -19,7 +20,7 @@ class HistoryFragment : DataBindingFragment<FragmentHistoryBinding>(R.layout.fra
   @Inject
   lateinit var adapter: HistoryAdapter
 
-  override val viewModel by viewModels<HistoryViewModel>()
+  override val viewModel by viewModels<HistoryViewModel> { getViewModelFactory() }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)

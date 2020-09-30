@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 import io.github.ovso.worship.data.TasksRepository
 import io.github.ovso.worship.view.ui.bookmark.BookmarkViewModel
+import io.github.ovso.worship.view.ui.history.HistoryViewModel
 import io.github.ovso.worship.view.ui.player.PlayerViewModel
 import io.github.ovso.worship.view.ui.video.VideoViewModel
 
@@ -36,15 +37,7 @@ class ViewModelFactory constructor(
         owner
       )
       isAssignableFrom(BookmarkViewModel::class.java) -> BookmarkViewModel(owner, repository)
-//      isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel(repository)
-/*
-            isAssignableFrom(TaskDetailViewModel::class.java) ->
-                TaskDetailViewModel(searchRepository)
-            isAssignableFrom(AddEditTaskViewModel::class.java) ->
-                AddEditTaskViewModel(searchRepository)
-            isAssignableFrom(TasksViewModel::class.java) ->
-                TasksViewModel(searchRepository, handle)
-*/
+      isAssignableFrom(HistoryViewModel::class.java) -> HistoryViewModel(owner, repository)
       else ->
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
     }

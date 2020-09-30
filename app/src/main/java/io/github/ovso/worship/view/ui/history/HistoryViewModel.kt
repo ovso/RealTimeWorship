@@ -1,9 +1,9 @@
 package io.github.ovso.worship.view.ui.history
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.savedstate.SavedStateRegistryOwner
 import io.github.ovso.worship.R
 import io.github.ovso.worship.data.TasksRepository
 import io.github.ovso.worship.data.toHistoryModels
@@ -13,7 +13,8 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class HistoryViewModel @ViewModelInject constructor(
+class HistoryViewModel(
+  private val owner: SavedStateRegistryOwner,
   private val repository: TasksRepository,
 ) : DisposableViewModel() {
 
@@ -32,8 +33,10 @@ class HistoryViewModel @ViewModelInject constructor(
     val handler = CoroutineExceptionHandler { _, _ ->
       _toast.value = R.string.all_error
     }
-    job = viewModelScope.launch(context = handler) {
-      _items.value = repository.getHistoriesAsync().toHistoryModels()
+    repository.getHistories().observe(owner) {
+      job = viewModelScope.launch(handler) {
+        _items.value = it.toHistoryModels()
+      }
     }
   }
 

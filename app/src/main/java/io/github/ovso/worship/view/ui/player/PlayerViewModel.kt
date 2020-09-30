@@ -43,7 +43,7 @@ class PlayerViewModel(
   }
 
   private fun observe() {
-    playerModel.observe(owner, Observer {
+    playerModel.observe(owner, {
       _videoId.value = it.videoId
       _desc.value = it.title
       _thumbnail.value = it.thumbnail
