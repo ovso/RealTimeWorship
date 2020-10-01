@@ -82,12 +82,8 @@ class PlayerFragment : DataBindingFragment<FragmentPlayerBinding>(R.layout.fragm
   }
 
   private fun observe() {
-    viewModel.videoId.observe(viewLifecycleOwner, {
-      playVideo(it)
-    })
-    viewModel.desc.observe(viewLifecycleOwner) {
-      setTitle(it)
-    }
+    viewModel.videoId.observe(viewLifecycleOwner, { playVideo(it) })
+    viewModel.desc.observe(viewLifecycleOwner) { setTitle(it) }
   }
 
   override fun onAttach(context: Context) {
