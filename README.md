@@ -6,12 +6,12 @@
 - RxJava3
 - Room + LiveData
 - Repository pattern
-- fragment-ktx
+- Fragment-ktx
 - Activity-ktx
-- Custom Service locator(ViewModel)
 - Automatic VersionCode
 - Kotlin DSL
+- Custom Service locator(ViewModel)
 - Hilt
 - Navigation UI
 - Proguard
-
+- Coroutine
