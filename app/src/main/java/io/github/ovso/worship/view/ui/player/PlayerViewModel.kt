@@ -2,13 +2,11 @@
 
 package io.github.ovso.worship.view.ui.player
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import io.github.ovso.worship.data.TasksRepository
 import io.github.ovso.worship.data.local.model.HistoryEntity
 import io.github.ovso.worship.data.toBookmarkEntity
@@ -23,7 +21,6 @@ import timber.log.Timber
 class PlayerViewModel(
   private val repository: TasksRepository,
   arguments: Bundle?,
-  intent: Intent? = null,
   private val owner: LifecycleOwner
 ) : DisposableViewModel() {
   private var playerModel = MutableLiveData<PlayerModel>()
@@ -38,23 +35,17 @@ class PlayerViewModel(
   var second = 0F
 
   init {
-    observe()
     handleArgs(arguments)
-  }
-
-  private fun observe() {
-    playerModel.observe(owner, {
-      _videoId.value = it.videoId
-      _desc.value = it.title
-      _thumbnail.value = it.thumbnail
-      checkBookmark(it.videoId)
-      checkHistory(it.videoId)
-    })
   }
 
   private fun handleArgs(arguments: Bundle?) {
     arguments?.getParcelable<PlayerModel>("model")?.let {
       playerModel.value = it
+      _videoId.value = it.videoId
+      _desc.value = it.title
+      _thumbnail.value = it.thumbnail
+      checkBookmark(it.videoId)
+      checkHistory(it.videoId)
     }
   }
 
@@ -64,7 +55,7 @@ class PlayerViewModel(
       Thread { repository.addHistory(history) }.start()
     }
 
-    repository.getHistory(videoId).observe(owner, Observer {
+    repository.getHistory(videoId).observe(owner, {
       if (it == null) {
         playerModel.value?.toHistoryEntity()?.let { historyEntity ->
           addHistory(historyEntity)
@@ -74,7 +65,7 @@ class PlayerViewModel(
   }
 
   private fun checkBookmark(videoId: String) {
-    repository.getBookmark(videoId).observe(owner, Observer {
+    repository.getBookmark(videoId).observe(owner, {
       it?.let {
         isBookmarkSelected.set(true)
       }

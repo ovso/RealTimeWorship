@@ -33,7 +33,6 @@ class ViewModelFactory constructor(
       isAssignableFrom(PlayerViewModel::class.java) -> PlayerViewModel(
         repository,
         defaultArgs,
-        intent,
         owner
       )
       isAssignableFrom(BookmarkViewModel::class.java) -> BookmarkViewModel(owner, repository)
