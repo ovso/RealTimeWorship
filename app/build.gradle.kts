@@ -7,10 +7,11 @@ plugins {
   id("com.android.application")
   kotlin("android")
   id("kotlin-android-extensions")
-  kotlin("kapt")
+  id("kotlin-kapt")
   id("com.google.gms.google-services")
   id("com.google.android.gms.oss-licenses-plugin")
   id("dagger.hilt.android.plugin")
+  id("kotlin-android")
   id("org.ajoberstar.grgit") version "4.0.2"
 }
 
@@ -140,6 +141,9 @@ dependencies {
   // lifecycle
   implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
   implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
+  implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.2.0")
+  implementation("androidx.lifecycle:lifecycle-common-java8:2.2.0")
+  implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
 
   // activity
   implementation("androidx.activity:activity-ktx:1.2.0-alpha08")
@@ -163,6 +167,8 @@ dependencies {
 
   // dagger
   implementation("com.google.dagger:dagger:${Versions.dagger}")
+  implementation("androidx.legacy:legacy-support-v4:1.0.0")
+  implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
   kapt("com.google.dagger:dagger-compiler:${Versions.dagger}")
   implementation("com.google.dagger:dagger-android:${Versions.dagger_android}")
   implementation("com.google.dagger:dagger-android-support:${Versions.dagger_android}")
