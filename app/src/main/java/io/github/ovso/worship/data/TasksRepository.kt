@@ -55,7 +55,7 @@ class TasksRepository @Inject constructor(
     return localDataSource.getHistory(videoId)
   }
 
-  override fun addHistory(entity: HistoryEntity) {
+  override suspend fun addHistory(entity: HistoryEntity) {
     localDataSource.addHistory(entity)
   }
 

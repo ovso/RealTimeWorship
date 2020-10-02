@@ -18,6 +18,6 @@ interface Repository {
   suspend fun getHistoriesAsync(): List<HistoryEntity>
   fun getHistories(): LiveData<List<HistoryEntity>>
   fun getHistory(videoId: String): LiveData<HistoryEntity?>
-  fun addHistory(entity: HistoryEntity)
+  suspend fun addHistory(entity: HistoryEntity)
   fun delHistory(entity: HistoryEntity): Int
 }

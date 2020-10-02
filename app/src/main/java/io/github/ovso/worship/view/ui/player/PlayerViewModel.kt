@@ -7,8 +7,8 @@ import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import io.github.ovso.worship.data.TasksRepository
-import io.github.ovso.worship.data.local.model.HistoryEntity
 import io.github.ovso.worship.data.toBookmarkEntity
 import io.github.ovso.worship.data.toHistoryEntity
 import io.github.ovso.worship.data.view.PlayerModel
@@ -16,6 +16,7 @@ import io.github.ovso.worship.utils.rx.SchedulerProvider
 import io.github.ovso.worship.view.base.DisposableViewModel
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.plusAssign
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class PlayerViewModel(
@@ -51,16 +52,16 @@ class PlayerViewModel(
 
   private fun checkHistory(videoId: String) {
 
-    fun addHistory(history: HistoryEntity) {
-      Thread { repository.addHistory(history) }.start()
+    fun addHistory() {
+      viewModelScope.launch {
+        playerModel.value?.toHistoryEntity()?.let { entity ->
+          repository.addHistory(entity)
+        }
+      }
     }
 
     repository.getHistory(videoId).observe(owner, {
-      if (it == null) {
-        playerModel.value?.toHistoryEntity()?.let { historyEntity ->
-          addHistory(historyEntity)
-        }
-      }
+      if (it == null) addHistory()
     })
   }
 

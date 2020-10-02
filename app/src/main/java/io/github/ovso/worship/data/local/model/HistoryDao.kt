@@ -9,7 +9,7 @@ import androidx.room.Query
 @Dao
 interface HistoryDao {
   @Insert
-  fun addHistory(entity: HistoryEntity)
+  suspend fun addHistory(entity: HistoryEntity)
 
   @Delete
   fun delete(entity: HistoryEntity): Int

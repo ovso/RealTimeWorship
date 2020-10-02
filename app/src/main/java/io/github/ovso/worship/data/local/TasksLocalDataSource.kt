@@ -55,7 +55,7 @@ class TasksLocalDataSource @Inject constructor(private val context: Context) {
     return database.historyDao().getHistory(videoId)
   }
 
-  fun addHistory(entity: HistoryEntity) {
+  suspend fun addHistory(entity: HistoryEntity) {
     return database.historyDao().addHistory(entity)
   }
 
