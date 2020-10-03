@@ -5,6 +5,7 @@ import io.github.ovso.worship.data.local.TasksLocalDataSource
 import io.github.ovso.worship.data.local.model.BookmarkEntity
 import io.github.ovso.worship.data.local.model.ChurchEntity
 import io.github.ovso.worship.data.local.model.HistoryEntity
+import io.github.ovso.worship.data.local.model.StoryEntity
 import io.github.ovso.worship.data.remote.TasksRemoteDataSource
 import io.github.ovso.worship.data.remote.response.VideoResponse
 import io.reactivex.rxjava3.core.Single
@@ -21,6 +22,10 @@ class TasksRepository @Inject constructor(
 
   override fun churches(): Single<List<ChurchEntity>> {
     return localDataSource.churches()
+  }
+
+  override suspend fun stories(): List<StoryEntity> {
+    return localDataSource.stories()
   }
 
   override fun addBookmark(entity: BookmarkEntity) {

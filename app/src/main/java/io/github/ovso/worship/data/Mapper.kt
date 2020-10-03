@@ -6,7 +6,7 @@ import com.google.gson.JsonElement
 import io.github.ovso.worship.data.local.model.BookmarkEntity
 import io.github.ovso.worship.data.local.model.ChurchEntity
 import io.github.ovso.worship.data.local.model.HistoryEntity
-import io.github.ovso.worship.data.remote.response.VideoHeaderResponse
+import io.github.ovso.worship.data.local.model.StoryEntity
 import io.github.ovso.worship.data.remote.response.VideoResponse
 import io.github.ovso.worship.data.view.*
 import io.reactivex.rxjava3.core.Observable
@@ -121,7 +121,6 @@ fun List<VideoResponse>.toVideoModels(): List<VideoModel> {
 fun JsonElement.toVideoResponses(): List<VideoResponse> {
   try {
     val gson = Gson()
-//    val header = asJsonObject["header"].asJsonObject["c4TabbedHeaderRenderer"].toHeader()
     val videoItemsJson = asJsonObject["contents"]
       .asJsonObject["twoColumnBrowseResultsRenderer"]
       .asJsonObject["tabs"]
@@ -144,11 +143,11 @@ fun JsonElement.toVideoResponses(): List<VideoResponse> {
   }
 }
 
-fun JsonElement.toHeader(): VideoHeaderResponse {
-  return try {
-    val headerJsonString = asJsonObject["header"].asJsonObject["c4TabbedHeaderRenderer"].toString()
-    Gson().fromJson(headerJsonString, VideoHeaderResponse::class.java)
-  } catch (e: Throwable) {
-    VideoHeaderResponse()
+fun List<StoryEntity>.toStoryModels(): List<StoryItemModel> {
+  return map {
+    StoryItemModel(
+      channelId = it.channelId,
+      title = it.title
+    )
   }
 }

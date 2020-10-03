@@ -18,4 +18,7 @@ abstract class MvRxFragment(@LayoutRes val layoutId: Int) : BaseMvRxFragment(lay
     val bundle = arg?.let { Bundle().apply { putParcelable(MvRx.KEY_ARG, it) } }
     findNavController().navigate(actionId, bundle)
   }
+
+  override fun invalidate() {
+  }
 }

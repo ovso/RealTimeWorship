@@ -7,7 +7,9 @@ import io.github.ovso.worship.app.App
 import io.github.ovso.worship.data.local.model.BookmarkEntity
 import io.github.ovso.worship.data.local.model.ChurchEntity
 import io.github.ovso.worship.data.local.model.HistoryEntity
+import io.github.ovso.worship.data.local.model.StoryEntity
 import io.github.ovso.worship.extensions.fromJson
+import io.github.ovso.worship.extensions.getStringFromAssets
 import io.github.ovso.worship.utils.AssetsUtil
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
@@ -21,6 +23,12 @@ class TasksLocalDataSource @Inject constructor(private val context: Context) {
         Gson().fromJson<List<ChurchEntity>>(it)
       } ?: listOf()
     }
+  }
+
+  suspend fun stories(): List<StoryEntity> {
+    return context.getStringFromAssets("story.json")?.let {
+      Gson().fromJson<List<StoryEntity>>(it)
+    } ?: listOf()
   }
 
   fun addBookmark(entity: BookmarkEntity) {
