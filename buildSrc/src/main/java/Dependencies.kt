@@ -10,7 +10,6 @@ object DefaultConfig {
 object Versions {
   const val gradle = "4.1.0-rc03"
   const val kotlin = "1.4.10"
-  const val appcompat = "1.2.0"
   const val material = "1.2.1"
   const val viewpager2 = "1.0.0"
   const val constraintlayout = "2.0.1"
@@ -35,8 +34,9 @@ object Versions {
   const val autodispose = "2.0.0"
   const val coroutine_core = "1.3.9"
   const val coroutine_android = "1.3.8"
+  const val appcompat = "1.2.0"
 
-  const val mvrx = "2.0.0-beta1"
+  const val mvrx = "1.5.1"
 
   const val hilt_android = "2.28.1-alpha"
   const val hilt_viewmodel = "1.0.0-alpha02"
