@@ -43,12 +43,14 @@ class VideoFragment :
   }
 
   private fun setupRecyclerView() {
-    binding.rvVideo.defaultDivider()
-    binding.rvVideo.adapter = adapter
+    binding.rvVideo.apply {
+      defaultDivider()
+      adapter = this@VideoFragment.adapter
+    }
   }
 
   private fun observe() {
-    viewModel.items.observe(viewLifecycleOwner, Observer {
+    viewModel.items.observe(viewLifecycleOwner, {
       (binding.rvVideo.adapter as? VideoAdapter)?.submitList(it)
     })
     viewModel.isLoading.observe(viewLifecycleOwner, Observer {
@@ -57,7 +59,7 @@ class VideoFragment :
         else -> stopShimmer()
       }
     })
-    viewModel.title.observe(viewLifecycleOwner, Observer { setTitle(it) })
+    viewModel.title.observe(viewLifecycleOwner, { setTitle(it) })
   }
 
   private fun stopShimmer() {

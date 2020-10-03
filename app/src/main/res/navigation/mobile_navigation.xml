@@ -50,5 +50,9 @@
         android:id="@+id/navigation_story"
         android:name="io.github.ovso.worship.view.ui.story.StoryFragment"
         android:label="@string/title_story"
-        tools:layout="@layout/story_fragment" />
+        tools:layout="@layout/story_fragment" >
+        <action
+            android:id="@+id/action_navigation_story_to_videoFragment"
+            app:destination="@id/videoFragment" />
+    </fragment>
 </navigation>
