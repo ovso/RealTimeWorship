@@ -12,7 +12,7 @@ class StoryFragment : BaseMvRxFragment(R.layout.story_fragment) {
 
   private val binding by viewBinding(StoryFragmentBinding::bind)
 
-  private val viewModel: StoryViewModel by fragmentViewModel(StoryViewModel::class)
+  private val viewModel: StoryViewModel by fragmentViewModel()
 
   override fun invalidate() {
 

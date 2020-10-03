@@ -16,7 +16,7 @@ object FragmentModule {
 
   @Suppress("UNCHECKED_CAST")
   @Provides
-  fun provideHistoryViewModel(f: Fragment, repository: TasksRepository): BookmarkViewModel {
+  fun provideBookmarkViewModel(f: Fragment, repository: TasksRepository): BookmarkViewModel {
     return ViewModelProvider(f, object : ViewModelProvider.Factory {
       override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return BookmarkViewModel(f, repository) as T
