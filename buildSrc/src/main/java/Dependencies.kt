@@ -12,8 +12,8 @@ object Versions {
   const val kotlin = "1.4.10"
   const val appcompat = "1.2.0"
   const val material = "1.2.1"
-  const val viewpager = "1.0.0"
-  const val constraintlayout = "1.0.0"
+  const val viewpager2 = "1.0.0"
+  const val constraintlayout = "2.0.1"
   const val annotation = "1.1.0"
   const val lifecycle = "2.2.0"
   const val activity_ktx = "1.2.0-alpha08"
@@ -33,6 +33,10 @@ object Versions {
   const val rxjava3_rxandroid = "3.0.0"
   const val rxjava3_rxkotlin = "3.0.0"
   const val autodispose = "2.0.0"
+  const val coroutine_core = "1.3.9"
+  const val coroutine_android = "1.3.8"
+
+  const val mvrx = "2.0.0-beta1"
 
   const val hilt_android = "2.28.1-alpha"
   const val hilt_viewmodel = "1.0.0-alpha02"

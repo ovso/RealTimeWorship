@@ -120,55 +120,53 @@ dependencies {
   implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
   // coroutines
-  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.8")
-  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.8")
+  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutine_core}")
+  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine_android}")
 
   // kotlin
   implementation("org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}")
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}")
 
   // support library
-  implementation("androidx.appcompat:appcompat:1.2.0")
-  implementation("com.google.android.material:material:1.2.1")
+  implementation("androidx.appcompat:appcompat:${Versions.appcompat}")
+  implementation("com.google.android.material:material:${Versions.material}")
 
   // view
-  implementation("androidx.viewpager2:viewpager2:1.0.0")
-  implementation("androidx.constraintlayout:constraintlayout:2.0.1")
+  implementation("androidx.viewpager2:viewpager2:${Versions.viewpager2}")
+  implementation("androidx.constraintlayout:constraintlayout:${Versions.constraintlayout}")
 
   // annotation
-  implementation("androidx.annotation:annotation:1.1.0")
+  implementation("androidx.annotation:annotation:${Versions.annotation}")
 
   // lifecycle
-  implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-  implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
-  implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.2.0")
-  implementation("androidx.lifecycle:lifecycle-common-java8:2.2.0")
-  implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
+  implementation("androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}")
+  implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}")
+  implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}")
+  implementation("androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle}")
+  implementation("androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}")
 
   // activity
-  implementation("androidx.activity:activity-ktx:1.2.0-alpha08")
+  implementation("androidx.activity:activity-ktx:${Versions.activity_ktx}")
 
   // fragment
-  implementation("androidx.fragment:fragment-ktx:1.3.0-alpha08")
+  implementation("androidx.fragment:fragment-ktx:${Versions.fragment_ktx}")
 
   // navigation
-  implementation("androidx.navigation:navigation-ui-ktx:2.3.0")
-  implementation("androidx.navigation:navigation-fragment-ktx:2.3.0")
+  implementation("androidx.navigation:navigation-ui-ktx:${Versions.navigation}")
+  implementation("androidx.navigation:navigation-fragment-ktx:${Versions.navigation}")
 
   // ktx
-  implementation("androidx.core:core-ktx:1.3.1")
+  implementation("androidx.core:core-ktx:${Versions.core_ktx}")
 
   // startup
-  implementation("androidx.startup:startup-runtime:1.0.0-beta01")
+  implementation("androidx.startup:startup-runtime:${Versions.startup}")
 
   // paging
-  implementation("androidx.paging:paging-runtime-ktx:2.1.2")
-  implementation("androidx.paging:paging-rxjava2-ktx:2.1.2")
+  implementation("androidx.paging:paging-runtime-ktx:${Versions.paging}")
+  implementation("androidx.paging:paging-rxjava2-ktx:${Versions.paging}")
 
   // dagger
   implementation("com.google.dagger:dagger:${Versions.dagger}")
-  implementation("androidx.legacy:legacy-support-v4:1.0.0")
-  implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
   kapt("com.google.dagger:dagger-compiler:${Versions.dagger}")
   implementation("com.google.dagger:dagger-android:${Versions.dagger_android}")
   implementation("com.google.dagger:dagger-android-support:${Versions.dagger_android}")
@@ -203,6 +201,9 @@ dependencies {
   implementation("io.reactivex.rxjava3:rxandroid:${Versions.rxjava3_rxandroid}")
   implementation("io.reactivex.rxjava3:rxkotlin:${Versions.rxjava3_rxkotlin}")
   implementation("com.uber.autodispose2:autodispose:${Versions.autodispose}")
+
+  // mvrx
+  implementation("com.airbnb.android:mvrx:${Versions.mvrx}")
 
   // licenses
   implementation("com.google.android.gms:play-services-oss-licenses:${Versions.licenses}")
