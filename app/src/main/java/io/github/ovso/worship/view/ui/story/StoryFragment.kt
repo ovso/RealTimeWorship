@@ -7,6 +7,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.github.ovso.worship.R
 import io.github.ovso.worship.databinding.StoryFragmentBinding
 import io.github.ovso.worship.extensions.defaultDivider
+import io.github.ovso.worship.extensions.showBottomNav
 import io.github.ovso.worship.view.base.mvrx.MvRxFragment
 import io.github.ovso.worship.view.base.viewBinding
 import io.github.ovso.worship.view.ui.story.adapter.StoryAdapter
@@ -40,5 +41,10 @@ class StoryFragment : MvRxFragment(R.layout.story_fragment) {
     viewModel.selectSubscribe(owner, StoryState::items) {
       adapter.submitList(it)
     }
+  }
+
+  override fun onResume() {
+    super.onResume()
+    showBottomNav()
   }
 }
