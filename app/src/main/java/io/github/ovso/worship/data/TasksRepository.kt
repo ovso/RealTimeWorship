@@ -17,7 +17,7 @@ class TasksRepository @Inject constructor(
 ) : Repository {
 
   override fun videos(channelId: String): Single<List<VideoResponse>> {
-    return remoteDataSource.videos(channelId)
+    return remoteDataSource.videos(TasksRemoteDataSource.Id.Channel(channelId))
   }
 
   override fun churches(): Single<List<ChurchEntity>> {

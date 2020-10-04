@@ -31,4 +31,53 @@ class TasksRemoteDataSource @Inject constructor() {
       json.toVideoResponses()
     }
   }
+
+  fun videos(channel:Id.Channel): Single<List<VideoResponse>> {
+    return Single.fromCallable {
+      val document = Jsoup.connect("https://www.youtube.com/channel/${channel.id}/videos")
+        .timeout(60 * 1000)
+        .ignoreHttpErrors(true).get()
+      val scriptElements = document.getElementsByTag("script")
+      val prefix = "{\"responseContext\":{"
+      val itemsElement = scriptElements.first { it.data().contains(prefix) }
+      val startIndex = itemsElement.data().indexOf(prefix)
+      val endIndex = itemsElement.data().lastIndexOf("window[\"ytInitialPlayerResponse")
+      val fullJsonString = itemsElement.data().substring(startIndex, endIndex)
+      val indexOfLastSemicolon = fullJsonString.indexOfLast {
+        it == ";".single()
+      }
+      val stableJsonString = fullJsonString.substring(0, indexOfLastSemicolon)
+      val json = GsonBuilder().setLenient().create().fromJson(
+        stableJsonString, JsonElement::class.java
+      )
+      json.toVideoResponses()
+    }
+  }
+
+  fun videos(payList: Id.PlayList): Single<List<VideoResponse>> {
+    return Single.fromCallable {
+      val document = Jsoup.connect("https://www.youtube.com/playlist?list=${payList.id}")
+        .timeout(60 * 1000)
+        .ignoreHttpErrors(true).get()
+      val scriptElements = document.getElementsByTag("script")
+      val prefix = "{\"responseContext\":{"
+      val itemsElement = scriptElements.first { it.data().contains(prefix) }
+      val startIndex = itemsElement.data().indexOf(prefix)
+      val endIndex = itemsElement.data().lastIndexOf("window[\"ytInitialPlayerResponse")
+      val fullJsonString = itemsElement.data().substring(startIndex, endIndex)
+      val indexOfLastSemicolon = fullJsonString.indexOfLast {
+        it == ";".single()
+      }
+      val stableJsonString = fullJsonString.substring(0, indexOfLastSemicolon)
+      val json = GsonBuilder().setLenient().create().fromJson(
+        stableJsonString, JsonElement::class.java
+      )
+      json.toVideoResponses()
+    }
+  }
+
+  sealed class Id(val id: String) {
+    class Channel(id: String) : Id(id)
+    class PlayList(id: String) : Id(id)
+  }
 }

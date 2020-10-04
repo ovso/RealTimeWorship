@@ -146,7 +146,7 @@ fun JsonElement.toVideoResponses(): List<VideoResponse> {
 fun List<StoryEntity>.toStoryModels(): List<StoryItemModel> {
   return map {
     StoryItemModel(
-      channelId = it.channelId,
+      id = it.id,
       title = it.title
     )
   }

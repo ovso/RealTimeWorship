@@ -19,7 +19,7 @@ class StoryViewHolder private constructor(
       it.findNavController().navigate(
         R.id.videoFragment,
         bundleOf(
-          "channel_id" to item.channelId,
+          "channel_id" to item.id,
           "title" to item.title
         )
       )
