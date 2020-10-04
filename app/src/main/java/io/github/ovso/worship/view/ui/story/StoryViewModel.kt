@@ -19,7 +19,7 @@ data class StoryState(
 ) : MvRxState
 
 class StoryViewModel(
-  private val initialState: StoryState,
+  initialState: StoryState,
   private val repository: Repository
 ) : MvRxViewModel<StoryState>(initialState) {
 

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.github.ovso.worship.data.TasksRepository
+import io.github.ovso.worship.data.remote.TasksRemoteDataSource
 import io.github.ovso.worship.data.toVideoModels
 import io.github.ovso.worship.data.view.VideoModel
 import io.github.ovso.worship.utils.rx.SchedulerProvider
@@ -29,7 +30,7 @@ class VideoViewModel(
     }
   }
 
-  private fun reqVideos(channelId: String?) {
+  private fun reqVideos(channelId: String) {
     _isLoading.value = true
     fun onFailure(t: Throwable) {
       println(t.message)
@@ -42,7 +43,7 @@ class VideoViewModel(
       _isLoading.value = false
     }
 
-    tasksRepository.videos(channelId!!)
+    tasksRepository.videos(TasksRemoteDataSource.CategoryId.ChannelId(channelId))
       .map { response -> response.toVideoModels() }
       .subscribeOn(SchedulerProvider.io())
       .observeOn(SchedulerProvider.ui())

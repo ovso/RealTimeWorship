@@ -30,7 +30,7 @@ class RepositoryTest {
       println("items size = ${items.count()}")
     }
 
-    tasksRemoteDataSource.videos(channelId)
+    tasksRemoteDataSource.videos(TasksRemoteDataSource.CategoryId.ChannelId(channelId))
       .map { it.toVideoModels() }
       .subscribeOn(SchedulerProvider.io())
       .observeOn(SchedulerProvider.ui())

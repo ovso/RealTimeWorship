@@ -16,8 +16,12 @@ class TasksRepository @Inject constructor(
   private val localDataSource: TasksLocalDataSource
 ) : Repository {
 
-  override fun videos(channelId: String): Single<List<VideoResponse>> {
-    return remoteDataSource.videos(TasksRemoteDataSource.Id.Channel(channelId))
+  override fun videos(videoCategory: TasksRemoteDataSource.CategoryId.ChannelId): Single<List<VideoResponse>> {
+    return remoteDataSource.videos(videoCategory)
+  }
+
+  override fun videos(videoCategory: TasksRemoteDataSource.CategoryId.PlayListId): Single<List<VideoResponse>> {
+    return remoteDataSource.videos(videoCategory)
   }
 
   override fun churches(): Single<List<ChurchEntity>> {
