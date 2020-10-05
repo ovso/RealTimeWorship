@@ -6,6 +6,7 @@ import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import io.github.ovso.worship.R
+import io.github.ovso.worship.data.toVideoDto
 import io.github.ovso.worship.data.view.StoryItemModel
 import io.github.ovso.worship.databinding.ItemStoryBinding
 
@@ -18,10 +19,9 @@ class StoryViewHolder private constructor(
     binding.root.setOnClickListener {
       it.findNavController().navigate(
         R.id.videoFragment,
-        bundleOf(
-          "channel_id" to item.id,
-          "title" to item.title
-        )
+        bundleOf().apply {
+          putParcelable("video_dto", item.toVideoDto())
+        }
       )
     }
 /*

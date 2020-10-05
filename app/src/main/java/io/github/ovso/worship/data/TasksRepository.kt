@@ -24,6 +24,17 @@ class TasksRepository @Inject constructor(
     return remoteDataSource.videos(videoCategory)
   }
 
+  override fun videos(videoCategory: TasksRemoteDataSource.CategoryId): Single<List<VideoResponse>> {
+    return when (videoCategory) {
+      is TasksRemoteDataSource.CategoryId.ChannelId -> {
+        videos(videoCategory)
+      }
+      is TasksRemoteDataSource.CategoryId.PlayListId -> {
+        videos(videoCategory)
+      }
+    }
+  }
+
   override fun churches(): Single<List<ChurchEntity>> {
     return localDataSource.churches()
   }

@@ -12,6 +12,7 @@ import io.reactivex.rxjava3.core.Single
 interface Repository {
   fun videos(videoCategory:TasksRemoteDataSource.CategoryId.ChannelId): Single<List<VideoResponse>>
   fun videos(videoCategory:TasksRemoteDataSource.CategoryId.PlayListId): Single<List<VideoResponse>>
+  fun videos(videoCategory:TasksRemoteDataSource.CategoryId): Single<List<VideoResponse>>
   fun churches(): Single<List<ChurchEntity>>
   suspend fun stories(): List<StoryEntity>
   fun addBookmark(entity: BookmarkEntity)
