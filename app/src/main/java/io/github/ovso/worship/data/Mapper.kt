@@ -109,17 +109,27 @@ fun List<ChurchEntity>.toChurchModels(): List<HomeItemModel> {
 }
 
 fun List<VideoResponse>.toVideoModels(): List<VideoModel> {
-  return this.toObservable().map {
-    @Suppress("USELESS_ELVIS")
-    VideoModel(
-      title = it.gridVideoRenderer.title.runs.first().text ?: "",
-      thumbnail = it.gridVideoRenderer.thumbnail.thumbnails.last().url,
-      videoId = it.gridVideoRenderer.videoId
-    )
+  return toObservable().map {
+    if(it.gridVideoRenderer != null) {
+      @Suppress("USELESS_ELVIS")
+      VideoModel(
+        title = it.gridVideoRenderer.title.runs.first().text ?: "",
+        thumbnail = it.gridVideoRenderer.thumbnail.thumbnails.last().url,
+        videoId = it.gridVideoRenderer.videoId
+      )
+    } else {
+      @Suppress("USELESS_ELVIS")
+      VideoModel(
+        title = it.playlistVideoRenderer.title.runs.first().text ?: "",
+        thumbnail = it.playlistVideoRenderer.thumbnail.thumbnails.last().url,
+        videoId = it.playlistVideoRenderer.videoId
+      )
+
+    }
   }.toList().blockingGet()
 }
 
-fun JsonElement.toVideoResponses(): List<VideoResponse> {
+fun JsonElement.channelJsonToVideoResponses(): List<VideoResponse> {
   try {
     val gson = Gson()
     val videoItemsJson = asJsonObject["contents"]
@@ -140,6 +150,32 @@ fun JsonElement.toVideoResponses(): List<VideoResponse> {
       gson.fromJson(it.toString(), VideoResponse::class.java)
     }.toList().blockingGet()
   } catch (e: Throwable) {
+    return listOf()
+  }
+}
+fun JsonElement.playlistJsonToVideoResponses(): List<VideoResponse> {
+  try {
+    val gson = Gson()
+    val videoItemsJson = asJsonObject["contents"]
+      .asJsonObject["twoColumnBrowseResultsRenderer"]
+      .asJsonObject["tabs"]
+      .asJsonArray[0]
+      .asJsonObject["tabRenderer"]
+      .asJsonObject["content"]
+      .asJsonObject["sectionListRenderer"]
+      .asJsonObject["contents"]
+      .asJsonArray.first()
+      .asJsonObject["itemSectionRenderer"]
+      .asJsonObject["contents"]
+      .asJsonArray.first()
+      .asJsonObject["playlistVideoListRenderer"]
+      .asJsonObject["contents"]
+      .asJsonArray
+    return Observable.fromIterable(videoItemsJson).map {
+      gson.fromJson(it.toString(), VideoResponse::class.java)
+    }.toList().blockingGet()
+  } catch (e: Throwable) {
+    println(e)
     return listOf()
   }
 }

@@ -4,7 +4,7 @@ package io.github.ovso.worship
 
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonElement
-import io.github.ovso.worship.data.toVideoResponses
+import io.github.ovso.worship.data.playlistJsonToVideoResponses
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.jsoup.Jsoup
@@ -35,7 +35,8 @@ class JsoupTest {
     val json = GsonBuilder().setLenient().create().fromJson(
       stableJsonString, JsonElement::class.java
     )
-    json.toVideoResponses()
+    val a = json.playlistJsonToVideoResponses()
+    println(a)
   }
 
   object SchedulerProvider {
