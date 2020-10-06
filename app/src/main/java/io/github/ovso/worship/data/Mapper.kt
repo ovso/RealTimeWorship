@@ -46,7 +46,7 @@ fun PlayerModel.toBookmarkEntity(): BookmarkEntity {
   )
 }
 
-suspend fun PlayerModel.toHistoryEntity(): HistoryEntity {
+fun PlayerModel.toHistoryEntity(): HistoryEntity {
   return HistoryEntity(
     title = this.title,
     thumbnail = this.thumbnail,
