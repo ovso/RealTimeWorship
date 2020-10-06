@@ -3,15 +3,31 @@
 ## Architecture
 
 - MVVM
-- RxJava3
-- Room + LiveData
+- MvRx
 - Repository pattern
+
+## DI
+
+- Hilt
+- Custom Service locator(ViewModel)
+
+## Async
+
+- RxJava3
+- Coroutine
+- Room + LiveData, Coroutine
+
+## Gradle
+
+- Kotlin DSL
+- Automatic VersionCode
+
+## KTX
+
 - Fragment-ktx
 - Activity-ktx
-- Automatic VersionCode
-- Kotlin DSL
-- Custom Service locator(ViewModel)
-- Hilt
+
+## Other
+
 - Navigation UI
 - Proguard
-- Coroutine
