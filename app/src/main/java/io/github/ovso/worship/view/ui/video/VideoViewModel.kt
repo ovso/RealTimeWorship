@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.github.ovso.worship.data.TasksRepository
-import io.github.ovso.worship.data.dto.VideoDto
+import io.github.ovso.worship.data.args.VideoArgs
 import io.github.ovso.worship.data.remote.TasksRemoteDataSource
 import io.github.ovso.worship.data.toVideoModels
 import io.github.ovso.worship.data.view.VideoModel
@@ -26,7 +26,7 @@ class VideoViewModel(
   val title: LiveData<String> = _title
 
   init {
-    defaultArgs?.getParcelable<VideoDto>("video_dto")?.let {
+    defaultArgs?.getParcelable<VideoArgs>("args")?.let {
       _title.value = it.title
       reqVideos(it.id, it.category)
     }
@@ -49,6 +49,7 @@ class VideoViewModel(
       "channel" -> TasksRemoteDataSource.CategoryId.ChannelId(id)
       else -> TasksRemoteDataSource.CategoryId.PlayListId(id)
     }
+
     tasksRepository.videos(categoryId)
       .map { response -> response.toVideoModels() }
       .subscribeOn(SchedulerProvider.io())

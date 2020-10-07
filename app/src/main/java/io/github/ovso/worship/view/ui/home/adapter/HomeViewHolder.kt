@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import io.github.ovso.worship.R
+import io.github.ovso.worship.data.toVideoArgs
 import io.github.ovso.worship.data.view.HomeItemModel
 import io.github.ovso.worship.databinding.ItemHomeBinding
 
@@ -27,7 +28,9 @@ class HomeViewHolder(
     itemView.setOnClickListener {
       it.findNavController().navigate(
         R.id.videoFragment,
-        bundleOf("channel_id" to item.channelId, "title" to item.title)
+        bundleOf(
+          "args" to item.toVideoArgs()
+        )
       )
     }
   }

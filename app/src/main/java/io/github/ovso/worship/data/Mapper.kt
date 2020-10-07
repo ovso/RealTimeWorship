@@ -3,7 +3,7 @@ package io.github.ovso.worship.data
 import androidx.annotation.WorkerThread
 import com.google.gson.Gson
 import com.google.gson.JsonElement
-import io.github.ovso.worship.data.dto.VideoDto
+import io.github.ovso.worship.data.args.VideoArgs
 import io.github.ovso.worship.data.local.model.BookmarkEntity
 import io.github.ovso.worship.data.local.model.ChurchEntity
 import io.github.ovso.worship.data.local.model.HistoryEntity
@@ -190,10 +190,18 @@ fun List<StoryEntity>.toStoryModels(): List<StoryItemModel> {
   }
 }
 
-fun StoryItemModel.toVideoDto(): VideoDto {
-  return VideoDto(
+fun StoryItemModel.toVideoArgs(): VideoArgs {
+  return VideoArgs(
     id = id,
     title = title,
     category = category
+  )
+}
+
+fun HomeItemModel.toVideoArgs(): VideoArgs {
+  return VideoArgs(
+    id = channelId,
+    title = title,
+    category = "channel"
   )
 }

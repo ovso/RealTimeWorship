@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class VideoResponse(
   @SerializedName("gridVideoRenderer")
-  val gridVideoRenderer: GridVideoRenderer,
+  val gridVideoRenderer: GridVideoRenderer?,
   @SerializedName("playlistVideoRenderer")
   val playlistVideoRenderer: GridVideoRenderer
 )
