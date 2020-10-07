@@ -29,6 +29,8 @@ class VideoViewModel(
     defaultArgs?.getParcelable<VideoArgs>("args")?.let {
       _title.value = it.title
       reqVideos(it.id, it.category)
+    } ?: run {
+      _isLoading.value = false
     }
   }
 
