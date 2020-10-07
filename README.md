@@ -15,7 +15,7 @@
 
 - RxJava3
 - Coroutine
-- Room + LiveData, Coroutine
+- Room + LiveData( or Coroutine)
 
 ## Gradle
 
