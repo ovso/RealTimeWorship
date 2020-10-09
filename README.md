@@ -2,8 +2,8 @@
 
 ## Architecture
 
-- MVVM
-- MvRx
+- MVVM + DataBinding
+- MvRx + ViewBinding
 - Repository pattern
 
 ## DI
@@ -22,12 +22,9 @@
 - Kotlin DSL
 - Automatic VersionCode
 
-## KTX
-
-- Fragment-ktx
-- Activity-ktx
-
 ## Other
 
 - Navigation UI
 - Proguard
+- Fragment-ktx
+- Activity-ktx
