@@ -110,7 +110,7 @@ fun List<ChurchEntity>.toChurchModels(): List<HomeItemModel> {
 
 fun List<VideoResponse>.toVideoModels(): List<VideoModel> {
   return toObservable().map {
-    if(it.gridVideoRenderer != null) {
+    if (it.gridVideoRenderer != null) {
       @Suppress("USELESS_ELVIS")
       VideoModel(
         title = it.gridVideoRenderer.title.runs.first().text ?: "",
@@ -153,6 +153,7 @@ fun JsonElement.channelJsonToVideoResponses(): List<VideoResponse> {
     return listOf()
   }
 }
+
 fun JsonElement.playlistJsonToVideoResponses(): List<VideoResponse> {
   try {
     val gson = Gson()
@@ -180,6 +181,7 @@ fun JsonElement.playlistJsonToVideoResponses(): List<VideoResponse> {
   }
 }
 
+@WorkerThread
 fun List<StoryEntity>.toStoryModels(): List<StoryItemModel> {
   return map {
     StoryItemModel(
@@ -187,6 +189,8 @@ fun List<StoryEntity>.toStoryModels(): List<StoryItemModel> {
       title = it.title,
       category = it.category
     )
+  }.sortedBy {
+    it.title
   }
 }
 
