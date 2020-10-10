@@ -14,6 +14,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.toObservable
 
+@WorkerThread
 fun VideoModel.toPlayerModel(): PlayerModel {
   return PlayerModel(
     title = this.title,
@@ -22,6 +23,7 @@ fun VideoModel.toPlayerModel(): PlayerModel {
   )
 }
 
+@WorkerThread
 fun BookmarkModel.toPlayerModel(): PlayerModel {
   return PlayerModel(
     title = this.title,
@@ -30,6 +32,7 @@ fun BookmarkModel.toPlayerModel(): PlayerModel {
   )
 }
 
+@WorkerThread
 fun BookmarkModel.toEntity(): BookmarkEntity {
   return BookmarkEntity(
     title = this.title,
@@ -38,6 +41,7 @@ fun BookmarkModel.toEntity(): BookmarkEntity {
   )
 }
 
+@WorkerThread
 fun PlayerModel.toBookmarkEntity(): BookmarkEntity {
   return BookmarkEntity(
     title = this.title,
@@ -46,6 +50,7 @@ fun PlayerModel.toBookmarkEntity(): BookmarkEntity {
   )
 }
 
+@WorkerThread
 fun PlayerModel.toHistoryEntity(): HistoryEntity {
   return HistoryEntity(
     title = this.title,
@@ -54,6 +59,7 @@ fun PlayerModel.toHistoryEntity(): HistoryEntity {
   )
 }
 
+@WorkerThread
 fun BookmarkEntity.toBookmarkModel(): BookmarkModel {
   return BookmarkModel(
     title = this.title,
@@ -69,6 +75,7 @@ fun List<BookmarkEntity>.toBookmarkModels(): Single<List<BookmarkModel>> {
   }.toList()
 }
 
+@WorkerThread
 fun HistoryEntity.toHistoryModel(): HistoryModel {
   return HistoryModel(
     title = this.title,
@@ -77,12 +84,14 @@ fun HistoryEntity.toHistoryModel(): HistoryModel {
   )
 }
 
+@WorkerThread
 fun List<HistoryEntity>.toHistoryModels(): List<HistoryModel> {
   return toObservable().map {
     it.toHistoryModel()
   }.toList().blockingGet()
 }
 
+@WorkerThread
 fun HistoryModel.toPlayerModel(): PlayerModel {
   return PlayerModel(
     title = this.title,
@@ -91,6 +100,7 @@ fun HistoryModel.toPlayerModel(): PlayerModel {
   )
 }
 
+@WorkerThread
 fun HistoryModel.toEntity(): HistoryEntity {
   return HistoryEntity(
     title = this.title,
@@ -99,6 +109,7 @@ fun HistoryModel.toEntity(): HistoryEntity {
   )
 }
 
+@WorkerThread
 fun List<ChurchEntity>.toChurchModels(): List<HomeItemModel> {
   return this.toObservable().map {
     HomeItemModel(
@@ -108,6 +119,7 @@ fun List<ChurchEntity>.toChurchModels(): List<HomeItemModel> {
   }.toList().blockingGet()
 }
 
+@WorkerThread
 fun List<VideoResponse>.toVideoModels(): List<VideoModel> {
   return toObservable().map {
     if (it.gridVideoRenderer != null) {
@@ -129,6 +141,7 @@ fun List<VideoResponse>.toVideoModels(): List<VideoModel> {
   }.toList().blockingGet()
 }
 
+@WorkerThread
 fun JsonElement.channelJsonToVideoResponses(): List<VideoResponse> {
   try {
     val gson = Gson()
@@ -154,6 +167,7 @@ fun JsonElement.channelJsonToVideoResponses(): List<VideoResponse> {
   }
 }
 
+@WorkerThread
 fun JsonElement.playlistJsonToVideoResponses(): List<VideoResponse> {
   try {
     val gson = Gson()
@@ -194,6 +208,7 @@ fun List<StoryEntity>.toStoryModels(): List<StoryItemModel> {
   }
 }
 
+@WorkerThread
 fun StoryItemModel.toVideoArgs(): VideoArgs {
   return VideoArgs(
     id = id,
@@ -202,6 +217,7 @@ fun StoryItemModel.toVideoArgs(): VideoArgs {
   )
 }
 
+@WorkerThread
 fun HomeItemModel.toVideoArgs(): VideoArgs {
   return VideoArgs(
     id = channelId,
