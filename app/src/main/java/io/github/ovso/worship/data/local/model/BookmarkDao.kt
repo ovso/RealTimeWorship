@@ -12,7 +12,7 @@ interface BookmarkDao {
   fun insert(repo: BookmarkEntity)
 
   @Delete
-  fun delete(repo: BookmarkEntity): Int
+  suspend fun delete(repo: BookmarkEntity): Int
 
   @Query("delete from bookmark")
   fun removeAll()

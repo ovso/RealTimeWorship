@@ -1,20 +1,23 @@
 package io.github.ovso.worship.utils.rx
 
+import io.github.ovso.worship.data.view.BookmarkModel
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.PublishSubject
 
 object RxBus {
-  private val bus = PublishSubject.create<Any>()
 
-  fun send(o: Any) {
-    bus.onNext(o)
+  private val publisher = PublishSubject.create<Any>()
+
+  fun publish(event: Any) {
+    publisher.onNext(event)
   }
 
-  fun toObservable(): Observable<Any> {
-    return bus
-  }
+  // Listen should return an Observable and not the publisher
+  // Using ofType we filter only events that match that class type
+  fun <T> listen(eventType: Class<T>): Observable<T> = publisher.ofType(eventType)
+}
 
-  fun hasObservable(): Boolean {
-    return bus.hasObservers()
-  }
+class RxBusEvent {
+
+  data class OnBookmarkItemDelClick(val item: BookmarkModel)
 }

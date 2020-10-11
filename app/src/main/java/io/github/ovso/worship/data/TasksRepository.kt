@@ -47,7 +47,7 @@ class TasksRepository @Inject constructor(
     localDataSource.addBookmark(entity)
   }
 
-  override fun delBookmark(entity: BookmarkEntity): Int {
+  override suspend fun delBookmark(entity: BookmarkEntity): Int {
     return localDataSource.delBookmark(entity)
   }
 

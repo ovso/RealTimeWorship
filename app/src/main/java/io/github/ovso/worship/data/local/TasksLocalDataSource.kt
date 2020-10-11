@@ -25,7 +25,7 @@ class TasksLocalDataSource @Inject constructor(private val context: Context) {
     }
   }
 
-  suspend fun stories(): List<StoryEntity> {
+  fun stories(): List<StoryEntity> {
     return context.getStringFromAssets("story.json")?.let {
       Gson().fromJson<List<StoryEntity>>(it)
     } ?: listOf()
@@ -35,7 +35,7 @@ class TasksLocalDataSource @Inject constructor(private val context: Context) {
     database.bookmarkDao().insert(entity)
   }
 
-  fun delBookmark(entity: BookmarkEntity): Int {
+  suspend fun delBookmark(entity: BookmarkEntity): Int {
     return database.bookmarkDao().delete(entity)
   }
 

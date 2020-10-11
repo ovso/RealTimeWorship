@@ -16,7 +16,7 @@ interface Repository {
   fun churches(): Single<List<ChurchEntity>>
   suspend fun stories(): List<StoryEntity>
   fun addBookmark(entity: BookmarkEntity)
-  fun delBookmark(entity: BookmarkEntity): Int
+  suspend fun delBookmark(entity: BookmarkEntity): Int
   fun getBookmark(videoId: String): LiveData<BookmarkEntity?>
   fun getBookmarks(): LiveData<List<BookmarkEntity>>
   suspend fun getBookmarksAsync(): List<BookmarkEntity>

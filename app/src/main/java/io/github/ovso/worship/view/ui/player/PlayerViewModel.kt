@@ -16,6 +16,7 @@ import io.github.ovso.worship.utils.rx.SchedulerProvider
 import io.github.ovso.worship.view.base.DisposableViewModel
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.plusAssign
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -91,17 +92,12 @@ class PlayerViewModel(
   }
 
   private fun delBookmark(it: PlayerModel) {
-    fun onSuccess(result: Int) {
-      Timber.d("onSuccess = $result")
+    val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
+      Timber.e(throwable)
     }
-
-    fun onFailure(t: Throwable) {
-      Timber.d("onFailure = ${t.printStackTrace()}")
+    viewModelScope.launch(exceptionHandler) {
+      val result = repository.delBookmark(it.toBookmarkEntity())
+      Timber.d("result = $result")
     }
-
-    compositeDisposable += Single.fromCallable {
-      repository.delBookmark(it.toBookmarkEntity())
-    }.subscribeOn(SchedulerProvider.io())
-      .subscribe(::onSuccess, ::onFailure)
   }
 }
