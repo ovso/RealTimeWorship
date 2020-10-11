@@ -30,15 +30,19 @@ class BookmarkViewModel constructor(
   }
 
   private fun observe() {
-    RxBus.listen(RxBusEvent.OnBookmarkItemDelClick::class.java).subscribe {
-      val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
-        Timber.e(throwable)
-      }
-      viewModelScope.launch(exceptionHandler) {
-        val result = repository.delBookmark(it.item.toEntity())
-        Timber.d("result = $result")
-      }
-    }.addTo(compositeDisposable)
+    RxBus.listen(RxBusEvent.OnBookmarkItemDelClick::class.java)
+      .subscribe(::delBookmark)
+      .addTo(compositeDisposable)
+  }
+
+  private fun delBookmark(it: RxBusEvent.OnBookmarkItemDelClick) {
+    val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+      Timber.e(throwable)
+    }
+    viewModelScope.launch(exceptionHandler) {
+      val result = repository.delBookmark(it.item.toEntity())
+      Timber.d("result = $result")
+    }
   }
 
   private fun reqBookmarks() {
