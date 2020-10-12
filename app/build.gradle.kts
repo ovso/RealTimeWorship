@@ -136,7 +136,7 @@ dependencies {
   implementation("androidx.constraintlayout:constraintlayout:${Versions.constraintlayout}")
 
   // annotation
-  implementation("androidx.annotation:annotation:${Versions.annotation}")
+  implementation("androidx.annotation:annotation:1.1.0")
 
   // lifecycle
   implementation("androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}")
@@ -146,7 +146,7 @@ dependencies {
   implementation("androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}")
 
   // activity
-  implementation("androidx.activity:activity-ktx:${Versions.activity_ktx}")
+  implementation("androidx.activity:activity-ktx:1.1.0")
 
   // fragment
   implementation("androidx.fragment:fragment-ktx:${Versions.fragment_ktx}")
@@ -167,6 +167,7 @@ dependencies {
 
   // dagger
   implementation("com.google.dagger:dagger:${Versions.dagger}")
+  implementation(project(mapOf("path" to ":nativetemplates")))
   kapt("com.google.dagger:dagger-compiler:${Versions.dagger}")
   implementation("com.google.dagger:dagger-android:${Versions.dagger_android}")
   implementation("com.google.dagger:dagger-android-support:${Versions.dagger_android}")
@@ -192,7 +193,7 @@ dependencies {
   // network
   implementation("com.squareup.retrofit2:retrofit:${Versions.retrofit}")
   implementation("com.squareup.retrofit2:converter-gson:${Versions.retrofit}")
-  implementation("com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit_rxjava2}")
+  implementation("com.squareup.retrofit2:adapter-rxjava2:2.9.0")
   implementation("com.squareup.okhttp3:logging-interceptor:${Versions.logging_interceptor}")
   implementation("com.github.akarnokd:rxjava3-retrofit-adapter:${Versions.retrofit_rxjava3}")
 
