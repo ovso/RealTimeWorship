@@ -15,4 +15,5 @@
     <string name="player_title">성경말씀</string>
     <string name="all_error">데이터를 불러오는 중에 문제가 발생했습니다. 잠시 후에 다시 시도해 주세요</string>
     <string name="title_story">짤방</string>
+    <string name="leave_review">리뷰남기기</string>
 </resources>
