@@ -1,12 +1,17 @@
 package io.github.ovso.worship.view.ui.main
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.ads.nativetemplates.TemplateView
+import com.google.android.gms.ads.AdLoader
+import com.google.android.gms.ads.AdRequest
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.ovso.worship.R
@@ -37,7 +42,30 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    onBackPressed()
+    finish()
     return super.onOptionsItemSelected(item)
   }
+
+  override fun onBackPressed() {
+    val templateView =
+      LayoutInflater.from(this).inflate(R.layout.dialog_native_ads, null, false) as TemplateView
+    val builder = AdLoader.Builder(this, getString(R.string.ads_native_unit_id)).apply {
+      forUnifiedNativeAd {
+        templateView.setNativeAd(it)
+      }
+    }
+    val adLoader = builder.build()
+    val adRequest = AdRequest.Builder().build()
+    adLoader.loadAd(adRequest)
+    AlertDialog.Builder(this).setView(templateView)
+      .setTitle(R.string.dialog_title_exit)
+      .setPositiveButton(R.string.dialog_exit_yes_btn) { dialog, _ ->
+        dialog.dismiss()
+      }
+      .setNeutralButton(R.string.dialog_exit_no_btn) { dialog, _ ->
+        dialog.dismiss()
+      }
+      .show()
+  }
+
 }
