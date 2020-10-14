@@ -3,6 +3,7 @@ package io.github.ovso.worship.view.ui.main
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -47,11 +48,13 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
   }
 
   override fun onBackPressed() {
+    Toast.makeText(this, "show dialog", Toast.LENGTH_SHORT).show()
     val templateView =
       LayoutInflater.from(this).inflate(R.layout.dialog_native_ads, null, false) as TemplateView
     val builder = AdLoader.Builder(this, getString(R.string.ads_native_unit_id)).apply {
       forUnifiedNativeAd {
         templateView.setNativeAd(it)
+        Toast.makeText(this@MainActivity, "set native ad", Toast.LENGTH_SHORT).show()
       }
     }
     val adLoader = builder.build()
