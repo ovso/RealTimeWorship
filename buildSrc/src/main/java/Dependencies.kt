@@ -8,7 +8,9 @@ object DefaultConfig {
 }
 
 object Versions {
-  const val gradle = "4.1.0-rc03"
+  const val gradle = "4.1.0"
+  const val googleService = "4.3.4"
+  const val licensesPlugin = "0.10.2"
   const val kotlin = "1.4.10"
   const val material = "1.2.1"
   const val viewpager2 = "1.0.0"
@@ -38,6 +40,7 @@ object Versions {
 
   const val mvrx = "1.5.1"
 
+  const val hilt_plugin = "2.28.1-alpha"
   const val hilt_android = "2.28.1-alpha"
   const val hilt_viewmodel = "1.0.0-alpha02"
   const val dagger = "2.28.1"
