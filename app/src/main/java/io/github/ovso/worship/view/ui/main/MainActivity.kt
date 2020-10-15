@@ -43,10 +43,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    finish()
+    onBackPressed()
     return super.onOptionsItemSelected(item)
   }
 
+/*
   override fun onBackPressed() {
     Toast.makeText(this, "show dialog", Toast.LENGTH_SHORT).show()
     val templateView =
@@ -70,5 +71,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
       }
       .show()
   }
+*/
 
 }
