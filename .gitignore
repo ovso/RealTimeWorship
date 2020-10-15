@@ -15,4 +15,4 @@ gradle
 .externalNativeBuild
 .cxx
 app/build
-
+nativetemplates/build
