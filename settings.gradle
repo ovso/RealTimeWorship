@@ -1,2 +1,3 @@
+include ':commons:view'
 include ':app'
 include ':nativetemplates'
