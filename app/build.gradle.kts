@@ -119,6 +119,7 @@ android {
 dependencies {
   implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
+  implementation(project(":commons:view"))
   // coroutines
   implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutine_core}")
   implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine_android}")

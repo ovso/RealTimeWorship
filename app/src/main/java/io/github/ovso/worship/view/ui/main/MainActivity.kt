@@ -1,20 +1,15 @@
 package io.github.ovso.worship.view.ui.main
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.MenuItem
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.ads.nativetemplates.TemplateView
-import com.google.android.gms.ads.AdLoader
-import com.google.android.gms.ads.AdRequest
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
+import io.github.ovso.view.AppExitAdsDialog
 import io.github.ovso.worship.R
 import io.github.ovso.worship.extensions.loadAdaptiveBanner
 import kotlinx.android.synthetic.main.activity_main.*
@@ -40,6 +35,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     setupActionBarWithNavController(navController, appBarConfiguration)
     navView.setupWithNavController(navController)
     loadAdaptiveBanner(ads_container)
+    AppExitAdsDialog(this).show()
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -47,6 +43,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     return super.onOptionsItemSelected(item)
   }
 
+  fun adTest() {
+
+  }
 /*
   override fun onBackPressed() {
     Toast.makeText(this, "show dialog", Toast.LENGTH_SHORT).show()
