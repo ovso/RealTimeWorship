@@ -62,6 +62,7 @@ class HomeFragment : DataBindingFragment<FragmentHomeBinding>(R.layout.fragment_
       }.setNeutralButton(R.string.dialog_exit_no_btn) { dialog, _ ->
         dialog.dismiss()
         navigateToStore()
+        requireActivity().finish()
       }.show()
   }
 
