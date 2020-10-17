@@ -8,7 +8,6 @@ import androidx.core.view.isVisible
 import com.google.android.gms.ads.AdLoader
 import com.google.android.gms.ads.AdRequest
 import io.github.ovso.view.databinding.DialogNativeAds2Binding
-import io.github.ovso.view.databinding.DialogNativeAdsBinding
 
 class NativeAdsDialog2(context: Context) : AlertDialog.Builder(context) {
 
@@ -20,8 +19,6 @@ class NativeAdsDialog2(context: Context) : AlertDialog.Builder(context) {
   fun setUnitId(unitId: String?): AlertDialog.Builder {
     this.unitId = unitId
     setView(binding.root)
-//    binding.root.isRefreshing = true
-    binding.progressBar.isVisible = true
     val templateView = binding.templateView
     val builder = AdLoader.Builder(context, unitId).apply {
       forUnifiedNativeAd {
@@ -42,6 +39,7 @@ class NativeAdsDialog2(context: Context) : AlertDialog.Builder(context) {
 
   override fun show(): AlertDialog {
     if (unitId == null) throw KotlinNullPointerException("NativeId must not null")
+    binding.progressBar.isVisible = true
     return super.show()
   }
 }

@@ -1,6 +1,8 @@
 package io.github.ovso.worship.view.ui.home
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
@@ -49,13 +51,26 @@ class HomeFragment : DataBindingFragment<FragmentHomeBinding>(R.layout.fragment_
           .setUnitId(getString(R.string.ads_native_unit_id))
           .setTitle(R.string.dialog_title_exit)
           .setPositiveButton(R.string.dialog_exit_yes_btn) { dialog, _ ->
+            dialog.dismiss()
             requireActivity().finish()
           }.setNeutralButton(R.string.dialog_exit_no_btn) { dialog, _ ->
             dialog.dismiss()
+            navigateToStore()
           }.show()
       }
     }
     requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+  }
+
+  private fun navigateToStore() {
+    Intent(Intent.ACTION_VIEW).apply {
+      data = Uri.parse(
+        "https://play.google.com/store/apps/details?id=${context?.packageName}"
+      )
+      setPackage("com.android.vending")
+      startActivity(this)
+    }
+    requireActivity().finish()
   }
 
   override fun onResume() {
