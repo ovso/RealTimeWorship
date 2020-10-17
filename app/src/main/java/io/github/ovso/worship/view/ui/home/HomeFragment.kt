@@ -64,9 +64,7 @@ class HomeFragment : DataBindingFragment<FragmentHomeBinding>(R.layout.fragment_
 
   private fun navigateToStore() {
     Intent(Intent.ACTION_VIEW).apply {
-      data = Uri.parse(
-        "https://play.google.com/store/apps/details?id=${context?.packageName}"
-      )
+      data = Uri.parse("https://play.google.com/store/apps/details?id=${context?.packageName}")
       setPackage("com.android.vending")
       startActivity(this)
     }
