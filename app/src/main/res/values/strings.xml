@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">실시간예배</string>
+    <string name="app_name">온라인예배</string>
     <string name="base_url">https://www.googleapis.com</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
