@@ -5,5 +5,6 @@ include(
   ":app",
   ":nativetemplates",
   ":commons:ui",
-  ":commons:view"
+  ":commons:view",
+  ":core"
 )
