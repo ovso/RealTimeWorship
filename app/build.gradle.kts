@@ -42,6 +42,7 @@ android {
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     println("versionName = $versionName")
     println("versionCode = $versionCode")
+    setProperty("archivesBaseName", "worship-$versionName")
   }
 
   signingConfigs {
