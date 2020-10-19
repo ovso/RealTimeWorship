@@ -14,6 +14,7 @@ buildscript {
     classpath("com.google.gms:google-services:${Versions.googleService}")
     classpath("com.google.android.gms:oss-licenses-plugin:${Versions.licensesPlugin}")
     classpath("com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt_plugin}")
+    classpath("com.google.firebase:firebase-crashlytics-gradle:2.3.0")
   }
 }
 

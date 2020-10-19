@@ -13,6 +13,7 @@ plugins {
   id("dagger.hilt.android.plugin")
   id("kotlin-android")
   id("org.ajoberstar.grgit") version "4.0.2"
+  id("com.google.firebase.crashlytics")
 }
 
 val grGit: Grgit = Grgit.open(mapOf("currentDir" to project.rootDir))
@@ -192,8 +193,10 @@ dependencies {
   implementation("androidx.room:room-rxjava2:${Versions.room}")
 
   // firebase
-  implementation("com.google.firebase:firebase-ads:${Versions.firebase_ads}")
-  implementation("com.google.firebase:firebase-analytics:${Versions.firebase_analytics}")
+  implementation(platform("com.google.firebase:firebase-bom:25.12.0"))
+  implementation("com.google.firebase:firebase-ads")
+  implementation("com.google.firebase:firebase-crashlytics-ktx")
+  implementation("com.google.firebase:firebase-analytics-ktx")
 
   // network
   implementation("com.squareup.retrofit2:retrofit:${Versions.retrofit}")
