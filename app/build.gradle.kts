@@ -121,6 +121,9 @@ dependencies {
   implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
   implementation(project(":commons:view"))
+  implementation(project(":commons:ui"))
+  implementation(project(":core"))
+  implementation(project(":nativetemplates"))
   // coroutines
   implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutine_core}")
   implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine_android}")
@@ -169,7 +172,7 @@ dependencies {
 
   // dagger
   implementation("com.google.dagger:dagger:${Versions.dagger}")
-  implementation(project(mapOf("path" to ":nativetemplates")))
+
   kapt("com.google.dagger:dagger-compiler:${Versions.dagger}")
   implementation("com.google.dagger:dagger-android:${Versions.dagger_android}")
   implementation("com.google.dagger:dagger-android-support:${Versions.dagger_android}")
