@@ -46,8 +46,10 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:${Versions.constraintlayout}")
 
     // firebase
-    implementation "com.google.firebase:firebase-ads:${Versions.firebase_ads}"
-    implementation "com.google.firebase:firebase-analytics:${Versions.firebase_analytics}"
+    //implementation(platform("com.google.firebase:firebase-bom:${Versions.firebase_bom}"))
+    implementation "com.google.firebase:firebase-bom:${Versions.firebase_bom}"
+    implementation "com.google.firebase:firebase-ads"
+    implementation "com.google.firebase:firebase-analytics"
 
 
     implementation project(":nativetemplates")
