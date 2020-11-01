@@ -5,8 +5,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.isVisible
+import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdLoader
 import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
 import io.github.ovso.view.databinding.DialogNativeAds2Binding
 
 class NativeAdsDialog2(context: Context) : AlertDialog.Builder(context) {
@@ -24,7 +26,11 @@ class NativeAdsDialog2(context: Context) : AlertDialog.Builder(context) {
       forUnifiedNativeAd {
         templateView.setNativeAd(it)
         binding.progressBar.isVisible = false
-      }
+      }.withAdListener(object : AdListener() {
+        override fun onAdFailedToLoad(p0: LoadAdError?) {
+          binding.progressBar.isVisible = false
+        }
+      })
     }
     val adLoader = builder.build()
     val adRequest = AdRequest.Builder().build()
