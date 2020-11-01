@@ -16,6 +16,7 @@
 default_platform(:android)
 
 platform :android do
+
   desc "Runs all the tests"
   lane :test do
     gradle(task: "test")
@@ -34,5 +35,17 @@ platform :android do
   lane :deploy do
     gradle(task: "clean assembleRelease")
     upload_to_play_store
+  end
+
+  desc "worship app"
+  lane :distribute do
+      firebase_app_distribution(
+          app: "1:179750580509:android:8b348bd687c7e31fc671f4",
+          firebase_cli_token: "1//0eVnJuJC6EnlDCgYIARAAGA4SNwF-L9IroWgSUbEx5BueQrBNrcDfesBI7DiuZONm7nW2vGZTlFmG6Bs_etKFzAq5NIgTyjlLgOM",
+          testers: "ovsoc@daum.net, ovso@naver.com",
+          release_notes: "Lots of amazing new features to test out!",
+          apk_path: "/Users/jaeho/Documents/workspace_side/RealTimeWorship/app/build/outputs/apk/debug/worship-1.1.1-debug.apk"
+      )
+
   end
 end

@@ -48,8 +48,8 @@ dependencies {
     // firebase
     //implementation(platform("com.google.firebase:firebase-bom:${Versions.firebase_bom}"))
     implementation "com.google.firebase:firebase-bom:${Versions.firebase_bom}"
-    implementation "com.google.firebase:firebase-ads"
-    implementation "com.google.firebase:firebase-analytics"
+    implementation "com.google.firebase:firebase-ads:${Versions.firebase_ads}"
+    implementation "com.google.firebase:firebase-analytics:${Versions.firebase_analytics}"
 
 
     implementation project(":nativetemplates")
