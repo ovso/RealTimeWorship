@@ -22,7 +22,7 @@ class NativeAdsDialog2(context: Context) : AlertDialog.Builder(context) {
     this.unitId = unitId
     setView(binding.root)
     val templateView = binding.templateView
-    val builder = AdLoader.Builder(context, unitId).apply {
+    val adLoader = AdLoader.Builder(context, unitId).apply {
       forUnifiedNativeAd {
         templateView.setNativeAd(it)
         binding.progressBar.isVisible = false
@@ -31,10 +31,8 @@ class NativeAdsDialog2(context: Context) : AlertDialog.Builder(context) {
           binding.progressBar.isVisible = false
         }
       })
-    }
-    val adLoader = builder.build()
-    val adRequest = AdRequest.Builder().build()
-    adLoader.loadAd(adRequest)
+    }.build()
+    adLoader.loadAd(AdRequest.Builder().build())
     return this
   }
 
