@@ -10,6 +10,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerFullScreenListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.loadOrCueVideo
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import io.github.ovso.worship.R
 import io.github.ovso.worship.data.view.PlayerModel
 import io.github.ovso.worship.databinding.ActivityPlayerBinding
@@ -17,7 +18,6 @@ import io.github.ovso.worship.extensions.getIndicatorSize
 import io.github.ovso.worship.extensions.getScreenSize
 import io.github.ovso.worship.extensions.getViewModelFactory
 import io.github.ovso.worship.view.base.DataBindingActivity
-import kotlinx.android.synthetic.main.activity_player.*
 import timber.log.Timber
 
 class PlayerActivity : DataBindingActivity<ActivityPlayerBinding>(R.layout.activity_player) {
@@ -83,7 +83,7 @@ class PlayerActivity : DataBindingActivity<ActivityPlayerBinding>(R.layout.activ
 
 
   private fun play(videoId: String) {
-    ypv_player.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+    findViewById<YouTubePlayerView>(R.id.ypv_player).addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
       override fun onReady(youTubePlayer: YouTubePlayer) {
         super.onReady(youTubePlayer)
         youTubePlayer.loadOrCueVideo(lifecycle, videoId, viewModel.second)

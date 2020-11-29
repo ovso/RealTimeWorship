@@ -5,15 +5,14 @@ import java.io.FileInputStream
 
 plugins {
   id("com.android.application")
-  kotlin("android")
-  id("kotlin-android-extensions")
-  id("kotlin-kapt")
-  id("com.google.gms.google-services")
-  id("com.google.android.gms.oss-licenses-plugin")
-  id("dagger.hilt.android.plugin")
   id("kotlin-android")
+  id("kotlin-kapt")
+  id("kotlin-parcelize")
+  id("com.google.android.gms.oss-licenses-plugin")
   id("org.ajoberstar.grgit") version "4.0.2"
+  id("com.google.gms.google-services")
   id("com.google.firebase.crashlytics")
+  id("dagger.hilt.android.plugin")
 }
 
 val grGit: Grgit = Grgit.open(mapOf("currentDir" to project.rootDir))
@@ -97,10 +96,6 @@ android {
 
   kotlinOptions {
     jvmTarget = "1.8"
-  }
-
-  androidExtensions {
-    isExperimental = true
   }
 
   lintOptions {
