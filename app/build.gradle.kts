@@ -66,12 +66,10 @@ android {
   buildTypes {
     getByName("debug") {
       signingConfig = signingConfigs.getByName("debug")
-      versionNameSuffix = "-debug"
     }
     getByName("release") {
       signingConfig = signingConfigs.getByName("release")
       isDebuggable = false
-      isZipAlignEnabled = true
       isMinifyEnabled = true
       proguardFile(getDefaultProguardFile("proguard-android.txt"))
       // global proguard settings

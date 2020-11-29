@@ -9,12 +9,12 @@ buildscript {
     }
   }
   dependencies {
-    classpath("com.android.tools.build:gradle:${Versions.gradle}")
+    classpath("com.android.tools.build:gradle:4.2.0-alpha16")
     classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
     classpath("com.google.gms:google-services:${Versions.googleService}")
     classpath("com.google.android.gms:oss-licenses-plugin:${Versions.licensesPlugin}")
     classpath("com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt_plugin}")
-    classpath("com.google.firebase:firebase-crashlytics-gradle:2.3.0")
+    classpath("com.google.firebase:firebase-crashlytics-gradle:2.4.1")
   }
 }
 
