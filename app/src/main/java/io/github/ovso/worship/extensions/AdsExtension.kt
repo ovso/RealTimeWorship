@@ -57,6 +57,20 @@ fun Activity.loadAdaptiveBanner(container: ViewGroup, unitId: String) {
   load()
 }
 
+fun ViewGroup.loadAdaptiveBanner() {
+  val adView = AdView(context)
+  this.addView(adView)
+
+  fun load() {
+    adView.adUnitId = context.getString(R.string.ads_banner_unit_id)
+    adView.adSize = (context as Activity).adaptiveBannerAdSize()
+    val adRequest = AdRequest.Builder().build()
+    adView.loadAd(adRequest)
+  }
+
+  load()
+}
+
 fun Activity.loadAdaptiveBanner(container: ViewGroup) {
   val adView = AdView(container.context)
   container.addView(adView)
