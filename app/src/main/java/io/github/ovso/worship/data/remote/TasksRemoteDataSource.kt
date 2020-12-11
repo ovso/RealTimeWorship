@@ -21,13 +21,14 @@ class TasksRemoteDataSource @Inject constructor() {
       val itemsElement = scriptElements.first { it.data().contains(prefix) }
       val startIndex = itemsElement.data().indexOf(prefix)
       val endIndex = itemsElement.data().lastIndexOf("window[\"ytInitialPlayerResponse")
-      val fullJsonString = itemsElement.data().substring(startIndex, endIndex)
+      val endIndex2 = itemsElement.data().lastIndexOf("};")
+      val fullJsonString = itemsElement.data().substring(startIndex, endIndex2+1)
       val indexOfLastSemicolon = fullJsonString.indexOfLast {
         it == ";".single()
       }
-      val stableJsonString = fullJsonString.substring(0, indexOfLastSemicolon)
+//      val stableJsonString = fullJsonString.substring(0, indexOfLastSemicolon)
       val json = GsonBuilder().setLenient().create().fromJson(
-        stableJsonString, JsonElement::class.java
+        fullJsonString, JsonElement::class.java
       )
       json.channelJsonToVideoResponses()
     }
