@@ -3,7 +3,7 @@
 ## Architecture
 
 - MVVM + DataBinding
-- MvRx + ViewBinding
+- MvRx(Legacy) + ViewBinding
 - Repository pattern
 
 ## DI
